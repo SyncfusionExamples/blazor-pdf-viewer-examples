@@ -1,0 +1,59 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Grids
+
+<div style="width: 50%; float:left">
+    <SfGrid DataSource="@Orders" Height="315" Width="500px">
+        <GridEvents RowSelected="RowSelectHandler" TValue="Order"></GridEvents>
+        <GridColumns>
+            <GridColumn Field=@nameof(Order.OrderID) HeaderText="<span> Order ID </span>" DisableHtmlEncode="false" TextAlign="TextAlign.Right" Width="140"></GridColumn>
+            <GridColumn Field=@nameof(Order.CustomerID) HeaderText="<span> Customer ID </span>" DisableHtmlEncode="true" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(Order.OrderDate) HeaderText="Order Date" Format="d" Type="ColumnType.Date" Width="100"></GridColumn>
+            <GridColumn Field=@nameof(Order.ShipCity) HeaderText="Ship City" Width="100"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+
+<div style="width: 50%; float:right">
+    <SfPdfViewerServer DocumentPath="@DocumentPath" Width="1060px" Height="500px" />
+</div>
+
+@code {
+    public List<Order> Orders { get; set; }
+    public string DocumentPath { get; set; }
+
+    //Invoked after a row is selected in a Grid component.
+    public void RowSelectHandler(RowSelectEventArgs<Order> args)
+    {
+        if (args.Data.CustomerID == "BOLID")
+        {
+            string Url = "https://www.syncfusion.com/downloads/support/directtrac/general/pd/F_Succinctly1687243841";
+            System.Net.WebClient webClient = new System.Net.WebClient();
+            //Returns the byte array containing the downloaded PDF file.
+            byte[] byteArray = webClient.DownloadData(Url);
+            //Converting the byte array to Base64 string.
+            DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
+        }
+
+    }
+
+    protected override void OnInitialized()
+    {
+        Orders = Enumerable.Range(1, 15).Select(x => new Order()
+        {
+            OrderID = 1000 + x,
+            CustomerID = (new string[] { "ALFKI", "ANANTR", "ANTON", "BLONP", "BOLID" })[new Random().Next(5)],
+            ShipCity = (new string[] { "Seattle", "Tacoma", "Redmond", "Kirkland", "London" })[new Random().Next(5)],
+            OrderDate = DateTime.Now.AddDays(-x),
+        }).ToList();
+    }
+
+    public class Order
+    {
+        public int? OrderID { get; set; }
+        public string CustomerID { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public string ShipCity { get; set; }
+    }
+
+}

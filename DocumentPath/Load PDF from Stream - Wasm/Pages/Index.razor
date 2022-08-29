@@ -1,0 +1,37 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewer
+
+<SfButton OnClick="LoadFromStream">LoadFromStream</SfButton>
+<SfButton Content="LoadBas64String" OnClick="@LoadBas64String"></SfButton>
+
+<SfPdfViewer @ref="viewer"  DocumentPath="@DocumentPath" ServiceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" Height="500px" Width="1060px">
+</SfPdfViewer>
+
+@code {
+    public SfPdfViewer viewer { get; set; }
+    private string DocumentPath { get; set; } = "PDF_Succinctly.pdf";
+    MemoryStream stream;
+
+    public async void LoadFromStream(MouseEventArgs args)
+    {
+        //Gets the loaded PDF document with the changes.
+        byte[] data = await viewer.GetDocumentAsync();
+        //Save the PDF document to a MemoryStream.
+        stream = new MemoryStream(data);
+        //Load a PDF document from the MemoryStream.
+        await viewer.LoadAsync(stream);
+    }
+
+    
+    private void LoadBas64String(object args)
+    {
+        if(stream != null)
+        {
+            //Converts the MemoryStream into Base64 string and sets the document path as Base64 string.
+            string base64String = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+            DocumentPath = base64String;
+        }
+    }
+}

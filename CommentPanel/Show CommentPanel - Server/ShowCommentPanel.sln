@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowCommentPanel", "ShowCommentPanel.csproj", "{1A8E9016-F390-43D2-891D-C3F312B83D4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A8E9016-F390-43D2-891D-C3F312B83D4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8E9016-F390-43D2-891D-C3F312B83D4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8E9016-F390-43D2-891D-C3F312B83D4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8E9016-F390-43D2-891D-C3F312B83D4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B49FD44B-6E30-4757-ACE9-072836AD2500}
+	EndGlobalSection
+EndGlobal
