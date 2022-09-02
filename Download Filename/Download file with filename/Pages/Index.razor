@@ -1,0 +1,15 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<SfPdfViewerServer DocumentPath="@documentPath" DownloadFileName="@downloadFileName" Height="800px" Width="1000px"></SfPdfViewerServer>
+
+@code
+{
+    //Sets the PDF document path for initial loading.
+    public string documentPath { get; set; } = "wwwroot/Data/PDF Succinctly.pdf";
+
+    //Sets the name of the file to be downloaded.
+    private string downloadFileName { get; set; } = "TOP-View_CutSheets.pdf";
+
+}

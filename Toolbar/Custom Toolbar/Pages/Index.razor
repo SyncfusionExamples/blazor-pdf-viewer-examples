@@ -1,0 +1,901 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Popups
+@using System.IO
+@inject IJSRuntime JSRuntime
+
+    <!--Custom Toolbar-->
+    <SfToolbar>
+        <ToolbarEvents Clicked="@ToolbarClick" ></ToolbarEvents>
+        <ToolbarItems>
+            <ToolbarItem PrefixIcon="e-pv-open-document-icon" TooltipText="Open file" Id="pdfviewer_open" Align="ItemAlign.Left" CssClass="e-pv-open-document-container">
+                <SfUploader AllowedExtensions=".pdf" AutoUpload="false">
+        <UploaderEvents ValueChange="OnChange"></UploaderEvents>
+    </SfUploader>
+            </ToolbarItem>
+            <ToolbarItem Disabled="@FirstPageDisable" PrefixIcon="e-pv-first-page-navigation-icon" TooltipText="Show first page" id="firstPage" Align="ItemAlign.Left" CssClass="e-pv-first-page-navigation-container"></ToolbarItem>
+            <ToolbarItem Disabled="@PreviousPageDisable" PrefixIcon="e-pv-previous-page-navigation-icon" TooltipText="Previous Page" id="previousPage" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Left CssClass="e-pv-previous-page-navigation-container"></ToolbarItem>
+            <ToolbarItem Disabled="@NextPageDisable" PrefixIcon="e-pv-next-page-navigation-icon" TooltipText="Next Page" id="nextPage" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Left CssClass="e-pv-next-page-navigation-container"></ToolbarItem>
+            <ToolbarItem Disabled="@LastPageDisable" PrefixIcon="e-pv-last-page-navigation-icon" TooltipText="Show last page" id="lastPage" Align="ItemAlign.Left" CssClass="e-pv-last-page-navigation-container"></ToolbarItem>
+            <ToolbarItem Type="ItemType.Input" Align="ItemAlign.Left" id="currentPageInput" TooltipText="Current page number" CssClass="e-pv-current-page-input-container">
+                <Template>
+                    <SfNumericTextBox @ref="CurrentPage"
+                                        Max="@TotalPages"
+                                        Min="0"
+                                        Width="50px"
+                                        TValue="int"
+                                        Value="@CurrentPageNumber"
+                                        ShowSpinButton=false>
+                        <NumericTextBoxEvents ValueChange="GoToPage" TValue="int"></NumericTextBoxEvents>
+                    </SfNumericTextBox>
+                </Template>
+            </ToolbarItem>
+            <ToolbarItem Align="ItemAlign.Left" Id="totalPage" CssClass="e-pv-total-page-container">
+                <Template>
+                    <span class="e-pv-total-page">of @TotalPages</span>
+                </Template>
+            </ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-zoom-out-icon" TooltipText="Zoom out" id="zoomOut" CssClass="e-pv-zoom-out-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-zoom-in-icon" TooltipText="Zoom in" id="zoomIn" CssClass="e-pv-zoom-in-container"></ToolbarItem>
+            <ToolbarItem TooltipText="Zoom" id="zoomDropDown" Type="ItemType.Input" CssClass="e-pv-zoom-drop-down-container">
+                <Template>
+                    <SfComboBox @ref="ZoomCombo" id="zoomCombo" TValue="string" TItem="ZoomValues" @bind-Value="@ZoomInitialValue" Readonly="false" Width="95px" style="min-width:58px" PopupWidth="110px" DataSource="@ZoomData" ShowClearButton="false" PopupHeight="450px">
+                        <ComboBoxEvents TItem="ZoomValues" TValue="string" ValueChange="@ZoomValueChanged" Created="AddItems" ></ComboBoxEvents>
+                        <ComboBoxFieldSettings Value="Text" Text="Text"></ComboBoxFieldSettings>
+                    </SfComboBox>
+                </Template>
+            </ToolbarItem>
+            
+            <ToolbarItem PrefixIcon="e-pv-text-select-tool-icon" TooltipText="Text selection tool" id="selectTool" CssClass="e-pv-text-select-tool-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-pan-tool-icon" TooltipText="Pan" id="handTool" CssClass="e-pv-pan-tool-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-undo-icon" TooltipText="Undo" id="undo" CssClass="e-pv-undo-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-redo-icon" TooltipText="Redo" id="redo" CssClass="e-pv-redo-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-comment-icon" TooltipText="Add Comments" id="comment" Align="ItemAlign.Left" CssClass="e-pv-comment-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-submit" TooltipText="Submit Form" id="submitFormButton" Align="ItemAlign.Left" CssClass="e-pv-submit">
+                <Template>
+                    <SfButton @ref="SubmitFormButton" id="submitForm" CssClass="e-tbar-btn" style="width:auto" ><span class="e-tbar-btn-text e-pv-submitform-text">Submit Form</span></SfButton>
+                </Template>
+            </ToolbarItem>
+
+            <ToolbarItem Text="Save" TooltipText="Save Document" id="save" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right CssClass="e-pv-save-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-text-search-icon" TooltipText="Find Text" id="search" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right CssClass="e-pv-text-search-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-annotation-icon" TooltipText="Edit Annotation" id="annotation" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right CssClass="e-pv-annotation-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-print-document-icon" TooltipText="Print File" id="print" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right CssClass="e-pv-print-document-container"></ToolbarItem>
+            <ToolbarItem PrefixIcon="e-pv-download-document-icon" TooltipText="Download File" id="Download" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right CssClass="e-pv-download-document-container"></ToolbarItem>
+
+        </ToolbarItems>
+    </SfToolbar>
+
+<!--PDFViewer-->
+<SfPdfViewerServer @ref="PDFViewer" ID="pdfviewer" DocumentPath="PDF_Succinctly.pdf" ServiceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" EnableNavigationToolbar="false" EnableAnnotationToolbar="false" EnableToolbar="false" InteractionMode=@InteractionMode Height="100%" Width="100%">
+    <PdfViewerEvents DocumentLoaded="@DocumentLoaded" PageChanged="@OnPageChanged"></PdfViewerEvents>
+</SfPdfViewerServer>
+
+@code{
+    #region binded values
+    SfPdfViewerServer PDFViewer;
+    SfComboBox<string, ZoomValues> ZoomCombo { get; set; }
+    SfButton SubmitFormButton;
+    public bool FirstPageDisable = true;
+    public bool PreviousPageDisable = true;
+    public bool NextPageDisable = true;
+    public bool LastPageDisable = true;
+    public bool CurrentPageDisabled = true;
+    public bool ZoomOutDisabled = true;
+    public bool ZoomInDisabled = true;
+    public bool ZoomDropDownDisabled = true;
+    public bool TextSelectDisabled = true;
+    public bool PanToolDisabled = true;
+    public bool UndoDisabled = true;
+    public bool RedoDisabled = true;
+    public bool CommentDisabled = true;
+    public bool SubmitFormDisabled = true;
+    public bool TextSearchDisabled = true;
+    public bool PrintDisabled = true;
+    public bool DownloadDisabled = true;
+    public bool AnnotationDisabled = true;
+    public bool AnnotationToolbarVisible = false;
+    public int zoomInit { get; set; }
+    internal static string FitPage { get; set; } = "Fit Page";
+    internal static string FitWidth { get; set; } = "Fit Width";
+    internal static string Automatic { get; set; } = "Automatic";
+    private string ToolbarHeight { get; set; } = "";
+
+    public class ZoomValues
+    {
+        public string Id { get; set; }
+        public string Text { get; set; }
+    }
+
+    public string ZoomInitialValue = "100%";
+
+    List<ZoomValues> ZoomData = new List<ZoomValues> {
+    new ZoomValues() {Id = "0", Text="10%"},
+    new ZoomValues() {Id = "1", Text="25%"},
+    new ZoomValues() {Id = "2", Text="50%"},
+    new ZoomValues() {Id = "3", Text="75%"},
+    new ZoomValues() {Id = "4", Text="100%"},
+    new ZoomValues() {Id = "5", Text="125%"},
+    new ZoomValues() {Id = "6", Text="150%"},
+    new ZoomValues() {Id = "7", Text="200%"},
+    new ZoomValues() {Id = "8", Text="400%"}
+    };
+
+    SfNumericTextBox<int> CurrentPage;
+    public int TotalPages { get; set; } = 0;
+    public int CurrentPageNumber = 0;
+    public InteractionMode InteractionMode { get; set; } = InteractionMode.TextSelection;
+    #endregion
+
+    //Triggers when the toolbar is created.
+    private async void AddItems()
+    {
+        List<ZoomValues> newItem = new List<ZoomValues> { new ZoomValues { Id = "9", Text = FitPage },
+        new ZoomValues() {Id = "10", Text=FitWidth},
+        new ZoomValues() {Id = "11", Text=Automatic}};
+        //Add new items to the popup list.
+        await ZoomCombo.AddItemsAsync(newItem);
+    }
+
+    //Triggers while loading document in to the PDFViewer.
+    private void DocumentLoaded(LoadEventArgs args)
+    {
+        TotalPages = PDFViewer.PageCount;
+        CurrentPageNumber = PDFViewer.CurrentPageNumber;
+        NextPageDisable = false;
+        LastPageDisable = false;
+        if(TotalPages == 1)
+        {
+            FirstPageDisable = true;
+            PreviousPageDisable = true;
+            NextPageDisable = true;
+            LastPageDisable = true;
+        }
+    }
+
+    private void OnChange(UploadChangeEventArgs args)
+    {
+        foreach (var file in args.Files)
+        {
+            var path = @"path" + file.FileInfo.Name;
+            FileStream filestream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            file.Stream.WriteTo(filestream);
+            PDFViewer.LoadAsync(filestream, null);
+            filestream.Close();
+            file.Stream.Close();
+        }
+    }
+
+    public async void ZoomValueChanged(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string, ZoomValues> args)
+    {
+        if (PDFViewer != null && args != null && args.Value != null)
+        {            
+            int zoomValue = PDFViewer.ZoomValue;
+            string ZoomValue = zoomValue.ToString();
+
+            if (args.Value == FitPage)
+            {
+                //Scales the page to fit with in the container of the PDFViewer.
+                await PDFViewer.FitToPageAsync();
+                ZoomInitialValue = ZoomValue + "%";
+                StateHasChanged();
+            }
+            else if (args.Value == FitWidth)
+            {
+                //Scales the page to fit the page width with in the container width of the PDFViewer.
+                await PDFViewer.FitToWidthAsync();
+                ZoomInitialValue = ZoomValue + "%";
+                StateHasChanged();
+            }
+            else if (args.Value == Automatic)
+            {
+                //Zoom the PDF document to the given zoom value.
+                await PDFViewer.ZoomAsync(100);
+                ZoomInitialValue = ZoomValue + "%";
+                StateHasChanged();
+            }
+            else if (int.TryParse(args.Value.Replace("%", ""), out int value))
+            {                
+                zoomInit = Convert.ToInt32(args.Value.Replace("%", ""));
+                //Zoom the PDF document to the given zoom value.
+                await PDFViewer.ZoomAsync(zoomInit);
+            }
+            else
+            {
+                if (zoomValue == 0)
+                {
+                    ZoomInitialValue = "100%";
+                }
+                else
+                {
+                    ZoomInitialValue = ZoomValue + "%";
+                }
+            }
+            if (zoomValue > 0)
+            {
+                if (zoomValue == 10)
+                {
+                    ZoomInDisabled = true;
+                    ZoomOutDisabled = false;
+                    StateHasChanged();
+                    ZoomInDisabled = false;
+                    ZoomOutDisabled = true;
+                }
+                else if (zoomValue == 400)
+                {
+                    ZoomInDisabled = false;
+                    ZoomOutDisabled = true;
+                    StateHasChanged();
+                    ZoomInDisabled = true;
+                    ZoomOutDisabled = false;
+                }
+                else
+                {
+                    ZoomInDisabled = false;
+                    ZoomOutDisabled = false;
+                }
+            }
+        }
+        StateHasChanged();
+    }
+    
+    //Triggers when the value of the numeric textbox changes.
+    public async void GoToPage(Syncfusion.Blazor.Inputs.ChangeEventArgs<int> args)
+    {
+        int currentValue = args.Value;
+        if (args.Event != null)
+        {
+            var changeEventArgs = args.Event as Microsoft.AspNetCore.Components.ChangeEventArgs;
+            if (changeEventArgs != null && changeEventArgs.Value != null)
+            {
+                currentValue = int.Parse(changeEventArgs.Value.ToString());
+            }
+        }
+        if (currentValue == args.Value && args.Value != 0)
+        {
+            CurrentPageNumber = args.Value;
+            //Navigate to given page number in loaded document of the PDFViewer.
+            await PDFViewer.GoToPageAsync(args.Value);
+            StateHasChanged();
+        }
+        else
+        {
+            CurrentPageNumber = PDFViewer.CurrentPageNumber;
+        }
+    }
+
+    //Triggers when there is change in the current page number.
+    private void OnPageChanged(PageChangeEventArgs args)
+    {
+        CurrentPageNumber = (int)args.CurrentPageNumber;
+        if (args.CurrentPageNumber == TotalPages)
+        {
+            NextPageDisable = true;
+            PreviousPageDisable = false;
+            LastPageDisable = true;
+            FirstPageDisable = false;
+        }
+        if (args.CurrentPageNumber < TotalPages && args.CurrentPageNumber != 1)
+        {
+            FirstPageDisable = false;
+            PreviousPageDisable = false;
+            NextPageDisable = false;
+            LastPageDisable = false;
+        }
+        if (args.CurrentPageNumber == 1)
+        {
+            NextPageDisable = false;
+            LastPageDisable = false;
+            FirstPageDisable = true;
+            PreviousPageDisable = true;
+        }
+        StateHasChanged();
+    }
+
+    //This method will get invoked while clicking the toolbar items.
+    public async void ToolbarClick(ClickEventArgs args)
+    {
+        if (args.Item != null)
+        {
+            switch (args.Item.CssClass)
+            {
+                case "e-pv-open-document-container":
+                    await JSRuntime.InvokeAsync<string>("openFile");
+                    break;
+                case "e-pv-first-page-navigation-container":
+                    //Navigate to first page of the document loaded in the PDFViewer.
+                    await PDFViewer.GoToFirstPageAsync();
+                    LastPageDisable = false;
+                    NextPageDisable = false;
+                    PreviousPageDisable = true;
+                    FirstPageDisable = true;
+                    break;
+                case "e-pv-previous-page-navigation-container":
+                    //Navigate to previous page of the PDF document loaded in the PDFViewer.
+                    await PDFViewer.GoToPreviousPageAsync();
+                    LastPageDisable = false;
+                    NextPageDisable = false;
+                    break;
+                case "e-pv-next-page-navigation-container":
+                    //Navigate to next page of the PDF document loaded in the PDFViewer.
+                    await PDFViewer.GoToNextPageAsync();
+                    FirstPageDisable = false;
+                    PreviousPageDisable = false;
+                    break;
+                case "e-pv-last-page-navigation-container":
+                    //Navigate to last page of the PDF document loaded in the PDFViewer.
+                    await PDFViewer.GoToLastPageAsync();
+                    FirstPageDisable = false;
+                    PreviousPageDisable = false;
+                    NextPageDisable = true;
+                    LastPageDisable = true;
+                    break;
+                case "e-pv-zoom-out-container":
+                    //Magnifies the page to the previous value in the zoom drop down list.
+                    await PDFViewer.ZoomOutAsync();
+                    if (PDFViewer.ZoomValue <= 10)
+                    {
+                        ZoomOutDisabled = true;
+                    }
+                    ZoomInitialValue = (PDFViewer.ZoomValue).ToString() + "%";
+                    ZoomInDisabled = false;
+                    StateHasChanged();
+                    break;
+                case "e-pv-zoom-in-container":
+                    //Scales the page to the next value in the zoom drop down list.
+                    await PDFViewer.ZoomInAsync();
+                    if (PDFViewer.ZoomValue >= 400)
+                    {
+                        ZoomInDisabled = true;
+                    }
+                    ZoomInitialValue = (PDFViewer.ZoomValue).ToString() + "%";
+                    ZoomOutDisabled = false;
+                    StateHasChanged();
+                    break;
+                case "e-pv-text-select-tool-container":
+                case "e-pv-text-select-tool-container e-pv-select":
+                    InteractionMode = InteractionMode.TextSelection;
+                    StateHasChanged();
+                    break;
+                case "e-pv-pan-tool-container":
+                    InteractionMode = InteractionMode.Pan;
+                    StateHasChanged();
+                    break;
+                case "e-pv-undo-container":
+                    //Perform undo action for the edited annotations.
+                    await PDFViewer.UndoAsync();
+                    break;
+                case "e-pv-redo-container":
+                    //Perform redo action for the edited annotations.
+                    await PDFViewer.RedoAsync();
+                    break;
+                case "e-pv-submit":
+                    //Perform export action in the PDFViewer.
+                    await PDFViewer.ExportFormFieldsAsync();
+                    break;
+                case "e-pv-comment-container":
+                    //Set annotation type to be added in the next user interaction of the document in the PDFViewer.
+                    await PDFViewer.SetAnnotationModeAsync(AnnotationType.StickyNotes);                    
+                    StateHasChanged();
+                    break;
+                case "e-pv-text-search-container":
+                    //Searches the target text in the document and highlights the occurences in the PDF pages.
+                    await PDFViewer.SearchTextAsync("PDF", false);
+                    StateHasChanged();
+                    break;
+                case "e-pv-annotation-container":
+                    if (AnnotationToolbarVisible)
+                    {
+                        //Shows or hides the annotation toolbar in the PDFViewer.
+                        PDFViewer.ShowAnnotationToolbar(false);
+                        AnnotationToolbarVisible = false;
+                    }
+                    else
+                    {
+                        PDFViewer.ShowAnnotationToolbar(true);
+                        AnnotationToolbarVisible = true;
+                    }
+                    break;
+                case "e-pv-print-document-container":
+                    //Print the PDF document being loaded in the PDFViewer.
+                    await PDFViewer.PrintAsync();
+                    break;
+                case "e-pv-download-document-container":
+                    //Downloads the PDF document being loaded in the PDFViewer.
+                    await PDFViewer.DownloadAsync();
+                    break;
+                case "e-pv-save-container":
+                    //You can implement your code here
+                    break;
+            }
+        }
+    }
+}
+
+<!--Style for custom toolbar-->
+<style>
+    .e-pv-icon::before {
+      font-family: 'e-icons';
+    }
+
+    .e-pv-icon-search::before {
+      font-family: 'e-icons';
+      font-size: 16px;
+    }
+
+    .e-pv-open-document-icon::before {
+      content: '\e70f';
+    }
+
+    .e-pv-download-document-icon::before {
+      content: '\e75d';
+    }
+
+    .e-pv-print-document-icon::before {
+      content: '\e743';
+    }
+
+    .e-pv-first-page-navigation-icon::before {
+      content: '\e77c';
+    }
+
+    .e-pv-previous-page-navigation-icon::before,
+    .e-pv-prev-search-icon::before {
+      content: '\e70d';
+    }
+
+    .e-pv-next-page-navigation-icon::before,
+    .e-pv-next-search-icon::before {
+      content: '\e76a';
+    }
+
+    .e-pv-last-page-navigation-icon::before {
+      content: '\e76d';
+    }
+
+    .e-pv-zoom-out-icon::before {
+      content: '\e742';
+      line-height: 26px !default;
+    }
+
+    .e-pv-zoom-in-icon::before {
+      content: '\e755';
+      line-height: 26px !default;
+    }
+
+    .e-pv-thumbnail-view-icon::before {
+      content: '\e7b4';
+    }
+
+    .e-pv-thumbnail-view-disable-icon::before {
+      color: rgba($gray-700, .4) !default;
+      content: '\e7b4';
+    }
+
+    .e-pv-thumbnail-view-selection-icon::before {
+      color: $white !default;
+      content: '\e7b4';
+    }
+
+    .e-pv-bookmark-icon::before {
+      content: '\e731';
+    }
+
+    .e-pv-bookmark-disable-icon::before {
+      color: rgba($gray-700, .4) !default;
+      content: '\e731';
+    }
+
+    .e-pv-bookmark-selection-icon::before {
+      color: $white !default;
+      content: '\e731';
+    }
+
+    .e-pv-title-close-icon::before,
+    .e-pv-annotation-tools-close-icon::before,
+    .e-pv-annotation-popup-close::before {
+      content: '\e745';
+    }
+
+    .e-pv-title-close-icon::before {
+      font-size: 12px  !default;
+    }
+
+    .e-pv-resize-icon::before {
+      content: '\e71f';
+      font-size: 10px;
+    }
+
+    .e-pv-text-select-tool-icon::before {
+      content: '\e767';
+    }
+
+    .e-pv-pan-tool-icon::before {
+      content: '\e711';
+    }
+
+    .e-pv-text-search-icon::before {
+      content: '\e724';
+    }
+
+    .e-pv-search-icon::before {
+      content: '\e724';
+      font-family: 'e-icons';
+    }
+
+    .e-pv-search-close::before {
+      content: '\e745';
+      font-family: 'e-icons';
+    }
+
+    .e-pv-formdesigner-icon::before {
+      content: '\e90c';
+    }
+
+    .e-pv-annotation-icon::before {
+      content: '\e75e';
+    }
+
+    .e-pv-annotation-color-icon::before {
+      content: '\e754';
+    }
+
+    .e-pv-annotation-stroke-icon::before {
+      content: '\e668';
+    }
+
+    .e-pv-annotation-opacity-icon::before {
+      content: '\e700';
+    }
+
+    .e-pv-annotation-thickness-icon::before {
+      content: '\e75b';
+    }
+
+    .e-pv-annotation-delete-icon::before {
+      content: '\e773';
+    }
+
+    .e-pv-undo-icon::before {
+      content: '\e752';
+    }
+
+    .e-pv-redo-icon::before {
+      content: '\e778';
+    }
+
+    .e-pv-more-icon::before {
+      color: rgba(33, 37, 41, .9) !default;
+      content: '\e71b';
+    }
+
+    .e-pv-backward-icon::before {
+      content: '\e728';
+    }
+
+    .e-pv-notification-icon {
+      background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjM1cHgiIGhlaWdodD0iMzFweCIgdmlld0JveD0iMCAwIDM1IDMxIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNTEuMiAoNTc1MTkpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPg0KICAgIDx0aXRsZT5Hcm91cCAzPC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZGVmcz48L2RlZnM+DQogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+DQogICAgICAgIDxnIGlkPSJDb3JydXB0ZWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01MTQuMDAwMDAwLCAtMzUzLjAwMDAwMCkiPg0KICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTE5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OTQuMDAwMDAwLCAyODUuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwLjAwMDAwMCwgNjguMTg0NDc0KSI+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNS4yMjM0NzA4LDEwLjM1NzYwMjYgTDEyLjY1MzYzNywyMy40MDU1MTA2IEwxNC4xMzIwOTA1LDI2Ljk5MTI0OTUgTDE5LjM2MTc3ODksMjYuOTkxMjQ5NSBDMjAuNDQwMjUwNywxNy44NjA2NDE1IDIwLjY5MzgwOTcsMTIuMzE2MDkyNSAyMC4xMjI0NTU4LDEwLjM1NzYwMjYgQzE5LjU1MTEwMTksOC4zOTkxMTI3NCAxNy45MTgxMDY5LDguMzk5MTEyNzQgMTUuMjIzNDcwOCwxMC4zNTc2MDI2IFoiIGlkPSJQYXRoLTExIiBmaWxsPSIjMEUwRTBFIj48L3BhdGg+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMS42MjM4MDkxLDMwLjM4NzQxMDEgQzMzLjgyOTUxMDUsMzAuMzg3NDEwMSAzNC43MjA5MTk0LDI4LjgzODYyNDQgMzMuNjExOTMzMiwyNi45MjMxMDI4IEwxOS4yODk5MDMsMi4xODUwNTA2OCBDMTguMTgyMjEyMiwwLjI3MTc2NjU5NSAxNi4zODc1ODYsMC4yNjk1MjkwNjkgMTUuMjc4NTk5OCwyLjE4NTA1MDY4IEwwLjk1NjU2OTY4NSwyNi45MjMxMDI4IEMtMC4xNTExMjExMDMsMjguODM2Mzg2OCAwLjc0NDI0ODg4MiwzMC4zODc0MTAxIDIuOTQ0NjkzNzksMzAuMzg3NDEwMSBMMzEuNjIzODA5MSwzMC4zODc0MTAxIFogTTE1LjYxNzU4NDgsMjYuMzg3NDEwMSBMMTUuNjE3NTg0OCwyMy4wNTQwNzY3IEwxOC45NTA5MTgxLDIzLjA1NDA3NjcgTDE4Ljk1MDkxODEsMjYuMzg3NDEwMSBMMTUuNjE3NTg0OCwyNi4zODc0MTAxIFogTTE1LjYxNzU4NDgsMjAuNzIwNzQzNCBMMTUuNjE3NTg0OCwxMC4wNTQwNzY3IEwxOC45NTA5MTgxLDEwLjA1NDA3NjcgTDE4Ljk1MDkxODEsMjAuNzIwNzQzNCBMMTUuNjE3NTg0OCwyMC43MjA3NDM0IFoiIGlkPSJTaGFwZSIgZmlsbD0iI0VGQzAwMiI+PC9wYXRoPg0KICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgIDwvZz4NCiAgICAgICAgPC9nPg0KICAgIDwvZz4NCjwvc3ZnPg==') !default;
+      background-repeat: no-repeat !default;
+      background-size: 38px 33px !default;
+      height: 33px !default;
+    }
+
+    .e-pv-notification-icon-rtl {
+      background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgd2lkdGg9IjM1cHgiIGhlaWdodD0iMzFweCIgdmlld0JveD0iMCAwIDM1IDMxIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNTEuMiAoNTc1MTkpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPg0KICAgIDx0aXRsZT5Hcm91cCAzPC90aXRsZT4NCiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCiAgICA8ZGVmcz48L2RlZnM+DQogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+DQogICAgICAgIDxnIGlkPSJDb3JydXB0ZWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01MTQuMDAwMDAwLCAtMzUzLjAwMDAwMCkiPg0KICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTE5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OTQuMDAwMDAwLCAyODUuMDAwMDAwKSI+DQogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwLjAwMDAwMCwgNjguMTg0NDc0KSI+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNS4yMjM0NzA4LDEwLjM1NzYwMjYgTDEyLjY1MzYzNywyMy40MDU1MTA2IEwxNC4xMzIwOTA1LDI2Ljk5MTI0OTUgTDE5LjM2MTc3ODksMjYuOTkxMjQ5NSBDMjAuNDQwMjUwNywxNy44NjA2NDE1IDIwLjY5MzgwOTcsMTIuMzE2MDkyNSAyMC4xMjI0NTU4LDEwLjM1NzYwMjYgQzE5LjU1MTEwMTksOC4zOTkxMTI3NCAxNy45MTgxMDY5LDguMzk5MTEyNzQgMTUuMjIzNDcwOCwxMC4zNTc2MDI2IFoiIGlkPSJQYXRoLTExIiBmaWxsPSIjMEUwRTBFIj48L3BhdGg+DQogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMS42MjM4MDkxLDMwLjM4NzQxMDEgQzMzLjgyOTUxMDUsMzAuMzg3NDEwMSAzNC43MjA5MTk0LDI4LjgzODYyNDQgMzMuNjExOTMzMiwyNi45MjMxMDI4IEwxOS4yODk5MDMsMi4xODUwNTA2OCBDMTguMTgyMjEyMiwwLjI3MTc2NjU5NSAxNi4zODc1ODYsMC4yNjk1MjkwNjkgMTUuMjc4NTk5OCwyLjE4NTA1MDY4IEwwLjk1NjU2OTY4NSwyNi45MjMxMDI4IEMtMC4xNTExMjExMDMsMjguODM2Mzg2OCAwLjc0NDI0ODg4MiwzMC4zODc0MTAxIDIuOTQ0NjkzNzksMzAuMzg3NDEwMSBMMzEuNjIzODA5MSwzMC4zODc0MTAxIFogTTE1LjYxNzU4NDgsMjYuMzg3NDEwMSBMMTUuNjE3NTg0OCwyMy4wNTQwNzY3IEwxOC45NTA5MTgxLDIzLjA1NDA3NjcgTDE4Ljk1MDkxODEsMjYuMzg3NDEwMSBMMTUuNjE3NTg0OCwyNi4zODc0MTAxIFogTTE1LjYxNzU4NDgsMjAuNzIwNzQzNCBMMTUuNjE3NTg0OCwxMC4wNTQwNzY3IEwxOC45NTA5MTgxLDEwLjA1NDA3NjcgTDE4Ljk1MDkxODEsMjAuNzIwNzQzNCBMMTUuNjE3NTg0OCwyMC43MjA3NDM0IFoiIGlkPSJTaGFwZSIgZmlsbD0iI0VGQzAwMiI+PC9wYXRoPg0KICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgIDwvZz4NCiAgICAgICAgPC9nPg0KICAgIDwvZz4NCjwvc3ZnPg==') !default;
+      background-position: right !default;
+      background-repeat: no-repeat !default;
+      background-size: 38px 33px !default;
+      height: 33px !default;
+    }
+
+    .e-pv-textbox-icon::before {
+      content: '\e89f';
+    }
+
+    .e-pv-password-icon::before {
+      content: '\e91a';
+    }
+
+    .e-pv-checkbox-icon::before {
+      content: '\e90b';
+    }
+
+    .e-pv-radiobutton-icon::before {
+      content: '\e90f';
+    }
+
+    .e-pv-dropdown-icon::before {
+      content: '\e90e';
+    }
+
+    .e-pv-listbox-icon::before {
+      content: '\e89e';
+    }
+
+    .e-pv-annotation-calibrate-icon::before {
+      content: '\e678';
+    }
+  }
+
+  .e-pv-download-document-icon.e-menu-icon::before {
+    content: '\e75d';
+  }
+
+  .e-pv-bookmark-icon.e-menu-icon::before {
+    content: '\e731';
+  }
+
+  .e-pv-highlight-icon::before {
+    content: '\e770';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-underline-icon::before {
+    content: '\e792';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-strikethrough-icon::before {
+    content: '\e786';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-copy-icon::before {
+    content: '\e77b';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-stamp-icon::before {
+    content: '\e74c';
+  }
+
+  .e-pv-shape-line-icon::before {
+    content: '\e668';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-shape-arrow-icon::before {
+    content: '\e669';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-shape-rectangle-icon::before {
+    content: '\e670';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-shape-circle-icon::before {
+    content: '\e671';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-shape-pentagon-icon::before {
+    content: '\e672';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-annotation-shape-icon::before {
+    content: '\e77e';
+  }
+
+  .e-pv-cut-icon::before {
+    content: '\e73f';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-paste-icon::before {
+    content: '\e739';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-delete-icon::before {
+    content: '\e773';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-properties-fill-color-icon::before {
+    content: '\e754';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-properties-stroke-color-icon::before {
+    content: '\e668';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-comment-icon::before {
+    content: '\e680';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-property-icon::before {
+    content: '\e199';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-comment-selection-icon::before {
+    color: $white !default;
+    content: '\e680';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-comment-panel-icon::before {
+    content: '\e715';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-accepted-icon::before {
+    color: #fff !default;
+    content: '\e682';
+    font-family: 'e-icons';
+    font-size: 14px !default;
+    padding: 1px 1px 1px 4px !default;;
+    position: absolute !default;
+  }
+
+  .e-pv-rejected-icon::before {
+    color: #fff !default;
+    content: '\e683';
+    font-family: 'e-icons';
+    font-size: 14px !default;
+    padding: 2px 1px 1px 4px !default;
+    position: absolute !default;
+  }
+
+  .e-pv-completed-icon::before {
+    color: #fff !default;
+    content: '\e718';
+    font-family: 'e-icons';
+    font-size: 14px !default;
+    padding: 2px 1px 1px 3.5px !default;
+    position: absolute !default;
+  }
+
+  .e-pv-cancelled-icon::before {
+    color: #fff !default;
+    content: '\e745';
+    font-family: 'e-icons';
+    font-size: 14px !default;
+    padding: 2px 1px 1px 3.5px !default;
+    position: absolute !default;
+  }
+
+  .e-pv-scale-ratio-icon::before {
+    content: '\e678';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-calibrate-distance-icon::before {
+    content: '\e673';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-calibrate-perimeter-icon::before {
+    content: '\e674';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-calibrate-area-icon::before {
+    content: '\e675';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-calibrate-radius-icon::before {
+    content: '\e676';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-calibrate-volume-icon::before {
+    content: '\e677';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-annotation-stamp-container .e-menu-wrapper ul .e-menu-item .e-caret::before {
+    font-size: 8px;
+  }
+
+  .e-pv-freetext-icon::before {
+    content: '\e764';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-annotation-textalign-icon::before {
+    content: '\e76f';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-annotation-textprop-icon::before {
+    content: '\e71b';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-annotation-textcolor-icon::before {
+    content: '\e80e';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-left-align-icon::before {
+    content: '\e76f';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-right-align-icon::before {
+    content: '\e746';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-center-align-icon::before {
+    content: '\e732';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-justfiy-align-icon::before {
+    content: '\e79b';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-bold-icon::before {
+    content: '\e78b';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-italic-icon::before {
+    content: '\e78e';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-strikeout-icon::before {
+    content: '\e786';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-underlinetext-icon::before {
+    content: '\e792';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-superscript-icon::before {
+    content: '\e352';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-subscript-icon::before {
+    content: '\e357';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-handwritten-icon::before {
+    content: '\e844';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-inkannotation-icon::before {
+    content: '\e71a';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-delete::before {
+    content: '\e773';
+    font-family: 'e-icons';
+  }
+
+  .e-pv-eye-icon::before {
+    content: '\e787';
+    cursor: pointer !default;
+    font-family: 'e-icons';
+    font-size: 18px !default;
+    padding: 7px !default;
+  }
+
+  .e-pv-eye-slash-icon::before {
+    content: '\e82f';
+    font-family: 'e-icons';
+    font-size: 18px !default;
+    padding: 7px !default;
+  }
+</style>

@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Popups
+
+
+<SfDialog>
+    <DialogTemplates>
+        <Content>
+            <embed src="HTTP Succinctly.pdf" width="1300" height="1300" @onload="@onloaded">
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+@code {
+
+    public void onloaded(Microsoft.AspNetCore.Components.Web.ProgressEventArgs args)
+    {
+        Console.WriteLine("onloaded");
+        Console.WriteLine(args);
+        Console.WriteLine(args.Loaded);
+        Console.WriteLine(args.Type);
+    }
+}
