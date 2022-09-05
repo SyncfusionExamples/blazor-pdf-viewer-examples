@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+
+<div id="target" style="width:800px;height:100%">
+    <SfButton @onclick="OnClick">Open PDF Viewer</SfButton>
+    <SfDialog @ref="@dialog" Target="#target" MinHeight="100%" Width="1060px" CloseOnEscape="true" AllowDragging="true" Visible="false"
+              IsModal="true" Header="@Header" ShowCloseIcon="false">
+        <SfButton @onclick="OnClickopen">Open PDF Document</SfButton>
+        <SfPdfViewerServer @ref="viewer"
+                           Height="800px">
+            <PdfViewerEvents DocumentLoaded="@documentLoad"></PdfViewerEvents>
+        </SfPdfViewerServer>
+    </SfDialog>
+</div>
+
+
+
+@code{
+    SfPdfViewerServer viewer;
+    SfDialog dialog;
+
+    public void OnClick(MouseEventArgs args)
+    {
+        this.dialog.Show(true);
+    }
+
+    public void OnClickopen(MouseEventArgs args)
+    {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/data/HTTP Succinctly.pdf");
+        string base64String = Convert.ToBase64String(byteArray);
+        viewer.Load("data:application/pdf;base64," + base64String, null);
+    }
+
+    private void documentLoad(LoadEventArgs args)
+    {
+        //
+        viewer.PrintAsync();
+    }
+
+    public string Header { get; set; } = "PDF Viewer";
+}
