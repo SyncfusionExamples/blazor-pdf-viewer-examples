@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Grids;
+@using Syncfusion.Blazor.PdfViewer;
+@using Syncfusion.Blazor.PdfViewerServer;
+
+<SfPdfViewerServer DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+<SfGrid DataSource="@Orders"></SfGrid>
+@code{
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+    public List<Order> Orders { get; set; }
+
+    public class Order
+    {
+        public int? OrderID { get; set; }
+        public string CstomerID { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public double? Freight { get; set; }
+        public int? ProductID { get; set; }
+        public DateTime? ManufatureDate { get; set; }
+        public int? ID { get; set; }
+
+    }
+    protected override void OnInitialized()
+    {
+        //Datasource to populate grid.
+        Orders = Enumerable.Range(1, 15).Select(x => new Order()
+        {
+            OrderID = 1000 + x,
+            CstomerID = (new string[] { "ALFKI", "Anton", "ANANTR", "BLONP", "BOLID" })[new Random().Next(5)],
+            Freight = 2.1 * x,
+            OrderDate = DateTime.Now.AddDays(-x),
+            ProductID = 2000 + x,
+            ManufatureDate = DateTime.Now.AddDays(-x),
+            ID = 200 + x,
+
+        }).ToList();
+    }
+}

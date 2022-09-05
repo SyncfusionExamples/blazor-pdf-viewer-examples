@@ -1,0 +1,22 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<SfPdfViewerServer DocumentPath="@DocumentPath" Width="560" Height="315">
+    <PdfViewerEvents Created="created"></PdfViewerEvents>
+</SfPdfViewerServer>
+
+@code 
+{
+    public string DocumentPath { get; set; }
+
+    public void created()
+    {
+        string Link =   "http://infolab.stanford.edu/pub/papers/google.pdf";
+        System.Net.WebClient webClient = new System.Net.WebClient();
+        byte[] byteArray = webClient.DownloadData(Link);
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
+    }
+  
+}
