@@ -29,33 +29,96 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 
 <table>
  <tr>
-  <td><a href="Blazor/Annotations/Annotation Review Status - Server">Annotation review status in Syncfusion Blazor PDFViewer</a></td>
+  <td><a href="Annotations/Annotation Review Status - Server">Annotation review status in Syncfusion Blazor PDFViewer</a></td>
  </tr>
   <tr>
-  <td><a href="Blazor/Annotations/Show AnnotationToolbar">Show AnnotationToolbar in Syncfusion Blazor PDFViewer</a></td>
+  <td><a href="Annotations/Show AnnotationToolbar">Show AnnotationToolbar in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
-  <td><a href="Blazor/CommentPanel/Show CommentPanel-Server">Show CommentPanel in Syncfusion Blazor PDFViewer</a></td>
+  <td><a href="CommentPanel/Show CommentPanel-Server">Show CommentPanel in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/DocumentPath/Load PDF from Base64 - Server">View PDF document loaded from Base64 string in Syncfusion Blazor PDFViewer</a></td>
+ <td><a href="DocumentPath/Load PDF from Base64 - Server">View PDF document loaded from Base64 string in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/DocumentPath/Load PDF from Stream - Wasm">View PDF document loaded from MemoryStream in Syncfusion Blazor PDFViewer</a></td>
+ <td><a href="DocumentPath/Load PDF from Stream - Wasm">View PDF document loaded from MemoryStream in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/DocumentPath/Load PDF from Url - Server">View PDF document loaded from Url link in Syncfusion Blazor PDFViewer</a></td>
+ <td><a href="DocumentPath/Load PDF from Url - Server">View PDF document loaded from Url link in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/DocumentPath/Load PDF using EmbedTag - Wasm">View PDF document loaded using embedtag in Syncfusion Blazor PDFViewer</a></td>
+ <td><a href="DocumentPath/Load PDF using EmbedTag - Wasm">View PDF document loaded using embedtag in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/Download Filename/Download file with filename">Filename for the downloadable file in Syncfusion Blazor PDFViewer</a></td>
+ <td><a href="Download Filename/Download file with filename">Filename for the downloadable file in Syncfusion Blazor PDFViewer</a></td>
  </tr>
  <tr>
- <td><a href="Blazor/Toolbar/Custom Toolbar">Customizing the Toolbar in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Toolbar/Custom Toolbar">Customizing the Toolbar in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Password/Protect PDF document">How to password protect a PDF</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Toolbar/Custom Toolbar with Save Option">Toolbar Customization with save option in Blazor PDF Viewer</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Events/Load PDF Document on Created event">Loading a pdf dynamically via the event created</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Annotations/Export Annotation as Object">How to Export Annotations</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Annotations/Create a Custom Dynamic Stamp">Create a custom dynamic stamp using Syncfusion Blazor PDF Viewer</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Maximum Receive Message Size/Set Buffer limit">How to resolve "Maximum Receive Message size" in Syncfusion Blazor PDF Viewer</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Render PDFViewer with different components/Show or Hide PDFViewer Dynamically">How to render PDFViewer in a button click</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Annotations/Customize Arrow Annotation Heads">How to Customize Arrow Annotation Heads in Syncfusion Blazor PDF Viewer</a>
+ </td>
+ </tr>
+  <tr>
+ <td>
+ <a href="Annotations/Import Export Annotations">How to import and export Arrow annotations in Syncfusion Blazor PDF Viewer</a>
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <a href="Render PDFViewer with different components/PDFViewer with Grid">How to render Grid and PDFViewer components on a single page</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Render PDFViewer with different components/PDFViewer with Tab">How to render the Blazor PDFViewer component on the Tab component</a>
  </td>
  </tr> 
+ <tr>
+ <td><a href="Render PDFViewer with different components/PDFViewer with Dialog">How to render the Blazor PDFViewer component on the Dialog component</a>
+ </td>
+ </tr>
+  <tr>
+ <td><a href="Printing/Print the PDFViewer inside the Dialog">How to print the PDFViewer inside the Dialog component</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Printing/Print canvas element in native method">Empty page occurs while printing in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>      
 </table>
 
 ## Support and feedback

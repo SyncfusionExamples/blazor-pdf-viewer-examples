@@ -1,0 +1,64 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewerServer;
+@using Syncfusion.Blazor.PdfViewer;
+@using System.Net;
+
+<style>
+    .e-spinner-pane {
+        display: none !important;
+    }
+</style>
+
+<!--Show or hide the visibility of the PDF Viewer-->
+<SfButton OnClick="ShowHidePdfViewer">@Label PDF Viewer</SfButton>
+
+@if (IsShowPDFViewer)
+{
+    <SfButton OnClick="LoadDocument1">Physical Path</SfButton>    
+    <SfButton OnClick="LoadDocument2">Remote Path</SfButton>    
+
+    <div class="mt-2">
+        <SfPdfViewerServer @ref="PdfViewerServerRef"
+                           DocumentPath="@Base64Content"
+                           Height="565px"
+                           Width="100%">
+        </SfPdfViewerServer>
+    </div>
+}
+
+@code
+{
+    SfPdfViewerServer PdfViewerServerRef { get; set; }
+
+    string Base64Content { get; set; }
+
+    bool IsShowPDFViewer { get; set; }
+
+    string Label => IsShowPDFViewer ? "Hide" : "Show";
+
+    //This method handles the visibility of the PDFViewer.
+    void ShowHidePdfViewer() => IsShowPDFViewer = !IsShowPDFViewer;
+
+    public void LoadDocument1()
+    {
+        //Updates the PDF Viewer container width and height from externally.
+        PdfViewerServerRef.UpdateViewerContainerAsync();
+        //Returns a byte array containing the contents of the file.
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/data/PDF Succinctly.pdf");
+        //Sets the document path from base64 string.
+        Base64Content = $"data:application/pdf;base64,{Convert.ToBase64String(byteArray)}";
+    }
+
+    public async Task LoadDocument2()
+    {
+        using (var webClient = new WebClient())
+        {
+            //Downloads the resource as a byte array from the url specified. 
+            var data = await webClient.DownloadDataTaskAsync("https://www.syncfusion.com/downloads/support/directtrac/general/pd/FSuccinctly-2023061093.pdf");
+            //Sets the document path from base64 string.
+            Base64Content = $"data:application/pdf;base64,{Convert.ToBase64String(data)}";
+        }
+    }
+
+}

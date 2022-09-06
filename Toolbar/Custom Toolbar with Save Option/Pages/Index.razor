@@ -1,0 +1,108 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+
+<SfToolbar>
+    <ToolbarItems>
+        <ToolbarItem PrefixIcon="e-pv-previous-page-navigation-icon" TooltipText="Previous Page" id="previousPage" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Left OnClick="@previousClicked"></ToolbarItem>
+        <ToolbarItem PrefixIcon="e-pv-next-page-navigation-icon" TooltipText="Next Page" id="nextPage" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Left OnClick="@nextClicked"></ToolbarItem>
+        <ToolbarItem PrefixIcon="e-pv-zoom-in-icon" TooltipText="Zoom in" id="zoomIn" OnClick="@zoomInClicked"></ToolbarItem>
+        <ToolbarItem PrefixIcon="e-pv-zoom-out-icon" TooltipText="Zoom out" id="zoomOut" OnClick="@zoomoutClicked"></ToolbarItem>
+        <ToolbarItem Text="Save" TooltipText="Save Document" id="save" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right OnClick="@save"></ToolbarItem>
+        <ToolbarItem Text="Edit Annotation" TooltipText="Annotation Toolbar" id="annotation" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right OnClick="@annotations"></ToolbarItem>
+        <ToolbarItem PrefixIcon="e-pv-print-document-icon" TooltipText="Print" id="print" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right OnClick="@print"></ToolbarItem>
+        <ToolbarItem PrefixIcon="e-pv-download-document-icon" TooltipText="Download" id="Download" Align=@Syncfusion.Blazor.Navigations.ItemAlign.Right OnClick="@download"></ToolbarItem>
+    </ToolbarItems>
+</SfToolbar>
+
+<SfPdfViewerServer @ref="PDFViewer" IsCommentPanelOpen="true" DocumentPath="PDF_Succinctly.pdf" ServiceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" EnableNavigationToolbar="false" EnableToolbar="false"  Height="100%" Width="100%"></SfPdfViewerServer>
+
+@code
+{
+    SfPdfViewerServer PDFViewer;
+
+    public void nextClicked(ClickEventArgs args)
+    {
+        //Navigate to next page of the PDF document loaded in the PDF Viewer.
+        PDFViewer.GoToNextPageAsync();
+    }
+
+    public void previousClicked(ClickEventArgs args)
+    {
+        //Navigate to previous page of the PDF document.
+        PDFViewer.GoToPreviousPageAsync();
+    }
+
+    MemoryStream stream;
+    public async void save(ClickEventArgs args)
+    {
+       //Gets the loaded PDF document with the changes.
+        byte[] data = await PDFViewer.GetDocumentAsync();
+        //Save the PDF document to a MemoryStream.
+        stream = new MemoryStream(data);
+        //Load a PDF document from the MemoryStream.
+        await PDFViewer.LoadAsync(stream);
+    }
+
+    public void annotations(ClickEventArgs args)
+    {
+        //Shows or hides the annotation toolbar in the PDF Viewer.
+        PDFViewer.ShowAnnotationToolbar(true);
+    }
+
+    public void print(ClickEventArgs args)
+    {
+        //Print the PDF document being loaded in the PDF Viewer.
+        PDFViewer.PrintAsync();
+    }
+
+    public void download(ClickEventArgs args)
+    {
+        //Downloads the PDF document being loaded in the PDF Viewer.
+        PDFViewer.DownloadAsync();
+    }
+
+    public void zoomInClicked(ClickEventArgs args)
+    {
+        //Scale the page to the next value in the zoom drop down list.
+        PDFViewer.ZoomInAsync();
+    }
+
+    public void zoomoutClicked(ClickEventArgs args)
+    {
+        //Magnifies the page to the previous value in the zoom drop down list.
+        PDFViewer.ZoomOutAsync();
+    }
+}
+
+<style>
+     .e-pv-previous-page-navigation-icon::before {
+        content: '\e70d';
+    }
+
+    .e-pv-next-page-navigation-icon::before {
+        content: '\e76a';
+    }
+    
+   .e-pv-download-document-icon::before {
+        content: '\e75d';
+    }
+
+    .e-pv-print-document-icon::before {
+        content: '\e743';
+    }
+      .e-pv-zoom-out-icon::before {
+        content: '\e742';
+    }
+
+    .e-pv-zoom-in-icon::before {
+        content:  '\e755';
+    }
+
+    .e-pv-fit-page::before {
+        content: '\e91b';
+    }
+
+</style>
