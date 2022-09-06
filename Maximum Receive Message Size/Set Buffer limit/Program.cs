@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSyncfusionBlazor();
+//Sets the maximum message receive size to resolve loading issue.
 builder.Services.AddServerSideBlazor().AddHubOptions(o => {
     o.MaximumReceiveMessageSize = 102400000;
 });
