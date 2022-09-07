@@ -118,7 +118,19 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 <tr>
  <td><a href="Printing/Print canvas element in native method">Empty page occurs while printing in Syncfusion Blazor PDFViewer</a>
  </td>
- </tr>      
+ </tr>
+  <tr>
+ <td><a href="Hosted Samples/Simple hosted sample">How to create a simple hosted sample in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr> 
+ <tr>
+ <td><a href="Hosted Samples/Hosted sample with Swagger configuration">How to create a hosted sample with Swagger Configuration in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+  <tr>
+ <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>         
 </table>
 
 ## Support and feedback
