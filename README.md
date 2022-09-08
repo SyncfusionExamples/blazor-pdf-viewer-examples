@@ -90,7 +90,7 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
  </tr>
  <tr>
  <td>
- <a href="Annotations/Customize Arrow Annotation Heads">How to Customize Arrow Annotation Heads in Syncfusion Blazor PDF Viewer</a>
+ <a href="Annotations/Customize Arrow Annotation Heads">How to customize Arrow Annotation Heads in Syncfusion Blazor PDF Viewer</a>
  </td>
  </tr>
   <tr>
