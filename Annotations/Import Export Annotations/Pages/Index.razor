@@ -1,0 +1,59 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.Buttons
+@using System.IO;
+
+<SfButton OnClick="GetStream">GetDocument</SfButton>
+<SfButton OnClick="OpenDocument">OpenDocument</SfButton>
+<SfButton OnClick="ImportAnnotationFromFile">ImportAnnotation1</SfButton>
+<SfButton OnClick="ExportAnnotationStream">ExportAnnotation</SfButton>
+<SfButton OnClick="ImportAnnotationJson">ImportAnnotationJson</SfButton>
+<SfButton OnClick="ExportAnnotationJsonFile">ExportAnnotationJson</SfButton>
+
+<SfPdfViewerServer @ref="pdfviewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+</SfPdfViewerServer>
+
+@code {
+    SfPdfViewerServer pdfviewer;
+    Stream annotationData;
+    byte[] data;
+    public string DocumentPath = "wwwroot/data/F# Succinctly.pdf";
+
+    private async void GetStream()
+    {
+        //Gets the loaded PDF document with the changes.
+        data = await pdfviewer.GetDocumentAsync();
+        //PDF document file stream
+        Stream stream = new MemoryStream(data);
+    }
+
+    private void OpenDocument()
+    {
+        string base64String = Convert.ToBase64String(data);
+        DocumentPath = "data:application/pdf;base64," + base64String;
+    }
+
+    private async void ImportAnnotationFromFile()
+    {
+        //Perform import annotations action in the PDF Viewer.
+       await pdfviewer.ImportAnnotationAsync("wwwroot/data/Import1.json", AnnotationDataFormat.Json);
+    }
+
+    private async void ExportAnnotationStream()
+    {
+        //Perform export annotations as stream in the PDF Viewer.
+        annotationData = await pdfviewer.ExportAnnotationAsStreamAsync(AnnotationDataFormat.Json);
+    }
+    private async void ImportAnnotationJson()
+    {
+        //Perform import annotations action in the PDF Viewer.
+        await pdfviewer.ImportAnnotationAsync(annotationData, AnnotationDataFormat.Json);
+    }
+
+    private void ExportAnnotationJsonFile()
+    {
+        //Perform export annotations action in the PDF Viewer.
+         pdfviewer.ExportAnnotationAsync();
+    }
+}

@@ -1,0 +1,42 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton OnClick="ExportAnnotAsObject">ExportAnnotations</SfButton>
+<SfButton OnClick="DeleteAnnotations">DeleteAnnotations</SfButton>
+<SfButton OnClick="ImportAnnotations">ImportAnnotations</SfButton>
+
+<SfPdfViewerServer @ref="pdfviewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+</SfPdfViewerServer>
+
+@code 
+{
+    SfPdfViewerServer pdfviewer;
+
+    public string DocumentPath = "wwwroot/data/PDF_Succinctly.pdf";
+
+    Object export;
+
+    //Saves the annotations in the PDF document as object.
+    private async void ExportAnnotAsObject()
+    {
+        //Perform export annotations action in the PDFViewer.
+        export = await pdfviewer.ExportAnnotationsAsObjectAsync();      
+    }
+
+    //Delete all the annotations in the PDF document.
+    private void DeleteAnnotations()
+    {       
+        //To delete the annotation Collections in the PDF document.
+        pdfviewer.DeleteAnnotationsAsync();
+    }
+
+    //Load the exported annotation in the PDF document.
+    private void ImportAnnotations()
+    {   
+        //Perform import annotations action in the PDFViewer.
+        pdfviewer.ImportAnnotationAsync(export);
+    }
+}
