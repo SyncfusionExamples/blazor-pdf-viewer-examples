@@ -128,49 +128,57 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
  </td>
  </tr>
   <tr>
- <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer.</a>
  </td>
  </tr>
    <tr>
- <td><a href="Style Reference Sample">How to refer Style in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Themes/Style Reference/StyleReference">How to use multiple Themes with Syncfusion Blazor PDF Viewer?</a>
  </td>
  </tr>
    <tr>
- <td><a href="Annotations/Lock Annotation">How to lock annotation in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Annotations/Lock Annotation/LockAnnotation">How to lock annotation in Syncfusion Blazor PDFViewer.</a>
  </td>
  </tr>
    <tr>
- <td><a href="Create PDF in Created Event">How to create PDF in created event of blazor PDFViewer</a>
+ <td><a href="Events/Create PDF in Created Event/CreatePDFinCreatedEvent">How to create PDF in created event and load the same document in Syncfusion Blazor PDFViewer.</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Document Editing Status/Document Editing Status/DocumentEditingStatus">How to check whether the loaded PDF document is edited or not.</a>
+ </td>
+ </tr>
+  <tr>
+ <td><a href="AJAX/Authorization token viewer AJAX request/PDFViewerAjaxHeaders">How to include the Authorization token in the PDF Viewer AJAX request.</a>
  </td>
  </tr>
    <tr>
- <td><a href="Document Editing Status">How to check the document editing status in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Getting Started/Simple Sample PDFViewer - Server">How to create simple server side PDF Viewer using Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Getting Started/Simple Sample PDFViewer - Wasm">How to create simple client side PDF Viewer using Syncfusion Blazor PDFViewer.</a>
  </td>
  </tr>
    <tr>
- <td><a href="Simple Sample PDFViewer">How to create simple sample in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Printing/DotNet 5 framework printing sample/Net5Sample">Printing PDF in .NET 5 Framework.</a>
  </td>
  </tr>
-   <tr>
- <td><a href="Printing/.Net 5 framework printing sample/Net5Sample">How to print PDFViewer in .Net5 framework.</a>
+<tr>
+ <td><a href="Toolbar/Open Thumbnail Programmatically/ThumbnailOpenProgrammatically">How to open thumbnail panel programmatically in Syncfusion Blazor PDFViewer.</a>
  </td>
  </tr>
-   <tr>
- <td><a href="Toolbar/Open Thumbnail panel bydefault/ThumbnailOpenProgrammatically">How to open thumbnail panel bydefault in Syncfusion Blazor PDFViewer</a>
+<tr>
+ <td><a href="Save and Load/LoadAsync/LoadAsync">View PDF document loaded using Load method in Syncfusion Blazor PDFViewer.</a>
+ </td>
+</tr>
+<tr>
+ <td><a href="Save and Load/Retrieve loaded document/RetrieveDocument">How to get loaded document in Syncfusion blazor PDFViewer.</a>
  </td>
  </tr>
-   <tr>
- <td><a href="DocumentPath/Load PDF using LoadAsync method - Server/LoadPDFusingLoadAsync">View PDF document loaded using Load method in Syncfusion Blazor PDFViewer</a>
+<tr>
+ <td><a href="Toolbar/Custom toolbar with PNG image/CustomizeToolbarIcon">Customize custom toolbar icon with PDF Viewer.</a>
  </td>
- </tr>
-   <tr>
- <td><a href="Retrieve Document with GetDocument API/RetrieveDocument">How to retrieve document in Syncfusion blazor PDFViewer.</a>
- </td>
- </tr>
-   <tr>
- <td><a href="Toolbar/PNG image as an icon for stamp button/StampbuttonwithImage">How to customize the appearance of the stamp button in toolbar</a>
- </td>
- </tr>                                   
+</tr>                                   
 </table>
 
 ## Support and feedback
