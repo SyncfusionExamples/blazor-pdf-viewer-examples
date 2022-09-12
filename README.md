@@ -130,7 +130,47 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
   <tr>
  <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer</a>
  </td>
- </tr>         
+ </tr>
+   <tr>
+ <td><a href="Style Reference Sample">How to refer Style in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Annotations/Lock Annotation">How to lock annotation in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Create PDF in Created Event">How to create PDF in created event of blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Document Editing Status">How to check the document editing status in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Simple Sample PDFViewer">How to create simple sample in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Printing/.Net 5 framework printing sample/Net5Sample">How to print PDFViewer in .Net5 framework.</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Toolbar/Open Thumbnail panel bydefault/ThumbnailOpenProgrammatically">How to open thumbnail panel bydefault in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="DocumentPath/Load PDF using LoadAsync method - Server/LoadPDFusingLoadAsync">View PDF document loaded using Load method in Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Retrieve Document with GetDocument API/RetrieveDocument">How to retrieve document in Syncfusion blazor PDFViewer.</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Toolbar/PNG image as an icon for stamp button/StampbuttonwithImage">How to customize the appearance of the stamp button in toolbar</a>
+ </td>
+ </tr>                                   
 </table>
 
 ## Support and feedback

@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton @onclick="retrieve">Retrieve Document</SfButton>
+<SfButton @onclick="load">ReloadRetrievedDocument</SfButton>
+<SfPdfViewerServer @ref="@PDFViewer" DocumentPath="@DocumentPath"> </SfPdfViewerServer>
+
+@code{
+    public SfPdfViewerServer PDFViewer { get; set; }
+    byte[] save;
+
+    public async void retrieve()
+    {
+        //Gets the loaded PDF document
+        save = await PDFViewer.GetDocumentAsync();
+    }
+
+    public void load()
+    {
+        string base64String = Convert.ToBase64String(save);
+        PDFViewer.LoadAsync("data:application/pdf;base64," + base64String, null);
+    }
+
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+}

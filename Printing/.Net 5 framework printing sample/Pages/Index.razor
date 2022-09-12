@@ -1,0 +1,17 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+
+<SfPdfViewerServer @ref="Viewer" DocumentPath="@DocumentPath" Height="864px">
+    <PdfViewerEvents DocumentLoaded="OnLoaded"></PdfViewerEvents>
+</SfPdfViewerServer>
+
+@code{
+    public SfPdfViewerServer Viewer { get; set; }
+    public string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+
+    private async void OnLoaded()
+    {
+        await Viewer.PrintAsync();
+    }
+}

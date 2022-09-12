@@ -11,6 +11,7 @@
 {
     public string DocumentPath { get; set; }
 
+    //Triggers when the PDFViewer component is created.
     public void created()
     {
         string Link =   "http://infolab.stanford.edu/pub/papers/google.pdf";
@@ -19,6 +20,5 @@
         byte[] byteArray = webClient.DownloadData(Link);
         //Converting the byte array to Base64 string and sets the document path.
         DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
-    }
-  
+    }  
 }

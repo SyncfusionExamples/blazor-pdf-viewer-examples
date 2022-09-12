@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewer
+
+<SfButton OnClick="@OnClick">Lock Annotation</SfButton>
+<SfPdfViewer @ref="PDFViewer" DocumentPath="@DocumentPath" ServiceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer">
+</SfPdfViewer>
+
+@code{
+    SfPdfViewer PDFViewer;
+
+    private string DocumentPath { get; set; } = "PDF_Succinctly.pdf";
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        //Gets the annotation collection of the PDF Viewer.
+        var allAnnots = await PDFViewer.GetAnnotationsAsync();
+
+        foreach (var item in allAnnots)
+        {
+            //Disabling the interaction with annotation.
+            item.AnnotationSettings.IsLock = true;
+            await PDFViewer.EditAnnotationAsync(item);
+        }
+    }
+}
+
+
+
+
+
+
