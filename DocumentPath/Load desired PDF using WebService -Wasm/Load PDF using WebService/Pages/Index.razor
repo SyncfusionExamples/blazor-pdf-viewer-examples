@@ -1,0 +1,29 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewer
+@using System.Web
+@inject HttpClient Http
+
+<SfButton OnClick="LoadAnotherDocument">Load Another Document</SfButton>
+
+<!--ServiceUrl must be the webservice output path and you have to run the webservice first to get the serviceurl. Also it should be in runnable state-->
+<SfPdfViewer DocumentPath="@DocumentPath" ServiceUrl="https://localhost:5001/pdfviewer" Height="500px" Width="1060px"></SfPdfViewer>
+
+@code
+{
+    SfPdfViewer PdfViewer;
+
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "PDF Succinctly.pdf";
+
+    private async Task LoadAnotherDocument()
+    {
+        //Sends a GET request to a specified Uri and return the response body as a byte array. 
+        byte[] byteArray = await Http.GetByteArrayAsync("Data/FormFillingDocument.pdf");
+        //Converts the byte array into base64 string.
+        string base64String = Convert.ToBase64String(byteArray);
+        //Sets the base64 string as document path for the PDF Viewer.
+        DocumentPath = "data:application/pdf;base64," + base64String;
+    }
+}

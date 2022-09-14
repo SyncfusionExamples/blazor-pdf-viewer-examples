@@ -1,0 +1,12 @@
+﻿@page "/PDFViewer/{fileName}"
+
+@using Syncfusion.Blazor.PdfViewerServer
+
+<SfPdfViewerServer DocumentPath="@fileName"></SfPdfViewerServer>
+
+@code 
+{
+    //Sets the PDF document path for initial loading.
+    [Parameter]
+    public string fileName { get; set; }
+}

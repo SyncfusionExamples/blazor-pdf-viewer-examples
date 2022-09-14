@@ -178,7 +178,39 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 <tr>
  <td><a href="Toolbar/Custom toolbar with PNG image/CustomizeToolbarIcon">Customize custom toolbar icon with PDF Viewer.</a>
  </td>
-</tr>                                   
+</tr>
+<tr>
+ <td><a href="Annotations/Customize Highlight Annotation/CustomizeAnnotation">How to change the highlighted color of the text in Syncfusion Blazor PDFViewer?</a>
+ </td>
+</tr> 
+<tr>
+ <td><a href="Annotations/Customize Annotation Selector/CustomizeSelector">How to customize the appearance of the annotation selector in Syncfusion Blazor PDFViewer?</a>
+ </td>
+</tr>
+<tr>
+ <td><a href="Save and Load/Document path routing/DocumentPathRoutings">How to render the Syncfusion Blazor PDF Viewer with routed document path?</a>
+ </td>
+</tr>
+<tr>
+<td><a href="Render PDFViewer with different components/PDFViewer with Splitter/PDFViewerwithSplitter">How to render the Blazor PDFViewer component on the Splitter component?</a>
+</td>
+</tr>
+<tr>
+<td><a href="Render PDFViewer with different components/PDFViewer with ContextMenu/UpdateFormFieldUsingContextMenu">How to update the form field values using context menu in Syncfusion Blazor PDFViewer?</a>
+</td>
+</tr>
+<tr>
+<td><a href="UpdateViewerContainer/Update Viewer Container Size Dynamically/UpdateViewerSizeDynamically">How to stretch the size of the Syncfusion Blazor PDFViewer with its container at run time?</a>
+</td>
+</tr>
+<tr>
+<td><a href="DocumentPath/Load desired PDF using WebService -Wasm/Load PDF using WebService">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer WebAssembly sample?</a>
+</td>
+</tr>
+<tr>
+<td><a href="HostedSamples/Load desired PDF for Wasm in hosted sample/LoadDesiredPDFinWasm">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer hosted sample?</a>
+</td>
+</tr>                                    
 </table>
 
 ## Support and feedback
