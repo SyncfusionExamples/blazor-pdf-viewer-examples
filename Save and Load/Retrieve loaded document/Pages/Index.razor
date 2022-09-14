@@ -7,8 +7,13 @@
 <SfButton @onclick="load">ReloadRetrievedDocument</SfButton>
 <SfPdfViewerServer @ref="@PDFViewer" DocumentPath="@DocumentPath"> </SfPdfViewerServer>
 
-@code{
+@code
+{
     public SfPdfViewerServer PDFViewer { get; set; }
+
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+
     byte[] save;
 
     public async void retrieve()
@@ -19,9 +24,10 @@
 
     public void load()
     {
+        //Converts the byte array into base64 string.
         string base64String = Convert.ToBase64String(save);
+        //Loads the PDF document from the specified base64 string.
         PDFViewer.LoadAsync("data:application/pdf;base64," + base64String, null);
     }
-
-    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+    
 }

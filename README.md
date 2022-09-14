@@ -164,7 +164,7 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
  </td>
  </tr>
 <tr>
- <td><a href="Toolbar/Open Thumbnail Programmatically/ThumbnailOpenProgrammatically">How to open thumbnail panel programmatically in Syncfusion Blazor PDFViewer.</a>
+ <td><a href="Toolbar/Open Thumbnail Programmatically/OpenThumbnailProgrammatically">How to open thumbnail panel programmatically in Syncfusion Blazor PDFViewer.</a>
  </td>
  </tr>
 <tr>
