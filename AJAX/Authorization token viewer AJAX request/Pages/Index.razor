@@ -1,0 +1,24 @@
+﻿@page "/"
+@using Syncfusion.Blazor.InPlaceEditor
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewer
+
+<!--Render client side PDF Viewer with Ajax request-->
+<SfPdfViewer @ref="PdfViewer" DocumentPath="PDF_Succinctly.pdf" ServiceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" Height="500px" Width="1060px">
+    <PdfViewerAjaxRequestSettings AjaxHeaders="Headers"></PdfViewerAjaxRequestSettings>
+</SfPdfViewer>
+
+
+@code{
+    SfPdfViewer PdfViewer;
+    
+    //To get these details, click on the RenderPdfPages checkbox in the Fetch/XHR tab of the network window.
+    public List<AjaxHeader> Headers = new List<AjaxHeader>() { new AjaxHeader { HeaderName = "Authorization", HeaderValue = "Bearer 64565dfgfdsjweiuvbiuyhiueygf" } };
+    
+}
+
+
+
+
+
+

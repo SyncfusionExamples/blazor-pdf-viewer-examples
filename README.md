@@ -128,9 +128,89 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
  </td>
  </tr>
   <tr>
- <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer</a>
+ <td><a href="Script Reference Sample">How to refer Scripts in Syncfusion Blazor PDFViewer.</a>
  </td>
- </tr>         
+ </tr>
+   <tr>
+ <td><a href="Themes/Style Reference/StyleReference">How to use multiple Themes with Syncfusion Blazor PDF Viewer?</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Annotations/Lock Annotation/LockAnnotation">How to lock annotation in Syncfusion Blazor PDFViewer.</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Events/Create PDF in Created Event/CreatePDFinCreatedEvent">How to create PDF in created event and load the same document in Syncfusion Blazor PDFViewer.</a>
+ </td>
+ </tr>
+ <tr>
+ <td><a href="Document Editing Status/Document Editing Status/DocumentEditingStatus">How to check whether the loaded PDF document is edited or not.</a>
+ </td>
+ </tr>
+  <tr>
+ <td><a href="AJAX/Authorization token viewer AJAX request/PDFViewerAjaxHeaders">How to include the Authorization token in the PDF Viewer AJAX request.</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Getting Started/Simple Sample PDFViewer - Server">How to create simple server side PDF Viewer using Syncfusion Blazor PDFViewer</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Getting Started/Simple Sample PDFViewer - Wasm">How to create simple client side PDF Viewer using Syncfusion Blazor PDFViewer.</a>
+ </td>
+ </tr>
+   <tr>
+ <td><a href="Printing/DotNet 5 framework printing sample/Net5Sample">Printing PDF in .NET 5 Framework.</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Toolbar/Open Thumbnail Programmatically/OpenThumbnailProgrammatically">How to open thumbnail panel programmatically in Syncfusion Blazor PDFViewer.</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Save and Load/LoadAsync/LoadAsync">View PDF document loaded using Load method in Syncfusion Blazor PDFViewer.</a>
+ </td>
+</tr>
+<tr>
+ <td><a href="Save and Load/Retrieve loaded document/RetrieveDocument">How to get loaded document in Syncfusion blazor PDFViewer.</a>
+ </td>
+ </tr>
+<tr>
+ <td><a href="Toolbar/Custom toolbar with PNG image/CustomizeToolbarIcon">Customize custom toolbar icon with PDF Viewer.</a>
+ </td>
+</tr>
+<tr>
+ <td><a href="Annotations/Customize Highlight Annotation/CustomizeAnnotation">How to change the highlighted color of the text in Syncfusion Blazor PDFViewer?</a>
+ </td>
+</tr> 
+<tr>
+ <td><a href="Annotations/Customize Annotation Selector/CustomizeSelector">How to customize the appearance of the annotation selector in Syncfusion Blazor PDFViewer?</a>
+ </td>
+</tr>
+<tr>
+ <td><a href="Save and Load/Document path routing/DocumentPathRoutings">How to render the Syncfusion Blazor PDF Viewer with routed document path?</a>
+ </td>
+</tr>
+<tr>
+<td><a href="Render PDFViewer with different components/PDFViewer with Splitter/PDFViewerwithSplitter">How to render the Blazor PDFViewer component on the Splitter component?</a>
+</td>
+</tr>
+<tr>
+<td><a href="Render PDFViewer with different components/PDFViewer with ContextMenu/UpdateFormFieldUsingContextMenu">How to update the form field values using context menu in Syncfusion Blazor PDFViewer?</a>
+</td>
+</tr>
+<tr>
+<td><a href="UpdateViewerContainer/Update Viewer Container Size Dynamically/UpdateViewerSizeDynamically">How to stretch the size of the Syncfusion Blazor PDFViewer with its container at run time?</a>
+</td>
+</tr>
+<tr>
+<td><a href="DocumentPath/Load desired PDF using WebService -Wasm/Load PDF using WebService">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer WebAssembly sample?</a>
+</td>
+</tr>
+<tr>
+<td><a href="HostedSamples/Load desired PDF for Wasm in hosted sample/LoadDesiredPDFinWasm">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer hosted sample?</a>
+</td>
+</tr>                                    
 </table>
 
 ## Support and feedback
