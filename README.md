@@ -208,7 +208,7 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 </td>
 </tr>
 <tr>
-<td><a href="HostedSamples/Load desired PDF for Wasm in hosted sample">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer hosted sample?</a>
+<td><a href="Hosted Samples/Load desired PDF for Wasm in hosted sample">How to load desired PDF for initial loading in Syncfusion Blazor PDFViewer hosted sample?</a>
 </td>
 </tr>                                    
 </table>
