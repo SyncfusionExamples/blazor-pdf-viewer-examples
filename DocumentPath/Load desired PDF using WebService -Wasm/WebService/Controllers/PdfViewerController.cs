@@ -284,11 +284,14 @@ namespace PdfViewerService2.Controllers
         private string GetDocumentPath(string document)
         {
             string documentPath = string.Empty;
+            
             if (!System.IO.File.Exists(document))
             {
                 var path = _hostingEnvironment.ContentRootPath;
-                if (System.IO.File.Exists(path + "/Data/" + document))
-                    documentPath = path + "/Data/" + document;
+                var pathToFile = path + Path.DirectorySeparatorChar.ToString() + "Data" + Path.DirectorySeparatorChar.ToString()
+   + document;
+                if (System.IO.File.Exists(pathToFile))
+                    documentPath = pathToFile;
             }
             else
             {
