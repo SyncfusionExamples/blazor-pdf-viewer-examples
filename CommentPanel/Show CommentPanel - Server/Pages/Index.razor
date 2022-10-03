@@ -3,11 +3,13 @@
 @using Syncfusion.Blazor.PdfViewerServer
 @using Syncfusion.Blazor.PdfViewer
 
-<SfPdfViewerServer IsCommentPanelOpen="true" Width="1000" Height="700" DocumentPath="@documentPath">   
+<button onclick="click"></button>
+<SfPdfViewerServer CommentPanelVisible="true" Width="1000" Height="700" DocumentPath="@documentPath">   
 </SfPdfViewerServer>
 
 @code
 {
     //Sets the PDF document path for initial loading.
-    private string documentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";    
+    private string documentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+   
 }
