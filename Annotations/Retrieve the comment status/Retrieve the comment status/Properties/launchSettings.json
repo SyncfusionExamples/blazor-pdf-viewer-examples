@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Annotationreviewstatus": {
+    "Retrievethecommentstatus": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
