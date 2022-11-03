@@ -6,13 +6,6 @@ Sample to customize the highlight annotation in a PDF document. The below option
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/text-markup-annotation
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/Text Markup/Customize highlight annotation">Customize highlight annotation in a PDF document</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 

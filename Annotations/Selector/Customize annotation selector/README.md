@@ -8,13 +8,6 @@
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/shape-annotation#customize-annotation-selector
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/Selector/Customize annotation selector">Customize annotation selector in the PDF Viewer</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 

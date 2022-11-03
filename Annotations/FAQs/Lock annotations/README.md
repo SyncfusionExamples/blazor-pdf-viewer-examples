@@ -3,13 +3,6 @@ Sample to lock all the annotations in a PDF document. Here, the annotations that
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/interaction#disable-interaction-with-annotations
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/FAQs/Lock annotations">Lock annotations in a PDF document</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 

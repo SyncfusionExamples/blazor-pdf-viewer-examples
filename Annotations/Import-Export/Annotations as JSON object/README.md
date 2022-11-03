@@ -5,13 +5,6 @@
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/how-to/import-annotations-as-objects
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/Import-Export/Annotations as JSON object">Export and import annotations in a PDF document as JSON object</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 

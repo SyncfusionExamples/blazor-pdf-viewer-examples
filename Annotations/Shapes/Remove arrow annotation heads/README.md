@@ -3,13 +3,6 @@ Sample to remove arrow annotation heads on loading a PDF document in the PDF Vie
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/interaction#disable-interaction-with-annotations
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/Shapes/Remove arrow annotation heads">Remove arrow annotation heads in the PDF Viewer</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 

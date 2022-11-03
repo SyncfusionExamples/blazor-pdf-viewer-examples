@@ -5,13 +5,6 @@
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/import-export-annotation
 
-## Sample links
-<table>
- <tr>
-  <td><a href="Annotations/Import-Export/Annotations as JSON stream and file">Export and import annotations in a PDF document as JSON stream and file</a></td>
- </tr>                              
-</table>
-
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
 
