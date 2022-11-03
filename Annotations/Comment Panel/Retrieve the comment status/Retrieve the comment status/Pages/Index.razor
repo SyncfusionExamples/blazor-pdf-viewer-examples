@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Buttons
+@inject IJSRuntime JsRuntime;
+
+<SfButton OnClick="reviewStatus">Review Status</SfButton>
+<SfPdfViewerServer @ref="pdfviewer" IsCommentPanelOpen="true" DocumentPath="@DocumentPath" Height="500px" Width="1060px" ></SfPdfViewerServer>
+
+@code{
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+
+    SfPdfViewerServer pdfviewer;    
+
+    //Prints the comment status of the PDF document in console.
+    public async void reviewStatus()
+    {
+        //Gets the annotation collection.
+        List<PdfAnnotation> annotationCollection = await pdfviewer.GetAnnotationsAsync();
+        for (var x = 0; x < annotationCollection.Count; x++)
+        {
+            PdfAnnotation annotation = annotationCollection[x];
+            //Gets the review status details of the comment.
+            Review review = annotation.Review;
+            var reviewState = review.State;
+            var reviewStateModel = review.StateModel;
+            await this.JsRuntime.InvokeVoidAsync("console.log",reviewState.ToString());
+        }
+    }
+}
