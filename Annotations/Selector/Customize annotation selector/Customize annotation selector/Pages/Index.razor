@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+
+<SfPdfViewerServer @ref="viewer" DocumentPath="@DocumentPath" Height="500px" Width="100%" RectangleSettings=@rectangleSettings>    
+</SfPdfViewerServer>
+
+
+@code{
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+    
+    SfPdfViewerServer viewer;
+
+    //Defines the settings of rectangle annotation.
+    PdfViewerRectangleSettings rectangleSettings = new PdfViewerRectangleSettings
+    {
+        //Defines the annotation selector settings for the annotation.
+        AnnotationSelectorSettings = new PdfViewerAnnotationSelectorSettings()
+        {
+            //Defines the shape of the resizer. By default it is square.
+            ResizerShape = AnnotationResizerShape.Circle,
+            //Defines the resizer size of the annotation.
+            ResizerSize = 20,
+            //Defines the resizer fill color of the annotation.
+            ResizerFillColor = "Green",
+            //Defines the resizer border color of the annotation.
+            ResizerBorderColor = "Yellow"
+        }
+    };
+    
+}

@@ -1,0 +1,32 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<SfButton OnClick="@OnClick">ShowOrHideCommentPanel</SfButton>
+
+<SfPdfViewerServer @ref="Viewer" @bind-CommentPanelVisible="@isOpen" Width="1000" Height="700" DocumentPath="@documentPath">   
+</SfPdfViewerServer>
+
+@code
+{
+    SfPdfViewerServer Viewer;
+    //Sets the PDF document path for initial loading.
+    private string documentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+
+    private bool isOpen = true;
+
+    //Method to update the visibility of the comment panel.
+    public void OnClick()
+    {
+        if(isOpen)
+        {
+            isOpen = false;
+        }
+        else
+        {
+            isOpen = true;
+        }
+    }
+}
