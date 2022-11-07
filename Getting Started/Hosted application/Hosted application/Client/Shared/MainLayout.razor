@@ -1,0 +1,23 @@
+@inherits LayoutComponentBase
+
+<div class="sidebar" style="position:fixed;z-index:1200" >
+    <NavMenu />
+</div>
+
+<div class="main">
+   <div class="top-row px-4" style="z-index:1111;padding-top:0px">
+        <a href="https://www.syncfusion.com/blazor-components/" target="_blank">Blazor Components</a>
+        <a href="https://blazor.syncfusion.com/documentation/" target="_blank">User Guide</a>
+        <a href="http://blazor.syncfusion.com/" target="_blank">View Demos</a>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+<style>
+.sidebar {
+        width: 300px;
+        min-width:300px;
+    }
+</style>

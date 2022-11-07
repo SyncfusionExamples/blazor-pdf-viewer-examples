@@ -1,0 +1,13 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<!--IsThumbnailPanelOpen property will enable the thumbnail panel on initial rendering itself-->
+<SfPdfViewerServer @ref="@PDFViewer" DocumentPath="@DocumentPath" IsThumbnailPanelOpen="true" Height="894px" Width="100%"> </SfPdfViewerServer>
+
+@code{
+    public SfPdfViewerServer PDFViewer { get; set; }
+
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+}
