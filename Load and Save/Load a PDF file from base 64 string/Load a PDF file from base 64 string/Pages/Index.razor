@@ -1,0 +1,20 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<SfPdfViewerServer DocumentPath="@Path" Height="800px" Width="750px"></SfPdfViewerServer>
+
+@code
+{    
+    public string Path { get; set; }     
+
+    protected override async Task OnInitializedAsync()
+    {   //Returns the content of the PDF document as byte array.     
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/Data/PDF Succinctly.pdf");
+        string base64String = Convert.ToBase64String(byteArray);
+        string base64prefix = "data:application/pdf;base64,";
+        //Assigned the base64 path to the PDF document path.
+        Path = $"{base64prefix}{base64String}";
+    }
+
+}

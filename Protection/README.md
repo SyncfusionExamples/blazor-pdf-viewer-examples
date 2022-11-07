@@ -1,7 +1,10 @@
-# Set a password to a PDF document
-This example shows how to set password to a PDF document that is loaded into the PDF Viewer. Here, the password is set on a button click and then the document is saved to a folder.
+# Protection
+This section explains how to protect a PDF document.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/getting-started/features
+
+## Sample links
+* <a href="Protect a PDF document">Set a password to a PDF document</a>
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

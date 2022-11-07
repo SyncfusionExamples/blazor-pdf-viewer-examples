@@ -1,0 +1,14 @@
+﻿@page "/"
+@inject IJSRuntime jsRuntime
+
+<button @onclick="LoadDocument">Load Document</button>
+
+@code{
+
+    //This method will navigate to the PDFViewer.razor page
+    public async Task LoadDocument()
+    {
+        // note: filename is only the filename which I created in the "temp" folder previously...
+        await jsRuntime.InvokeAsync<object>("open", $"/PDFViewer/{"Document1.pdf"}", "_blank");
+    }
+}

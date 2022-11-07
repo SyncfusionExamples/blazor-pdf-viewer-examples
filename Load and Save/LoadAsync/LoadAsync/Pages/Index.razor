@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton @onclick="Load">Load Document</SfButton> 
+
+<SfPdfViewerServer @ref="@Viewer" Height="800px" Width="100%"></SfPdfViewerServer>
+
+@code
+{
+    SfPdfViewerServer Viewer;
+    
+    //This method will load the PDF document in the PDF Viewer.
+    public async void Load() 
+    { 
+        //Returns the content of the PDF document as byte array.
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/Data/PDF Succinctly.pdf");
+        //Converts the byte array into base64 string. 
+        string base64String = Convert.ToBase64String(byteArray);
+        //Loads the PDF document from the specified base64 string.
+        await Viewer.LoadAsync("data:application/pdf;base64," + base64String, null); 
+    } 
+
+}

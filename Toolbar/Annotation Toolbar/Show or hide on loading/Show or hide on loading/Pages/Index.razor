@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<style>
+    .e-control e-textbox e-lib e-input {
+        color: red;
+    }
+</style>
+
+<SfPdfViewerServer @ref="viewer" Width="1000" Height="700" DocumentPath="@documentPath">
+    <PdfViewerEvents DocumentLoaded="DocumentLoad"></PdfViewerEvents>
+</SfPdfViewerServer>
+
+@code{
+
+    private string documentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";    
+
+    SfPdfViewerServer viewer;
+
+    //Invokes while loading document in the PDFViewer. 
+    public void DocumentLoad(LoadEventArgs args)
+    {
+        //Shows the annotation toolbar on initial loading.
+        viewer.ShowAnnotationToolbar(true);
+        //Code to hide the annoatation toolbar.
+        //viewer.ShowAnnotationToolbar(false);
+    }
+
+}

@@ -1,0 +1,24 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.PdfViewer
+
+<SfPdfViewerServer @ref="Viewer" Height="640px" Width="100%">
+    <PdfViewerEvents Created="DocumentLoad"></PdfViewerEvents>
+</SfPdfViewerServer>
+
+@code{
+    public SfPdfViewerServer Viewer { get; set; }
+
+    //Triggers when the PDFViewer component is created. 
+    public void DocumentLoad()
+    {
+        string Url = "http://www.syncfusion.com/downloads/support/directtrac/general/pd/HTTP_Succinctly-1719682472.pdf";
+        System.Net.WebClient webClient = new System.Net.WebClient();
+        //Returns the byte array containing the downloaded PDF file.
+        byte[] byteArray = webClient.DownloadData(Url);
+        //Converting the byte array to Base64 string.
+        Viewer.LoadAsync("data:application/pdf;base64," + Convert.ToBase64String(byteArray));
+    }
+
+}
