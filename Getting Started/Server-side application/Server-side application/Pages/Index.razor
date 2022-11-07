@@ -1,0 +1,12 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+
+<!--Rendering simple server side PDF Viewer by referring document path-->
+<SfPdfViewerServer DocumentPath="@DocumentPath" Width="100%" Height="800px" />
+
+@code
+{
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+}

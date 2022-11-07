@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Print_PDF_document_in_Net5", "Print_PDF_document_in_Net5.csproj", "{DB0B0C3B-6009-4D9C-9FDE-67C1CC020796}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB0B0C3B-6009-4D9C-9FDE-67C1CC020796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0B0C3B-6009-4D9C-9FDE-67C1CC020796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0B0C3B-6009-4D9C-9FDE-67C1CC020796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0B0C3B-6009-4D9C-9FDE-67C1CC020796}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8EA6BCA-8B83-45D9-8735-696CA5FD1A60}
+	EndGlobalSection
+EndGlobal

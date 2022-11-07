@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Buttons
+@using System.IO;
+@using Syncfusion.Pdf.Security
+@using Syncfusion.Pdf.Parsing;
+
+<SfButton OnClick="GetDocument">GetDocument</SfButton>
+
+<SfPdfViewerServer @ref="pdfviewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+</SfPdfViewerServer>
+
+@code 
+{
+    SfPdfViewerServer pdfviewer;
+    public string DocumentPath = "wwwroot/data/F# Succinctly.pdf";
+    private async void GetDocument()
+    {
+        byte[] array = await pdfviewer.GetDocumentAsync();
+        Stream stream = new MemoryStream(array);
+        //Load the PDF document
+        PdfLoadedDocument document = new PdfLoadedDocument(stream);
+        //PDF document security
+        PdfSecurity security = document.Security;
+        //Specifies encryption key size, algorithm and permission.
+        security.KeySize = PdfEncryptionKeySize.Key256Bit;
+        security.Algorithm = PdfEncryptionAlgorithm.AES;
+        //Provide owner and user password.
+        security.OwnerPassword = "password@123";
+        security.UserPassword = "password123";
+        MemoryStream ms = new MemoryStream();
+        //Save the document to the memory stream.
+        document.Save(ms);
+        //Close the document.
+        document.Close(true);
+        //Save the password protected document in the sample location.
+        System.IO.File.WriteAllBytes("passwordDocument.pdf", ms.ToArray());
+    }
+}
