@@ -22,8 +22,10 @@
     //Invokes while loading document in the PDFViewer. 
     public void DocumentLoad(LoadEventArgs args)
     {
-        //Shows the AnnotationToolbar on initial loading.
-        viewer.Show_or_hide_on_loading(true);        
+        //Shows the annotation toolbar on initial loading.
+        viewer.ShowAnnotationToolbar(true);
+        //Code to hide the annoatation toolbar.
+        //viewer.ShowAnnotationToolbar(false);
     }
 
 }
