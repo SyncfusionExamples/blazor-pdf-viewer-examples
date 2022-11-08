@@ -1,0 +1,41 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Layouts
+
+<!--This splitter layout holds two panes-->
+<SfSplitter Height="640px" Width="100%">
+    <SplitterEvents Resizing="@onresize"></SplitterEvents>
+    <!--Configures one or more panes to construct different layouts-->
+    <SplitterPanes>
+        <SplitterPane Size="200px">
+            <ContentTemplate>
+                <div> Left pane </div>
+            </ContentTemplate>
+        </SplitterPane>
+        <SplitterPane Size="200px">
+            <ContentTemplate>
+                <!--Build the PDF Viewer inside a splitter pane-->
+                <SfPdfViewerServer @ref="@viewer" DocumentPath="@DocumentPath">                   
+                </SfPdfViewerServer>
+            </ContentTemplate>
+        </SplitterPane>
+    </SplitterPanes>
+</SfSplitter>
+
+@code{
+
+    SfPdfViewerServer viewer;
+    
+    //Sets the document path for initial loading.
+    private string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+
+    //This method will get invoked when the splitter is resized.
+    private void onresize()
+    {
+        //This method will update the PDF Viewer size when the container size is updated at runtime.
+        viewer.UpdateViewerContainerAsync();
+    }
+
+}

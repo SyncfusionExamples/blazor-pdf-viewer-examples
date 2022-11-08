@@ -9,7 +9,7 @@ Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/
 * <a href="Import-Export/Annotations as JSON object">Export and import annotations in a PDF document as JSON object</a>
 * <a href="Selector/Customize annotation selector">Customize annotation selector in the PDF Viewer</a>
 * <a href="Shapes/Remove arrow annotation heads">Remove arrow annotation heads in the PDF Viewer</a>
-* <a href="Stamp/Add a custom stamp">Add a custom stamp in the PDF viewer</a>
+* <a href="Stamp/Add a custom stamp">Add a custom stamp in the PDF Viewer</a>
 * <a href="Text Markup/Customize highlight annotation">Customize highlight annotation in a PDF document</a>
 * <a href="Comment Panel/Show or hide comment panel">Show or hide comment panel in the PDF Viewer</a>
 * <a href="Comment Panel/Retrieve the comment status">Retrieve the comment status of a PDF document</a>

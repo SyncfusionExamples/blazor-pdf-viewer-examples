@@ -1,0 +1,10 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewerServer
+
+<SfPdfViewerServer DocumentPath="@DocumentPath" Width="1060px" Height="500px" />
+
+@code
+{
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+}
