@@ -1,0 +1,82 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Layouts
+@using Syncfusion.Blazor.Navigations
+
+<SfSplitter Height="640px" Width="100%">
+    <SplitterEvents Resizing="@onresize"></SplitterEvents>
+    <SplitterPanes>
+        <SplitterPane Size="200px">
+            <ContentTemplate>
+                <div> Left Pane </div>
+            </ContentTemplate>
+        </SplitterPane>
+        <SplitterPane Size="200px">
+            <ContentTemplate>
+                <div>
+                    <SfTab>
+                        <TabItems>
+                            <TabItem>
+                                <ChildContent>
+                                    <TabHeader Text="General"></TabHeader>
+                                </ChildContent>
+                                <ContentTemplate>
+                                    <div> Tab 1</div>
+                                </ContentTemplate>
+                            </TabItem>
+                            <TabItem>
+                                <ChildContent>
+                                    <TabHeader Text="PDF Viewer"></TabHeader>
+                                </ChildContent>
+                                <ContentTemplate>
+                                    <div>
+                                        <SfSplitter Height="640px" Width="100%">
+                                            <SplitterEvents Resizing="@onresize"></SplitterEvents>
+                                            <SplitterPanes>
+                                                <SplitterPane Size="200px">
+                                                    <ContentTemplate>
+                                                        <SfPdfViewerServer @ref="@viewer1" ZoomMode="Syncfusion.Blazor.PdfViewer.ZoomMode.FitToPage" DocumentPath="@DocumentPath">
+                                                        </SfPdfViewerServer>
+                                                    </ContentTemplate>
+                                                </SplitterPane>
+                                                <SplitterPane Size="200px">
+                                                    <ContentTemplate>
+                                                        <SfPdfViewerServer @ref="@viewer2" ZoomMode="Syncfusion.Blazor.PdfViewer.ZoomMode.FitToPage" DocumentPath="@DocumentPath">
+                                                        </SfPdfViewerServer>
+                                                    </ContentTemplate>
+                                                </SplitterPane>
+                                            </SplitterPanes>
+                                        </SfSplitter>
+                                    </div>
+                                </ContentTemplate>
+                            </TabItem>
+                        </TabItems>
+                    </SfTab>
+                </div>
+            </ContentTemplate>
+        </SplitterPane>
+    </SplitterPanes>
+</SfSplitter>
+
+<style>
+
+    .e-pdfviewer:not(.e-pv-mobile-view) .e-pv-viewer-main-container {
+        min-width: 50px !important;
+    }
+</style>
+
+@code
+{
+    SfPdfViewerServer viewer1;
+    SfPdfViewerServer viewer2;
+    private string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+
+    //Triggers when a split pane is being resized.
+    private void onresize()
+    {
+        //Updates the PDF Viewer container width and height from externally.
+        viewer1.UpdateViewerContainerAsync();
+        viewer2.UpdateViewerContainerAsync();
+    }
+}
+
