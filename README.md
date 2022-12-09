@@ -28,10 +28,13 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 ## Samples Links
 
 * <a href="Annotations">Annotations</a>
+* <a href="Common">Common</a>
 * <a href="Getting Started">Getting Started</a>
+* <a href="Load and Save">Load and Save</a>
 * <a href="Print">Print</a>
 * <a href="Protection">Protection</a>
 * <a href="Thumbnail">Thumbnail</a>
+* <a href="Toolbar">Toolbar</a>
 
 ## Support and feedback
 
