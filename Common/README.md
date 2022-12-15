@@ -18,6 +18,7 @@ Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/
 * <a href="Update form fileds using Context Menu">Update the form field values using context menu</a>
 * <a href="Resize the PDF Viewer to its parent element">How to resize the PDF Viewer with respect to its parent element</a>
 * <a href="Get the PDF document as a byte array">Get the PDF document as a byte array that is loaded into the PDF Viewer</a>
+* <a href="Render JS PDF Viewer component in Blazor">Render the JS PDF Viewer component inside the blazor component</a>
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
