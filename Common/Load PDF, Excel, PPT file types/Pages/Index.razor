@@ -1,0 +1,46 @@
+﻿@page "/"
+@using Syncfusion.Blazor.PdfViewerServer
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Pdf;
+@using Syncfusion.Pdf.Graphics;
+@using Syncfusion.Pdf.Interactive;
+@using Syncfusion.Pdf.Parsing;
+@using Syncfusion.Pdf.Security;
+
+<SfButton @onclick="PdfClicked">Load PDF</SfButton>
+<SfButton @onclick="ImageClicked">Load Image</SfButton>
+<SfPdfViewerServer @ref="viewerInstance" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+    SfPdfViewerServer viewerInstance;
+
+    public async void PdfClicked()
+    {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/Data/PDF_Succinctly.pdf");
+        string base64String = Convert.ToBase64String(byteArray);
+        viewerInstance.LoadAsync("data:application/pdf;base64," + base64String, null);
+    }
+    public void ImageClicked()
+    {
+        //Create a new PDF document
+        PdfDocument doc = new PdfDocument();
+        //Add a page to the document
+        PdfPage page = doc.Pages.Add();
+        //Create PDF graphics for the page
+        PdfGraphics graphics = page.Graphics;
+        //Load the image from the disk
+        byte[] buff = System.IO.File.ReadAllBytes(@"wwwroot/images/image1.jpg");
+        System.IO.MemoryStream ms = new System.IO.MemoryStream(buff);
+        PdfBitmap image = new PdfBitmap(ms);
+        //Draw the image
+        graphics.DrawImage(image, 0, 0);
+        var stream = new MemoryStream();
+        doc.Save(stream);
+        byte[] bytes;
+        bytes = stream.ToArray();
+        string base64String = Convert.ToBase64String(bytes);
+        //documentPath = "data:application/pdf;base64," + base64string;
+        viewerInstance.LoadAsync("data:application/pdf;base64," + base64String, null);
+        doc.Close(true);
+    }
+}
