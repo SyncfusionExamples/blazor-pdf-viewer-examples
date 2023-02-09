@@ -5,7 +5,6 @@ using open_all_files.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-     string licenseKey = "MDAxQDMyMzAyZTM0MmUzMFZPSTRFM2JJZm9PRW9sUjBodXpoaGtrWVFrcUlsR0ZaNVpPU0xzaUJXSGs9";
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
