@@ -4,7 +4,6 @@ using Syncfusion.Blazor;
 using open_all_files.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
