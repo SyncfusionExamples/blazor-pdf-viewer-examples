@@ -11,4 +11,22 @@
     <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.4.0.53" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\SfResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SfResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+     <EmbeddedResource Update="Resources\SfResources.en-US.resx">
+         <Generator>PublicResXFileCodeGenerator</Generator>
+     </EmbeddedResource>
+     <EmbeddedResource Update="Resources\SfResources.resx">
+         <Generator>PublicResXFileCodeGenerator</Generator>
+         <LastGenOutput>SfResources.Designer.cs</LastGenOutput>
+     </EmbeddedResource>
+ </ItemGroup>
+
 </Project>
