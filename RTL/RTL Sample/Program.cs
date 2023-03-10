@@ -19,7 +19,7 @@ builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation 
 //Register the Syncfusion locale service to localize Syncfusion Blazor components.
 builder.Services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
 builder.Services.AddSyncfusionBlazor();
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("OTQ5NTMyQDMyMzAyZTM0MmUzMENJSkhyTDZjUjFPd1lyclhPRi9wSGZlazFiZlE1TnNPcCtQNlEyYUJ2cW89");
+
 
 
 var supportedCultures = new[] { "en-US", "de", "fr", "ar", "sv" };
