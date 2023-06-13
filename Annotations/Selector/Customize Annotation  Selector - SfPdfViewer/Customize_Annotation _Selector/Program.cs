@@ -12,8 +12,6 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSyncfusionBlazor();
 
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MDAxQDMyMzEyZTMxMmUzMjM0TG8xa2pMME1xTHJCczNJWSsvbjdROXZJa0dhNWt4VXZ1QWZVaUFmbjltcz0=");
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
