@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 @ref="viewer" Height="100%" Width="100%" DocumentPath="@documentPath">
+    <PdfViewerEvents DocumentLoaded="DocumentLoad"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+
+    private string documentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+
+    SfPdfViewer2 viewer;
+
+    //Invokes while loading document in the PDFViewer.
+    public void DocumentLoad(LoadEventArgs args)
+    {
+        //Shows the annotation toolbar on initial loading.
+        viewer.ShowAnnotationToolbar(true);
+        //Code to hide the annoatation toolbar.
+        //viewer.ShowAnnotationToolbar(false);
+    }
+}
