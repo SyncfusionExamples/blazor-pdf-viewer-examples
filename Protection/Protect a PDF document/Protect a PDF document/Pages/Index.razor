@@ -24,7 +24,7 @@
         //PDF document security
         PdfSecurity security = document.Security;
         //Specifies encryption key size, algorithm and permission.
-         security.KeySize = PdfEncryptionKeySize.Key256Bit;
+        security.KeySize = PdfEncryptionKeySize.Key256Bit;
         security.Algorithm = PdfEncryptionAlgorithm.AES;
         //Provide owner and user password.
         security.OwnerPassword = "password@123";
