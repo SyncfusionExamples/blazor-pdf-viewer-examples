@@ -1,19 +1,18 @@
 ﻿@page "/"
 
-@using Syncfusion.Blazor.PdfViewerServer
-@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
 <SfButton OnClick="ExportAnnotAsObject">ExportAnnotations</SfButton>
 <SfButton OnClick="DeleteAnnotations">DeleteAnnotations</SfButton>
 <SfButton OnClick="ImportAnnotations">ImportAnnotations</SfButton>
 
-<SfPdfViewerServer @ref="pdfviewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
-</SfPdfViewerServer>
+<SfPdfViewer2 Height="100%" Width="100%" @ref="@pdfviewer" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
 
 @code 
 {
-    SfPdfViewerServer pdfviewer;
+    SfPdfViewer2 pdfviewer;
 
     public string DocumentPath = "wwwroot/data/PDF_Succinctly.pdf";
 

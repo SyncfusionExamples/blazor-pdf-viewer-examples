@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="20.2.0.46" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.2.0.46" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
+		<PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
+	</ItemGroup>
 
 </Project>
