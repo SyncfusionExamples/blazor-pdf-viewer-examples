@@ -1,0 +1,28 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer
+
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" Height="100%" Width="100%">
+
+</SfPdfViewer2>
+
+
+@code {
+
+    public string DocumentPath { get; set; }
+
+    protected override void OnInitialized()
+
+    {
+
+        string Url = "Replace your URL to retrive the PDF document";
+
+        System.Net.WebClient webClient = new System.Net.WebClient();
+
+        byte[] byteArray = webClient.DownloadData(Url);
+
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
+
+    }
+
+}
