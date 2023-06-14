@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Load_PDF_file_from_URL", "Load_PDF_file_from_URL.csproj", "{196BFA06-4039-4876-8A06-49F5DBA6EFE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{196BFA06-4039-4876-8A06-49F5DBA6EFE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196BFA06-4039-4876-8A06-49F5DBA6EFE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196BFA06-4039-4876-8A06-49F5DBA6EFE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196BFA06-4039-4876-8A06-49F5DBA6EFE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28A772C9-B90C-4CF1-9ECE-520F391B4AA4}
+	EndGlobalSection
+EndGlobal
