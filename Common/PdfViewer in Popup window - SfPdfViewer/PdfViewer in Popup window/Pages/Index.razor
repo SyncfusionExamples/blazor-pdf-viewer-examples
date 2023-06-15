@@ -1,0 +1,29 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.SfPdfViewer
+
+<div id="target" style="width:800px;height:500px">
+    <SfButton @onclick="OnClick">Open PDF Viewer</SfButton>
+    <SfDialog @ref="@Dialog" Target="#target" Width="1060px" Visible="false" IsModal="true" Header= "@Header" ShowCloseIcon="true">
+        <DialogEvents OnOpen="OnOpen"></DialogEvents>
+        <SfPdfViewer2 @ref="Viewer" />
+    </SfDialog>
+</div>
+
+@code {
+    public SfPdfViewer2 Viewer { get; set; }
+    SfDialog Dialog;
+
+    public void OnClick(MouseEventArgs args)
+    {
+        this.Dialog.Show();
+    }
+
+    public void OnOpen(BeforeOpenEventArgs args)
+    {
+        Viewer.LoadAsync(DocumentPath, null);
+    }
+    public string DocumentPath { get; set; } = "wwwroot/data/PDF_Succinctly.pdf";
+    public string Header { get; set; } = "PDF Viewer";
+}
