@@ -1,0 +1,15 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton @onclick="OnClick">Unload Document</SfButton>
+<SfPdfViewer2 @ref="@Viewer" Height="500px" Width="1060px" DocumentPath="@DocumentPath" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public void OnClick(MouseEventArgs args)
+    {
+        Viewer.UnloadAsync();
+    }
+    public string DocumentPath { get; set; } = "wwwroot/data/PDF_Succinctly.pdf";
+}
