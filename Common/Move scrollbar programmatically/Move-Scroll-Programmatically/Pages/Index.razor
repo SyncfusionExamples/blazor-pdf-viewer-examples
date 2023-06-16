@@ -1,0 +1,29 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+
+<button @onclick="navigate">Navigation</button>
+
+<SfPdfViewer2 @ref="PdfViewer" DocumentPath="@DocumentPath">
+    <PdfViewerEvents DocumentLoaded="DocumentLoad"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 PdfViewer;
+    public string DocumentPath { get; set; } = "wwwroot/data/PDF Succinctly.pdf";
+    public Dictionary<int, System.Drawing.SizeF> pageSize { get; set; }
+
+    private void DocumentLoad(LoadEventArgs args)
+    {
+        pageSize = args.PageData.PageSizes;
+    }
+
+    private async void navigate()
+    {
+        var annotationCollection = await PdfViewer.GetAnnotationsAsync();
+        var pageNumber = (annotationCollection[0].PageNumber);
+        var Y = annotationCollection[0].Bound.Top;
+        await PdfViewer.GoToBookmarkAsync(pageNumber, (pageSize[pageNumber].Height - Y));
+    }
+
+}
