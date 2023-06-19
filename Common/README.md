@@ -21,6 +21,10 @@ Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/
 * <a href="Render JS PDF Viewer component in Blazor">Render the JS PDF Viewer component inside the blazor component</a>
 * <a href="PdfViewer in Popup window - SfPdfViewer">Use the SfPdfViewer component inside a dialog window</a>
 * <a href="Unload Pdf document from Viewer - SfPdfViewer">Unload the Pdf document using SfPdfViewer component</a>
+* <a href="Prevent the PDF from scrolling - SfPdfViewer">Prevent the PDF document from scrolling</a>
+* <a href="Identify the PdfViewer has Undo, Redo - SfPdfViewer">Identify whether the PdfViewer has undo, redo</a>
+* <a href="Render JS PDF Viewer component in Blazor - SfPdfViewer">Render JS PdfViewer component in Blazor</a>
+* <a href="Update form fileds using Context Menu - SfPdfViewer">Update the form field using the context menu</a>
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
