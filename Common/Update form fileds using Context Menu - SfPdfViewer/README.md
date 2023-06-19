@@ -1,5 +1,5 @@
-# Modify the file name while downloading a PDF document from the PDF Viewer
-This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
+# Update form field using context menu in Blazor SfPdfViewer Component
+You can update the form field's at runtime using the FormFieldClick event and UpdateFormFieldsAsync() method of SfPdfViewer. The following code example explains how to open Context menu when you click on the form field and how to update the menu item content as form field's value. In this example, the Syncfusion’s ContextMenu component is used to update form field.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/update-form-field-using-context-menu
 

@@ -1,5 +1,5 @@
-# Modify the file name while downloading a PDF document from the PDF Viewer
-This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
+# Identify if the SfPdfViewer has values in the Undo, Redo collections
+Syncfusion's Blazor SfPdfViewer component allows you to identify if the SfPdfViewer has values in the Undo and Redo collections using the `CanUndo` and `CanRedo` APIs of the SfPdfViewer. 
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/identify-the-values-in-the-undo-redo-collections
 

@@ -1,5 +1,5 @@
-# Modify the file name while downloading a PDF document from the PDF Viewer
-This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
+# Create PDF Viewer in a popup window in Blazor PDF Viewer Component
+For quick view, you might need to display the PDF file in a dialog window. The following code snippet explains how to use the SfPdfViewer component inside a dialog window. In this example, the Syncfusion’s dialog component is used for Blazor. 
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/create-pdfviewer-in-a-popup-window
 
