@@ -1,0 +1,23 @@
+﻿@page "/"
+@inject HttpClient Http;
+@using Syncfusion.Blazor.Buttons;
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="LoadAnotherDocument">Load Another Document</SfButton>
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code
+{
+    SfPdfViewer2 viewer;
+    public String DocumentPath = "Data/PDF_Succinctly.pdf";
+    private async Task LoadAnotherDocument()
+    {
+        //Sends a GET request to a specified Uri and return the response body as a byte array.
+        byte[] byteArray = await Http.GetByteArrayAsync("Data/FormFillingDocument.pdf");
+        //Converts the byte array into base64 string.
+        string base64String = Convert.ToBase64String(byteArray);
+        //Sets the base64 string as document path for the PDF Viewer.
+        DocumentPath = "data:application/pdf;base64," + base64String;
+    }
+}

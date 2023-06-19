@@ -1,5 +1,5 @@
-# Modify the file name while downloading a PDF document from the PDF Viewer
-This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
+# Unload the PDF document from Viewer in Blazor PDF Viewer Component
+The SfPdfViewer component will automatically unload and clear the resources occupied by the PDF document when the control is disposed. Also, when loading another PDF file, the resources occupied by previous loaded file in viewer will be automatically unloaded and cleared.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/load-pdf-document-dynamically
 

@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Resize_PDF_Viewer_to_its_parent": {
+    "Resize_PDF": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

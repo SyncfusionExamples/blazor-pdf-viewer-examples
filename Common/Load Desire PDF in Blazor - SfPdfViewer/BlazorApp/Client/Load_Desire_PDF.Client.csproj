@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.5" PrivateAssets="all" />
+	  <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="100.1.1" />
+	  <PackageReference Include="Syncfusion.Blazor.Themes" Version="100.1.1" />
+  </ItemGroup>
+	<!--<PropertyGroup>
+		<WasmNativeStrip>true</WasmNativeStrip>
+		<WasmBuildNative>true</WasmBuildNative>
+	</PropertyGroup>
+	<ItemGroup>
+		<NativeFileReference Include="$(SkiaSharpStaticLibraryPath)\2.0.23\*.a" />
+	</ItemGroup>-->
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Load_Desire_PDF.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
