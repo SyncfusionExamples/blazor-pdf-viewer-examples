@@ -5,7 +5,7 @@
 @inject IJSRuntime JsRuntime;
 
 <SfButton OnClick="reviewStatus">Review Status</SfButton>
-<SfPdfViewer2 @ref="pdfviewer" IsCommentPanelOpen="true" DocumentPath="@DocumentPath" Height="500px" Width="1060px" ></SfPdfViewer2>
+<SfPdfViewer2 @ref="pdfviewer" CommentPanelVisible="true" DocumentPath="@DocumentPath" Height="500px" Width="1060px" ></SfPdfViewer2>
 
 @code{
     private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
