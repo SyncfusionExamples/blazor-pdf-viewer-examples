@@ -1,0 +1,19 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton @onclick="OnClick">Check</SfButton>
+<SfPdfViewer2 @ref="Viewer" DocumentPath="@DocumentPath" Height="640px" Width="100%">
+</SfPdfViewer2>
+
+@code{
+    public SfPdfViewer2 Viewer { get; set; }
+
+    private string DocumentPath { get; set; } = "Data/PDF Succinctly.pdf";
+
+    //Prints the document's edited status in console window.
+    public void OnClick(MouseEventArgs args)
+    {
+        Console.WriteLine(Viewer.IsDocumentEdited);
+    }
+}
