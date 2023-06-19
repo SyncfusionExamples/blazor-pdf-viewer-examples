@@ -1,5 +1,5 @@
 # Create new PDF file in created event and load the same document in PDFViewer
-Sample to create a new PDF document in component's created event and load the same document in the PDF Viewer.
+Sample to create a new PDF document in component's created event and load the same document in the SfPdfViewer.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/create-pdf-document-in-the-created-event-of-pdf-viewer
 
