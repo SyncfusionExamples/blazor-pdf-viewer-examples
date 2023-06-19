@@ -1,0 +1,75 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.PdfViewer
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Pdf;
+@using Syncfusion.Pdf.Graphics;
+@using Syncfusion.Pdf.Interactive;
+@using Syncfusion.Pdf.Parsing;
+@using Syncfusion.Pdf.Security;
+@using Syncfusion.Blazor.Inputs;
+@using Syncfusion.DocIO;
+@using WFormatType = Syncfusion.DocIO.FormatType;
+@using Syncfusion.Presentation;
+@using Syncfusion.PresentationRenderer;
+@using Syncfusion.XlsIO;
+@using Syncfusion.XlsIORenderer
+@using Syncfusion.DocIORenderer;
+@using System.IO;
+@inject IJSRuntime JS
+
+<SfUploader AllowedExtensions=".doc, .docx, .rtf, .docm, .dotm, .dotx, .dot, .xls, .xlsx, .pptx, .pptm, .potx, .potm .jpeg, .png, .bmp">
+    <UploaderEvents OnUploadStart="OnSuccess"></UploaderEvents>
+    <UploaderAsyncSettings SaveUrl="https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save"
+                           RemoveUrl="https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove"></UploaderAsyncSettings>
+</SfUploader>
+<SfPdfViewer @ref="viewerInstance" ServiceUrl="https://localhost:44327/pdfviewer" Height="500px" Width="1060px" ToolbarSettings="@ToolbarSettings"></SfPdfViewer>
+
+@code {
+    SfPdfViewer viewerInstance;
+    private DotNetObjectReference<Index>? objRef;
+    protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
+    public PdfViewerToolbarSettings ToolbarSettings = new PdfViewerToolbarSettings()
+        {
+            ToolbarItems = new List<ToolbarItem>()
+            {
+                ToolbarItem.PageNavigationTool,
+                ToolbarItem.MagnificationTool,
+                ToolbarItem.CommentTool,
+                ToolbarItem.SelectionTool,
+                ToolbarItem.PanTool,
+                ToolbarItem.UndoRedoTool,
+                ToolbarItem.CommentTool,
+                ToolbarItem.AnnotationEditTool,
+                ToolbarItem.SearchOption,
+                ToolbarItem.PrintOption,
+                ToolbarItem.DownloadOption,
+                ToolbarItem.SubmitForm,
+            }
+        };
+
+    private void OnSuccess(UploadingEventArgs action)
+    {
+        string base64 = action.FileData.RawFile.ToString();
+        //string fileName = args.FileData[0].Name;
+        string type = action.FileData.Type.ToLower();
+        var outputStream = new MemoryStream();
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        data.Add("type", type);
+        data.Add("base64", base64);
+
+        JS.InvokeAsync<string>("updateDocument", data, objRef);
+    }
+
+    [JSInvokable] 
+    public void loadPDFdocument(string base64String)
+    {
+        viewerInstance.LoadAsync(base64String, null);
+    }
+
+
+
+}
