@@ -1,0 +1,15 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<div id="pdfViewer" style="height:640px; width:100%;"></div>
+
+@code{ 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("renderJsPdfViewer", "pdfViewer");
+        }
+    }
+}
+  
