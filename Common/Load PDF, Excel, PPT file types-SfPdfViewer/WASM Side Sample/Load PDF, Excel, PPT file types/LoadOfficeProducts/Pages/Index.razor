@@ -65,9 +65,9 @@
     }
 
     [JSInvokable] 
-    public void loadPDFdocument(string base64String)
+    public async void loadPDFdocument(string base64String)
     {
-        viewerInstance.LoadAsync(base64String, null);
+       await viewerInstance.LoadAsync(base64String, null);
     }
 
 

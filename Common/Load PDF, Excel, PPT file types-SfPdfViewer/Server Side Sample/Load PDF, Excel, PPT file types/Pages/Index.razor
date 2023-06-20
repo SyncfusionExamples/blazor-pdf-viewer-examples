@@ -113,11 +113,11 @@
         }
     }
 
-    public void loadPDFdocument(byte[] bytes)
+    public async void loadPDFdocument(byte[] bytes)
     {
 
         string base64String = Convert.ToBase64String(bytes);
-        viewerInstance.LoadAsync("data:application/pdf;base64," + base64String, null);
+        await viewerInstance.LoadAsync("data:application/pdf;base64," + base64String, null);
     }
 
     public static WFormatType GetWFormatType(string format)
