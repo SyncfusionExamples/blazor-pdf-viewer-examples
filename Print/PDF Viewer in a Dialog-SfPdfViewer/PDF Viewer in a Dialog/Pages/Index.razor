@@ -28,20 +28,20 @@
     }
 
     //Triggers when the dialog is opened.
-    public void OnClickopen(MouseEventArgs args)
+    public async void OnClickopen(MouseEventArgs args)
     {
         //Reads the contents of the file into a byte array, and then closes the file.
         byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/data/HTTP Succinctly.pdf");
         //Converts the byte array in to base64 string.
         string base64String = Convert.ToBase64String(byteArray);
         //PDF document will get loaded from the base64 string.
-        viewer.LoadAsync("data:application/pdf;base64," + base64String, null);
+        await viewer.LoadAsync("data:application/pdf;base64," + base64String, null);
     }
 
-    private void documentLoad(LoadEventArgs args)
+    private async void documentLoad(LoadEventArgs args)
     {
         //Perform print action on the PDFViewer. 
-        viewer.PrintAsync();
+        await viewer.PrintAsync();
     }
 
     public string Header { get; set; } = "PDF Viewer";
