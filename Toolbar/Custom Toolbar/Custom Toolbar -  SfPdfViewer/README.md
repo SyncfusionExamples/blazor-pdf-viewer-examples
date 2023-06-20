@@ -1,5 +1,5 @@
-# Customizing the toolbar in PDF viewer
-This example shows how to create your own toolbar in the PDF viewer. Here, we have disabled the defaut toolbar and created a new toolbar with required tools using the SfToolbar component.
+# Customizing the toolbar in SfPdfViewer
+This example shows how to create your own toolbar in the SfPdfViewer. Here, we have disabled the defaut toolbar and created a new toolbar with required tools using the SfToolbar component.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
 

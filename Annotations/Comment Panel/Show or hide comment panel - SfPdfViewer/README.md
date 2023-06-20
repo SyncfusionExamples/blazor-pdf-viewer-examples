@@ -1,4 +1,4 @@
-# Show or hide comment panel in the PDF Viewer
+# Show or hide comment panel in the SfPdfViewer
 This example illustrates how to show the comment panel on initial rendering and hide it on a button click.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/comments#comment-panel

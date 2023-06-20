@@ -1,4 +1,4 @@
-# Modify the file name while downloading a PDF document from the PDF Viewer
+# Modify the file name while downloading a PDF document from the SfPdfViewer
 This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/comments#comment-panel

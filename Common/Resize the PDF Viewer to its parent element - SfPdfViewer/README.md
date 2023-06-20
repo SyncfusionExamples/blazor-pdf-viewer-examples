@@ -1,5 +1,5 @@
-# How to resize the PDF Viewer with respect to its parent element
-This example shows how to resize the PDF Viewer within its container, at the run time. Here, the PDF Viewer is rendered inside a Splitter component. When you resize the Splitter, the PDF Viewer will stretch its size accordingly by using the UpdateViewerContainerAsync() method. 
+# How to resize the SfPdfViewer with respect to its parent element
+This example shows how to resize the SfPdfViewer within its container, at the run time. Here, the SfPdfViewer is rendered inside a Splitter component. When you resize the Splitter, the SfPdfViewer will stretch its size accordingly by using the UpdateViewerContainerAsync() method. 
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/stretch-the-pdf-viewer-size-to-its-container
 

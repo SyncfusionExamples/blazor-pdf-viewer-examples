@@ -1,4 +1,4 @@
-# Customizing the custom toolbar with icons in PDF viewer
+# Customizing the custom toolbar with icons in SfPdfViewer
 This example shows how to create a custom toolbar with custom icons. You can customize the appearance of the toolbar icons by disabling the default toolbar and creating custom toolbar items with templates. 
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
