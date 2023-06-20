@@ -1,5 +1,5 @@
-# Get the PDF document as a byte array that is loaded into the PDF Viewer
-This example shows how to get the PDF document as byte array which is loaded in the PDF viewer. In this example, GetDocumentAsync() method is used to get the PDF document as byte array.
+# Get the PDF document as a byte array that is loaded into the SfPdfViewer
+This example shows how to get the PDF document as byte array which is loaded in the SfPdfViewer. In this example, GetDocumentAsync() method is used to get the PDF document as byte array.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/get-data-from-pdf-viewer
 

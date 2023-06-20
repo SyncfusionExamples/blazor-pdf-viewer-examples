@@ -1,4 +1,4 @@
-# Add a custom stamp in the PDF viewer
+# Add a custom stamp in the SfPdfViewer
 This example shows how to add a custom stamp programmatically.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/stamp-annotation

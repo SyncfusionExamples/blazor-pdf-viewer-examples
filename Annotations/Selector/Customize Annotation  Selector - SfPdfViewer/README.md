@@ -1,5 +1,5 @@
-# Customize annotation selector in the PDF Viewer
-"An example of how to customise the annotation selector on loading a PDF document in the PDF Viewer. In this sample, the below properties of a rectangle annotation has been customized.
+# Customize annotation selector in the SfPdfViewer
+"An example of how to customise the annotation selector on loading a PDF document in the SfPdfViewer. In this sample, the below properties of a rectangle annotation has been customized.
 
 * Resizer shape  
 * Resizer size  

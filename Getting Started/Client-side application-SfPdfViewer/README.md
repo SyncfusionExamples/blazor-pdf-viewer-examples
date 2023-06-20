@@ -1,5 +1,5 @@
-# Create a simple PDF Viewer in a Blazor client-side application
-This example shows how to create a simple PDF Viewer client-side application.
+# Create a simple SfPdfViewer in a Blazor client-side application
+This example shows how to create a simple SfPdfViewer client-side application.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/getting-started/web-assembly-application
 

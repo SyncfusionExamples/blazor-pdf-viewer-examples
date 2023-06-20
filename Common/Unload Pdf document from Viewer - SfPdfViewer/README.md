@@ -1,4 +1,4 @@
-# Unload the PDF document from Viewer in Blazor PDF Viewer Component
+# Unload the PDF document from Viewer in Blazor SfPdfViewer Component
 The SfPdfViewer component will automatically unload and clear the resources occupied by the PDF document when the control is disposed. Also, when loading another PDF file, the resources occupied by previous loaded file in viewer will be automatically unloaded and cleared.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/load-pdf-document-dynamically

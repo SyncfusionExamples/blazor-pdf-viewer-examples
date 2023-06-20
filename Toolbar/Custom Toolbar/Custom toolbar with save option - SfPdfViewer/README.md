@@ -1,7 +1,7 @@
 # Custom toolbar with save option
 This example shows how to a create custom toolbar with ""Save"" option. It is not possible to edit the default toolbars, so you need to create a new toolbar with required tool items. 
 
-Here, we have disabled the default toolbar using the EnableNavigationToolbar, EnableAnnotationToolbar, and EnableToolbar properties of the PDF Viewer and have created a custom toolbar.
+Here, we have disabled the default toolbar using the EnableNavigationToolbar, EnableAnnotationToolbar, and EnableToolbar properties of the SfPdfViewer and have created a custom toolbar.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
 

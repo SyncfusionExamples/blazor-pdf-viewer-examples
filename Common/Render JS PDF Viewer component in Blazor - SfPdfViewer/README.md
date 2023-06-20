@@ -1,5 +1,5 @@
-# Render JS PDF Viewer component inside the Blazor component
-This example demonstrates how to render the Syncfusion's JavaScript PDF Viewer component inside the blazor component.
+# Render JS SfPdfViewer component inside the Blazor component
+This example demonstrates how to render the Syncfusion's JavaScript SfPdfViewer component inside the blazor component.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/render-ej2-pdf-viewer-in-blazor
 
