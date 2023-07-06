@@ -27,8 +27,6 @@ public static class MauiProgram
         //Directory.SetCurrentDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot"));
         builder.Services.AddSingleton<WeatherForecastService>(); 
         builder.Services.AddSyncfusionBlazor();
-        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MDAxQDMyMzIyZTMwMmUzMGZtcFNDblZWekpVYWRuS3VLMFN1cXh3VHhWcktjMkZpUktVZDhjNlpQeXc9");
-
         return builder.Build();
 	}
 }
