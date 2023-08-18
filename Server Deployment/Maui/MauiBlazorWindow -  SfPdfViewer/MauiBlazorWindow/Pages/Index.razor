@@ -1,7 +1,20 @@
 ﻿@page "/"
 
-<SfPdfViewer2 DocumentPath="@DocumentPath" Height="100%" Width="100%"></SfPdfViewer2>
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              Height="100%"
+              Width="100%">
+</SfPdfViewer2>
 
 @code {
-    private string DocumentPath { get; set; } = "wwwroot/PDF_Succinctly.pdf";
+    public string DocumentPath { get; set; }
+
+    protected override void OnInitialized()
+    {
+        string Url = "https://s3.amazonaws.com/ebooks.syncfusion.com/downloads/blazor_webassembly_succinctly/blazor_webassembly_succinctly.pdf";
+        System.Net.WebClient webClient = new System.Net.WebClient();
+        byte[] byteArray = webClient.DownloadData(Url);
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
+    }
 }
