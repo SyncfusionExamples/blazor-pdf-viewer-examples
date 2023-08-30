@@ -6,25 +6,6 @@
 
 @code {
     SfPdfViewer2 viewer;
-    private string DocumentPath { get; set; } = "";
-
-    protected override void OnInitialized()
-    {
-        string basePath = "MauiBlazorAndroid.wwwroot.data.pdf_succinctly.pdf";
-
-        Stream DocumentStream = this.GetType().Assembly.GetManifestResourceStream(basePath);
-        DocumentStream.Position = 0;
-        using (MemoryStream memoryStream = new MemoryStream())
-        {
-            DocumentStream.CopyTo(memoryStream);
-            byte[] bytes = memoryStream.ToArray();
-            string base64String = Convert.ToBase64String(bytes);
-            string base64prefix = "data:application/pdf;base64,";
-            //Assigned the base64 path to the PDF document path.
-            DocumentPath = $"{base64prefix}{base64String}";
-        }
-
-        base.OnInitialized();
-    }
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
 
 }
