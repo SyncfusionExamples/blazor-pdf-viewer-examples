@@ -1,0 +1,39 @@
+﻿@page "/"
+
+<!-- Import the Syncfusion.Blazor.Buttons namespace -->
+@using Syncfusion.Blazor.Buttons
+<!-- Import the Syncfusion.Blazor.SfPdfViewer namespace -->
+@using Syncfusion.Blazor.SfPdfViewer
+
+
+<SfButton OnClick="SaveAsStream">Save as Stream</SfButton>
+<SfButton OnClick="LoadFromStream">Load from Stream</SfButton>
+
+<!-- Create a SfPdfViewer2 component with document URL -->
+<SfPdfViewer2 @ref="viewer" DocumentPath="https://cdn.syncfusion.com/content/pdf/form-filling-document.pdf"
+              Height="100%"
+              Width="100%">
+</SfPdfViewer2>
+
+@code {
+    public SfPdfViewer2 viewer { get; set; }
+    MemoryStream stream;
+
+    public async void SaveAsStream(MouseEventArgs args)
+    {
+        // Retrieves the updated PDF document with the applied changes.
+        byte[] updatedDocumentData = await viewer.GetDocumentAsync();
+        // Saves the updated PDF document to a MemoryStream.
+        stream = new MemoryStream(updatedDocumentData);
+        // Loads a PDF document from the MemoryStream with the applied changes.
+        await viewer.LoadAsync(stream);
+    }
+    //. . .
+    //. . .
+    //. . .
+    public async void LoadFromStream(MouseEventArgs args)
+    {
+        await viewer.LoadAsync(stream);
+    }
+
+}
