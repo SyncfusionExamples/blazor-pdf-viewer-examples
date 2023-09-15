@@ -1,5 +1,5 @@
-# Thumbnail
-This section contains samples of how to export and import the annotations in Blazor MAUI PDF Viewer.
+# Form Filling
+This section contains samples of how to export and import the Form fields in Blazor MAUI PDF Viewer.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/import-export-annotation
 
