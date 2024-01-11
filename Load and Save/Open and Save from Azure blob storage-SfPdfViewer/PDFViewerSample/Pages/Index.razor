@@ -1,0 +1,55 @@
+﻿@page "/"
+
+@using Azure.Storage.Blobs
+@using Azure.Storage.Blobs.Specialized
+@using System.IO;
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton @onclick="OnClick">Download</SfButton>
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              @ref="viewer"
+              Height="100%"
+              Width="100%">
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2 viewer;
+    private string DocumentPath { get; set; }
+
+    private readonly string connectionString = "Your Connection string from Azure";
+    private readonly string containerName = "Your container name in Azure";
+    private readonly string fileName = "File Name to be loaded into Syncfusion PDF Viewer";
+
+    // method to load a pdf from an Azure container to the PDF Viewer
+    protected override void OnInitialized()
+    {
+        //Connection String of Storage Account
+        BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+        BlobContainerClient blobContainerClient = blobServiceClient.GetBlobContainerClient(containerName);
+        BlockBlobClient blockBlobClient = blobContainerClient.GetBlockBlobClient(fileName);
+        MemoryStream memoryStream = new MemoryStream();
+        blockBlobClient.DownloadTo(memoryStream);
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(memoryStream.ToArray());
+    }
+
+    // Method to save the downloaded document to the Azure Container
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocumentAsync();
+
+        BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+
+        string result = Path.GetFileNameWithoutExtension(fileName);
+
+        // Get a reference to the blob
+        BlobClient blobClient = containerClient.GetBlobClient(result + "_downloaded.pdf");
+
+        using (MemoryStream stream = new MemoryStream(data))
+        {
+            blobClient.Upload(stream, true);
+        }
+    }
+}

@@ -1,0 +1,118 @@
+﻿@using Google.Apis.Drive.v3;
+@using Google.Apis.Auth.OAuth2;
+@using Google.Apis.Services;
+@using Google.Apis.Util.Store;
+@using System.IO;
+@using System.Threading.Tasks;
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer;
+
+@page "/"
+<SfButton @onclick="OnClick">Save file to google drive</SfButton>
+
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              @ref="@viewer"
+              Height="100%"
+              Width="100%">
+</SfPdfViewer2>
+
+@code {
+    private string DocumentPath { get; set; }
+    private SfPdfViewer2 viewer;
+
+    private readonly string FolderId = "Your Google Drive Folder ID";
+    private readonly string CredentialPath = "Your Path to the OAuth 2.0 Client IDs json file";
+    private readonly string ApplicationName = "Your Application name";
+    private readonly string FileName = "File Name to be loaded into Syncfusion PDF Viewer";
+
+    private static readonly string[] Scopes = { DriveService.Scope.DriveFile, DriveService.Scope.DriveReadonly };
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserCredential credential;
+        using (var stream1 = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+        {
+            string credPath = "token.json";
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                GoogleClientSecrets.Load(stream1).Secrets,
+                Scopes,
+                "user",
+                CancellationToken.None,
+                new FileDataStore(credPath, true));
+        }
+
+        var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+        var listRequest = service.Files.List();
+        listRequest.Q = $"mimeType='application/pdf' and '{FolderId}' in parents and trashed=false";
+        listRequest.Fields = "files(id, name)";
+        var files = await listRequest.ExecuteAsync();
+
+        string fileIdToDownload = files.Files
+            .FirstOrDefault(file => file.Name == FileName)?.Id;
+
+        if (!string.IsNullOrEmpty(fileIdToDownload))
+        {
+            var request = service.Files.Get(fileIdToDownload);
+            using (var stream = new MemoryStream())
+            {
+                await request.DownloadAsync(stream);
+                stream.Position = 0;
+                DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+            }
+        }
+        else
+        {
+            Console.WriteLine("File not found in Google Drive.");
+        }
+    }
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocumentAsync();
+        string result = Path.GetFileNameWithoutExtension(FileName);
+        string fileName = result + "_downloaded.pdf";
+        UserCredential credential;
+
+        using (var memStream = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+        {
+            string credPath = "token.json";
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+            GoogleClientSecrets.Load(memStream).Secrets,
+            Scopes,
+            "user",
+             CancellationToken.None,
+            new FileDataStore(credPath, true));
+        }
+
+        // Create the Drive API service.
+        var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+        var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = fileName,
+                Parents = new List<string> { FolderId }
+            };
+
+        FilesResource.CreateMediaUpload request;
+
+        using (var stream = new MemoryStream(data))
+        {
+            request = service.Files.Create(fileMetadata, stream, "application/pdf");
+            request.Fields = "id";
+            object value = await request.UploadAsync();
+        }
+    }
+}
+
+
+
+

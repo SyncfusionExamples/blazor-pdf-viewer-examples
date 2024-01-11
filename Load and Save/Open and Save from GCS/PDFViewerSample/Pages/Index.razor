@@ -1,0 +1,50 @@
+﻿@using Google.Cloud.Storage.V1;
+@using Google.Apis.Auth.OAuth2;
+@using Syncfusion.Blazor.PdfViewerServer;
+@using Syncfusion.Blazor.Buttons
+
+@page "/"
+<SfButton @onclick="OnClick">Save file to google cloud storage</SfButton>
+<SfPdfViewerServer @ref="@viewer" DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+    private string DocumentPath { get; set; }
+    private SfPdfViewerServer viewer;
+
+    private readonly string keyFilePath = @"path/to/service-account-key.json";
+    private readonly string bucketName = "YourBucketName";
+    private readonly string fileName = "FileName.pdf";
+    private StorageClient _storageClient;
+
+    // Method to load PDFs from Google Cloud Storage to Syncfusion PDF Viewer
+
+    protected override async Task OnInitializedAsync()
+    {
+        MemoryStream stream = new MemoryStream();
+        // Load the service account credentials from the key file.
+        var credentials = GoogleCredential.FromFile(keyFilePath);
+        // Create a storage client with Application Default Credentials
+        _storageClient = StorageClient.Create(credentials);
+        _storageClient.DownloadObject(bucketName, fileName, stream);
+        stream.Position = 0;
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+    }
+
+    // Methods to save PDFs to the Google Cloud Storage Bucket
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocument();
+        string result = Path.GetFileNameWithoutExtension(fileName);
+        string FileName = result + "_downloaded.pdf";
+        // Load the service account credentials from the key file.
+        var credentials = GoogleCredential.FromFile(keyFilePath);
+        // Create a storage client with Application Default Credentials
+        _storageClient = StorageClient.Create(credentials);
+        // Upload the document to Google Cloud Storage
+        using (var memoryStream = new MemoryStream(data))
+        {
+            _storageClient.UploadObject(bucketName, result + "_downloaded.pdf", null, memoryStream);
+        }      
+    }
+}

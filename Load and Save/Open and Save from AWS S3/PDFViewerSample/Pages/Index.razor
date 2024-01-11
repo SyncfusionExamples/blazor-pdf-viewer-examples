@@ -1,0 +1,59 @@
+﻿@using Amazon;
+@using Amazon.S3;
+@using Amazon.S3.Model;
+@using Syncfusion.Blazor.PdfViewerServer;
+@using Syncfusion.Blazor.Buttons
+
+@page "/"
+
+<SfButton @onclick="OnClick">Save file to AWS S3 bucket</SfButton>
+<SfPdfViewerServer @ref="@viewer" DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+    private SfPdfViewerServer viewer;
+    private string DocumentPath { get; set; }
+
+    private readonly string accessKey = "Your Access Key from AWS S3";
+    private readonly string secretKey = "Your Secret Key from AWS S3";
+    private readonly string bucketName = "Your Bucket name from AWS S3";
+    private readonly string fileName = "File Name to be loaded into Syncfusion PDF Viewer";
+
+    protected override async Task OnInitializedAsync()
+    {
+        MemoryStream stream = new MemoryStream();
+        RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+
+        // Configure the AWS SDK with your access credentials and other settings
+        var s3Client = new AmazonS3Client(accessKey, secretKey, bucketRegion);
+
+        // Specify the document name or retrieve it from a different source
+        var response = await s3Client.GetObjectAsync(bucketName, fileName);
+
+        Stream responseStream = response.ResponseStream;
+        responseStream.CopyTo(stream);
+        stream.Seek(0, SeekOrigin.Begin);
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+    }
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocument();
+        string result = Path.GetFileNameWithoutExtension(fileName);
+        string FileName = result + "_downloaded.pdf";
+        RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
+
+        // Configure the AWS SDK with your access credentials and other settings
+        var s3Client = new AmazonS3Client(accessKey, secretKey, bucketRegion);
+        using (MemoryStream stream = new MemoryStream(data))
+        {
+            var request = new PutObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = result + "_downloaded.pdf",
+                    InputStream = stream,
+                };
+            // Upload the PDF document to AWS S3
+            var response = s3Client.PutObjectAsync(request).Result;
+        }
+    }
+}
