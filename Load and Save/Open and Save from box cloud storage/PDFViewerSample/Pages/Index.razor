@@ -1,0 +1,81 @@
+﻿@using Box.V2;
+@using Box.V2.Auth;
+@using Box.V2.Config;
+@using Box.V2.Models;
+@using Syncfusion.Blazor.PdfViewerServer;
+@using Syncfusion.Blazor.Buttons
+
+@page "/"
+<SfButton @onclick="OnClick">Save file to google drive</SfButton>
+<SfPdfViewerServer @ref="@viewer" DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+
+    private SfPdfViewerServer viewer;
+    private string DocumentPath { get; set; }
+    
+    private readonly string accessToken = "Your Box Storage Access Token";
+    private readonly string folderID = "Your Folder ID";
+    private readonly string clientID = "Your Box Storage ClientID";
+    private readonly string clientSecret = "Your Box Storage ClientSecret";
+    private readonly string fileName = "File Name to be loaded into Syncfusion PDF Viewer";
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initialize the Box API client with your authentication credentials
+        var auth = new OAuthSession(accessToken, "YOUR_REFRESH_TOKEN", 3600, "bearer");
+        var config = new BoxConfigBuilder(clientID, clientSecret, new Uri("http://boxsdk")).Build();
+        var client = new BoxClient(config, auth);
+
+        // Download the file from Box storage
+        var items = await client.FoldersManager.GetFolderItemsAsync(folderID, 1000, autoPaginate: true);
+        var files = items.Entries.Where(i => i.Type == "file");
+
+        // Filter the files based on the objectName
+        var matchingFile = files.FirstOrDefault(file => file.Name == fileName);
+
+        if (matchingFile != null)
+        {
+            // Fetch the file from Box storage by its ID
+            using (var fileStream = await client.FilesManager.DownloadAsync(matchingFile.Id).ConfigureAwait(false))
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    await fileStream.CopyToAsync(stream).ConfigureAwait(false);
+
+                    // Reset the position to the beginning of the stream
+                    stream.Position = 0;
+                    DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+                }
+            }
+        }
+        else
+        {
+            // Handle case where the file is not found
+            Console.WriteLine("File not found in the specified folder.");
+        }
+    }
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocument();
+        string result = Path.GetFileNameWithoutExtension(fileName);
+        string FileName = result + "_downloaded.pdf";
+        // Initialize the Box API client with your authentication credentials
+        var auth = new OAuthSession(accessToken, "YOUR_REFRESH_TOKEN", 3600, "bearer");
+        var config = new BoxConfigBuilder(clientID, clientSecret, new Uri("http://boxsdk")).Build();
+        var client = new BoxClient(config, auth);
+
+        var fileRequest = new BoxFileRequest
+            {
+                Name = FileName,
+                Parent = new BoxFolderRequest { Id = folderID },
+            };
+
+        using (var stream = new MemoryStream(data))
+        {
+            var boxFile = await client.FilesManager.UploadAsync(fileRequest, stream);
+        }
+
+    }
+}

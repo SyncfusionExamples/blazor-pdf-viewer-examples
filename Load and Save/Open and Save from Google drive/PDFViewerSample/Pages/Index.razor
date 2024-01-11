@@ -1,0 +1,208 @@
+﻿@using Google.Apis.Drive.v3;
+@using Google.Apis.Auth.OAuth2;
+@using Google.Apis.Services;
+@using Google.Apis.Util.Store;
+@using System.IO;
+@using System.Threading.Tasks;
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewerServer;
+
+@page "/"
+<SfButton @onclick="OnClick">Save file to google drive</SfButton>
+<SfPdfViewerServer @ref="@viewer" Height="500px" Width="1060px" DocumentPath="@DocumentPath" />
+
+@code {
+    private string DocumentPath { get; set; }
+    private SfPdfViewerServer viewer;
+    private readonly string FolderId = "Your Google Drive Folder ID";
+    private readonly string CredentialPath = "Your Path to the OAuth 2.0 Client IDs json file";
+    private readonly string ApplicationName = "Your Application name";
+    private readonly string FileName = "File Name to be loaded into Syncfusion PDF Viewer";
+    private static readonly string[] Scopes = { DriveService.Scope.DriveFile, DriveService.Scope.DriveReadonly };
+
+    protected override async Task OnInitializedAsync()
+    {
+        UserCredential credential;
+        using (var stream1 = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+        {
+            string credPath = "token.json";
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                GoogleClientSecrets.Load(stream1).Secrets,
+                Scopes,
+                "user",
+                CancellationToken.None,
+                new FileDataStore(credPath, true));
+        }
+
+        var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+        var listRequest = service.Files.List();
+        listRequest.Q = $"mimeType='application/pdf' and '{FolderId}' in parents and trashed=false";
+        listRequest.Fields = "files(id, name)";
+        var files = await listRequest.ExecuteAsync();
+
+        string fileIdToDownload = files.Files
+            .FirstOrDefault(file => file.Name == FileName)?.Id;
+
+        if (!string.IsNullOrEmpty(fileIdToDownload))
+        {
+            var request = service.Files.Get(fileIdToDownload);
+            using (var stream = new MemoryStream())
+            {
+                await request.DownloadAsync(stream);
+                stream.Position = 0;
+                DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(stream.ToArray());
+            }
+        }
+        else
+        {
+            Console.WriteLine("File not found in Google Drive.");
+        }
+    }
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocument();
+        string result = Path.GetFileNameWithoutExtension(FileName);
+        string fileName = result + "_downloaded.pdf";
+        UserCredential credential;
+
+        using (var memStream = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+        {
+            string credPath = "token.json";
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+            GoogleClientSecrets.Load(memStream).Secrets,
+            Scopes,
+            "user",
+             CancellationToken.None,
+            new FileDataStore(credPath, true));
+        }
+
+        // Create the Drive API service.
+        var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+        var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = fileName,
+                Parents = new List<string> { FolderId }
+            };
+
+        FilesResource.CreateMediaUpload request;
+
+        using (var stream = new MemoryStream(data))
+        {
+            request = service.Files.Create(fileMetadata, stream, "application/pdf");
+            request.Fields = "id";
+            object value = await request.UploadAsync();
+        }
+        // After successful upload, show the pop-up
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @using Google.Apis.Drive.v3;
+@using Google.Apis.Auth.OAuth2;
+@using Google.Apis.Services;
+@using Google.Apis.Util.Store
+@using System.IO
+@using System.Threading
+
+@using Syncfusion.Blazor.PdfViewerServer
+
+@page "/"
+<SfPdfViewerServer DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+    private string DocumentPath { get; set; }
+
+    // private readonly string FolderId = "Your Google Drive Folder ID";
+    // private readonly string CredentialPath = "Your Path to the OAuth 2.0 Client IDs json file";
+    // private readonly string ApplicationName = "Your Application name";
+    // private readonly string FileName = "File Name to be loaded into PDF Viewer";
+
+
+    private readonly string FolderId = "10AhOeauKRpKP9I1goXgm1lW4zcA2JauJ";
+    private readonly string CredentialPath = "wwwroot/Data/client_secret.json";
+    private readonly string ApplicationName = "Your Application name";
+    private readonly string FileName = "PDF_Succinctly.pdf";
+    private static readonly string[] Scopes = { DriveService.Scope.DriveFile, DriveService.Scope.DriveReadonly };
+
+    protected async override Task OnInitializedAsync()
+    {
+        UserCredential credential;
+        using (var stream1 = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+        {
+            string credPath = "token.json";
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                GoogleClientSecrets.Load(stream1).Secrets,
+                Scopes,
+                "user",
+                CancellationToken.None,
+                new FileDataStore(credPath, true));
+        }
+
+        // Create Google Drive API service.
+        var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+        // List PDF files in Google Drive
+        var listRequest = service.Files.List();
+        listRequest.Q = $"mimeType='application/pdf' and '{FolderId}' in parents and trashed=false";
+        listRequest.Fields = "files(id, name)";
+        var files = await listRequest.ExecuteAsync();
+
+        string fileIdToDownload = files.Files
+            .Where(file => file.Name == FileName)
+            .Select(file => file.Id)
+            .FirstOrDefault();
+
+        if (!string.IsNullOrEmpty(fileIdToDownload))
+        {
+            var request = service.Files.Get(fileIdToDownload);
+            using (var stream = new MemoryStream())
+            {
+                await request.DownloadAsync(stream);
+                stream.Position = 0;
+                // Assuming Syncfusion PdfViewerServer requires a stream
+                // You might need to adjust this part based on the actual requirements of the PdfViewerServer
+                // For example, you may need to save the stream to a file and set DocumentPath to that file path
+                DocumentPath = "path/to/saved/pdf/file.pdf";
+            }
+        }
+        else
+        {
+            // Handle the case when the specified file is not found in Google Drive
+            // You may want to display an error message or take appropriate action
+            Console.WriteLine("File not found in Google Drive.");
+        }
+    }
+}
+ *@

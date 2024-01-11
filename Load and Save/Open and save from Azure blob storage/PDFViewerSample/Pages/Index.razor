@@ -1,0 +1,49 @@
+﻿@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.PdfViewerServer
+@using Azure.Storage.Blobs
+@using Azure.Storage.Blobs.Specialized
+@using System.IO;
+
+@page "/"
+<SfButton @onclick="OnClick">Save file to Azure blob container</SfButton>
+<SfPdfViewerServer @ref="@viewer" Height="500px" Width="1060px" DocumentPath="@DocumentPath" />
+
+@code {
+    private SfPdfViewerServer viewer;
+    private string DocumentPath { get; set; }
+
+    private readonly string connectionString = "Your Connection string from Azure";
+    private readonly string containerName = "Your container name in Azure";
+    private readonly string fileName = "File Name to be loaded into PDF Viewer";
+
+    protected override void OnInitialized()
+    {
+        //Connection String of Storage Account
+        BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+        BlobContainerClient blobContainerClient = blobServiceClient.GetBlobContainerClient(containerName);
+        BlockBlobClient blockBlobClient = blobContainerClient.GetBlockBlobClient(fileName);
+        MemoryStream memoryStream = new MemoryStream();
+        blockBlobClient.DownloadTo(memoryStream);
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(memoryStream.ToArray());
+    }
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        byte[] data = await viewer.GetDocument();
+
+        BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+        BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+
+        string result = Path.GetFileNameWithoutExtension(fileName);
+
+        // Get a reference to the blob
+        BlobClient blobClient = containerClient.GetBlobClient(result + "_downloaded.pdf");
+
+        using (MemoryStream stream = new MemoryStream(data))
+        {
+            blobClient.Upload(stream, true);
+        }
+    }
+}
+
