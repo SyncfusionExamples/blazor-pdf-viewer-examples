@@ -1,0 +1,90 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer; 
+@using Syncfusion.Blazor.Navigations; 
+
+<SfPdfViewer2 @ref="@Viewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">  
+         <PdfViewerToolbarSettings CustomToolbarItems="@CustomToolbarItems" ToolbarItems="null" />   
+         <PdfViewerEvents ToolbarClicked="ClickAction"></PdfViewerEvents>              
+</SfPdfViewer2>  
+
+@code{ 
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf"; 
+    SfPdfViewer2 Viewer; 
+    MemoryStream stream; 
+
+    // List provide the position and element for the custom toolbar items
+    public List<PdfToolbarItem> CustomToolbarItems = new List<PdfToolbarItem>() 
+    {    
+        new PdfToolbarItem (){ Index = 0, Template = @GetTemplate("PreviousPage")}, 
+        new PdfToolbarItem (){ Index = 1, Template = @GetTemplate("NextPage")}, 
+        new PdfToolbarItem (){ Index = 2, Template = @GetTemplate("Save")}, 
+        new PdfToolbarItem (){ Index = 3, Template = @GetTemplate("Download")} 
+    };  
+
+    // Get the renderfragment element for the custom toolbaritems in the primary toolbar
+    private static RenderFragment GetTemplate(string name)  
+    {  
+        return __builder => 
+            {  
+                if (name == "PreviousPage")
+                { 
+                    <ToolbarItem PrefixIcon="e-icons e-chevron-up" 
+                          		Text="Previous Page" 
+                                TooltipText="Previous Page" 
+                                Id="previousPage" 
+                                Align="ItemAlign.Left"> 
+                    </ToolbarItem> 
+                }  
+                else if(name == "NextPage")
+                { 
+                    <ToolbarItem PrefixIcon="e-icons e-chevron-down" 
+                                Text="Next Page" 
+                                TooltipText="Next Page" 
+                                Id="nextPage" 
+                                Align="ItemAlign.Left"> 
+                    </ToolbarItem> 
+                }  
+                else if(name == "Save")
+                { 
+                    <ToolbarItem PrefixIcon="e-icons e-save" 
+                                Text="Save" 
+                                TooltipText="Save Document" 
+                                Id="save" 
+                                Align="ItemAlign.Right"> 
+                    </ToolbarItem>
+                }  
+                else if(name == "Download")
+                { 
+                    <ToolbarItem PrefixIcon="e-icons e-download" 
+                                Text="Download"
+                                TooltipText="Download" 
+                                Id="download" 
+                                Align="ItemAlign.Right"> 
+                    </ToolbarItem> 
+                }  
+            };            
+    }  
+
+    // Click for the custom toolbaritems in the primary toolbar
+    public async void ClickAction(ClickEventArgs Item) 
+    {  
+        if (Item.Item.Id == "previousPage") 
+        {  
+            await Viewer.GoToPreviousPageAsync(); 
+        }  
+        else if (Item.Item.Id == "nextPage") 
+        {  
+            await Viewer.GoToNextPageAsync(); 
+        }  
+        else if(Item.Item.Id == "save")  
+        {  
+            byte[] data = await Viewer.GetDocumentAsync(); 
+            stream = new MemoryStream(data); 
+            await Viewer.LoadAsync(stream); 
+        } 
+        else if (Item.Item.Id == "download") 
+        { 
+            await Viewer.DownloadAsync(); 
+        } 
+    }  
+} 
