@@ -1,0 +1,14 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer;
+
+<SfPdfViewer2 @ref="@pdfViewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+    <PdfViewerEvents DocumentEdited="@DocumentEdited"></PdfViewerEvents>
+</SfPdfViewer2>
+@code {
+    SfPdfViewer2 pdfViewer;
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+    public async Task DocumentEdited(DocumentEditedEventArgs args)
+    {
+        Console.WriteLine(args.EditingAction);
+    }
+}
