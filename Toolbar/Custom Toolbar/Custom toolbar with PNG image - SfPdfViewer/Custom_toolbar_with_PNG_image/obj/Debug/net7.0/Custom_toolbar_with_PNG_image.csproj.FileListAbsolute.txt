@@ -1,2 +1,0 @@
-D:\Blazor PDF Viewer\Documentation Page\Examples Repo\blazor-pdf-viewer-examples\Toolbar\Custom Toolbar\Custom toolbar with PNG image - SfPdfViewer\Custom_toolbar_with_PNG_image\obj\Debug\net7.0\Custom_toolbar_with_PNG_image.csproj.AssemblyReference.cache
-D:\Blazor PDF Viewer\Documentation Page\Examples Repo\blazor-pdf-viewer-examples\Toolbar\Custom Toolbar\Custom toolbar with PNG image - SfPdfViewer\Custom_toolbar_with_PNG_image\obj\Debug\net7.0\Custom_toolbar_with_PNG_image.GeneratedMSBuildEditorConfig.editorconfig

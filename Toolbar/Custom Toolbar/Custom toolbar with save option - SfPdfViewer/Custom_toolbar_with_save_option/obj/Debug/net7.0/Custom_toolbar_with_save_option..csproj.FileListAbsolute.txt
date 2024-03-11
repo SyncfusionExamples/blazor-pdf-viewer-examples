@@ -1,1 +1,0 @@
-D:\Blazor PDF Viewer\Documentation Page\Examples Repo\blazor-pdf-viewer-examples\Toolbar\Custom Toolbar\Custom toolbar with save option - SfPdfViewer\Custom_toolbar_with_save_option\obj\Debug\net7.0\Custom_toolbar_with_save_option..GeneratedMSBuildEditorConfig.editorconfig
