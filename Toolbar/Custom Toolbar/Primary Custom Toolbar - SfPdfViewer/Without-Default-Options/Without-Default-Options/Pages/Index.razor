@@ -69,21 +69,27 @@
     public async void ClickAction(ClickEventArgs Item) 
     {  
         if (Item.Item.Id == "previousPage") 
-        {  
+        {
+            //Navigate to previous page of the PDF document.
             await Viewer.GoToPreviousPageAsync(); 
         }  
         else if (Item.Item.Id == "nextPage") 
-        {  
+        {
+            //Navigate to next page page of the PDF document.
             await Viewer.GoToNextPageAsync(); 
         }  
         else if(Item.Item.Id == "save")  
-        {  
-            byte[] data = await Viewer.GetDocumentAsync(); 
-            stream = new MemoryStream(data); 
+        {
+            //Gets the loaded PDF document with the changes.
+            byte[] data = await Viewer.GetDocumentAsync();
+            //Save the PDF document to a MemoryStream. 
+            stream = new MemoryStream(data);
+            //Load a PDF document from the MemoryStream. 
             await Viewer.LoadAsync(stream); 
         } 
         else if (Item.Item.Id == "download") 
-        { 
+        {
+            //Downloads the PDF document
             await Viewer.DownloadAsync(); 
         } 
     }  
