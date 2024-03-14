@@ -1,0 +1,84 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@AddCommentandReplyCommentAsync">Add Comment & ReplyComment</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Comment_and_Reply_Comment.pdf";
+
+    public async void AddCommentandReplyCommentAsync(MouseEventArgs args)
+    {
+        PdfAnnotation annotation = new PdfAnnotation();
+        // Set the annotation type of Line
+        annotation.Type = AnnotationType.Line;
+        // Set the PageNumber starts from 0. So, if set 0 it repersent the page 1.
+        annotation.PageNumber = 0;
+
+        // Vertex Points of the Line Annotation
+        List<VertexPoint> vertexPoints = new List<VertexPoint>();
+        VertexPoint vertexPoint = new VertexPoint();
+        vertexPoint.X = 200;
+        vertexPoint.Y = 200;
+        vertexPoints.Add(vertexPoint);
+        vertexPoint = new VertexPoint();
+        vertexPoint.X = 300;
+        vertexPoint.Y = 200;
+        vertexPoints.Add(vertexPoint);
+        // Set the VertexPoints of Line annotation
+        annotation.VertexPoints = vertexPoints;
+
+        // Add Comment
+        annotation.Note = "Add Comment";
+
+        // Add Comment Status
+        annotation.Review = new Review();
+        annotation.Review.State = "Accepted";
+
+        // Add Comment Author name
+        annotation.Author = "Author1";
+
+        // Add Comment Modified Date
+        annotation.ModifiedDate = "1/1/2024 10:00:00 AM";
+
+        // Add Reply Comment
+        List<Comment> comments = new List<Comment>();
+        Comment comment = new Comment();
+
+        // Add First Reply Comment
+        comment.Note = "Reply Comment1";
+        // Add First Reply Comment Author name
+        comment.Author = "Author2";
+
+        // Add First Reply Comment Modified Date
+        comment.ModifiedDate = "1/1/2024 11:00:00 AM";
+
+        // Add First Reply Comment Status
+        comment.State = "Rejected";
+        comments.Add(comment);
+
+        comment = new Comment();
+        // Add Second Reply Comment
+        comment.Note = "Reply Comment2";
+
+        // Add Second Reply Comment Author name
+        comment.Author = "Author3";
+
+        // Add Second Reply Comment Modified Date
+        comment.ModifiedDate = "1/1/2024 12:00:00 PM";
+
+        // Add Second Reply Comment Status
+        comment.State = "Completed";
+        comments.Add(comment);
+
+        // Add Reply Comment
+        annotation.Comments = comments;
+
+        // Add Line annotation with Comments and Reply Comments
+        await Viewer.AddAnnotationAsync(annotation);
+    }
+}

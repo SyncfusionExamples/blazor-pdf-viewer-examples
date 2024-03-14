@@ -1,0 +1,26 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditTextMarkupAnnotation">Edit TextMarkup Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code
+{
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/TextMarkupAnnotation.pdf";
+    public async void EditTextMarkupAnnotation(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Change the color of the text markup annotation to green
+        annotation.Color = "#008000";
+        // Change the opacity of the text markup annotation to 50% (0.5)
+        annotation.Opacity = 0.5;
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}

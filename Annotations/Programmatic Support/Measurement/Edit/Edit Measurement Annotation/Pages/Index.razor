@@ -1,0 +1,37 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditMeasurementAnnotationAsync">Edit Measurement Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Measurement_Annotation.pdf";
+
+    public async void EditMeasurementAnnotationAsync(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Change the position of the radius annotation
+        annotation.Bound.X = 125;
+        annotation.Bound.Y = 125;
+        // Change the width and height of the radius annotation
+        annotation.Bound.Width = 125;
+        annotation.Bound.Height = 75;
+        // Change the fill color of radius annotation
+        annotation.FillColor = "#FFFF00";
+        // Change the stroke color of radius annotation
+        annotation.StrokeColor = "#0000FF";
+        // Change the thickness of radius annotation
+        annotation.Thickness = 3;
+        // Change the opacity (0 to 1) of radius annotation
+        annotation.Opacity = 0.5;
+        // Edit the radius measurement annotation
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}

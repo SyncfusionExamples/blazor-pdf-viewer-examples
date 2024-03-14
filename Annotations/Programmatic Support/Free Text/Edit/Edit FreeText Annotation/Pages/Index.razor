@@ -1,0 +1,48 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditFreeTextAnnotationAsync">Edit FreeText Annotation</SfButton>
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Free_Text_Annotation.pdf";
+
+    public async void EditFreeTextAnnotationAsync(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Change the position of the free text annotation
+        annotation.Bound.X = 125;
+        annotation.Bound.Y = 125;
+        // Change the width and height of the free text annotation
+        annotation.Bound.Width = 250;
+        annotation.Bound.Height = 40;
+        // Change the font style of free text annotation like bold, italic, underline strikethrough
+        annotation.FontStyle = FontStyle.Bold | FontStyle.Italic;
+        // Change the font size of free text annotation
+        annotation.FontSize = 20;
+        // Change the font color of free text annotation
+        annotation.FontColor = "#00008B";
+        // Change the font family of free text annotation
+        annotation.FontFamily = "Symbol";
+        // Change the border width of free text annotation
+        annotation.BorderWidth = 3;
+        // Change the border color of free text annotation
+        annotation.BorderColor = "#000000";
+        // Change the text of free text annotation
+        annotation.DynamicText = "Modified Free Text";
+        // Change the text align of free text annotation
+        annotation.TextAlignment = TextAlignment.Center;
+        // Change the fill color of free text annotation
+        annotation.FillColor = "#FFFF00";
+        // Change the Opacity (0 to 1) of free text annotation
+        annotation.Opacity = 0.5;
+        // Edit the free text annotation
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}

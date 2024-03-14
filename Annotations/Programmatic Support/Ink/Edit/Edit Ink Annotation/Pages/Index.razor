@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditInkAnnotationAsync">Edit Ink Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Ink_Annotation.pdf";
+
+    public async void EditInkAnnotationAsync(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Change the position of the ink annotation
+        annotation.Bound.X = 125;
+        annotation.Bound.Y = 125;
+        // Change the width and height of the ink annotation
+        annotation.Bound.Width = 100;
+        annotation.Bound.Height = 75;
+        // Change the stroke color of ink annotation
+        annotation.StrokeColor = "#FFFF00";
+        // Change the opacity (0 to 1) of ink annotation
+        annotation.Opacity = 0.5;
+        // Edit the ink annotation
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}
