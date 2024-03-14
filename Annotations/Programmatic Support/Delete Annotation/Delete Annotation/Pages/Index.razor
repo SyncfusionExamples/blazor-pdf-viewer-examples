@@ -1,0 +1,25 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@DeleteAnnotation">Delete Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Annotations.pdf";
+
+    public async void DeleteAnnotation(MouseEventArgs args)
+    {
+        // Get the annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation you want to delete
+        PdfAnnotation annotation = annotationCollection[0];
+        // Delete the specified PdfAnnotation
+        await Viewer.DeleteAnnotationAsync(annotation);
+        // Alternatively, you can also delete the specified PdfAnnotation based on AnnotationId
+        //await Viewer.DeleteAnnotationAsync(annotation.Id);
+    }
+}

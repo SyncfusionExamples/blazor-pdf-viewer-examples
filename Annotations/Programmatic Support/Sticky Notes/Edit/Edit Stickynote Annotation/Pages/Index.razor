@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditStickyNoteAnnotationAsync">Edit StickyNote Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Sticky_Notes_Annotation.pdf";
+
+    public async void EditStickyNoteAnnotationAsync(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Change the position of the sticky note annotation
+        annotation.Bound.X = 125;
+        annotation.Bound.Y = 125;
+        // Change the width and height of the sticky note annotation
+        annotation.Bound.Width = 75;
+        annotation.Bound.Height = 75;
+        // Change the Opacity (0 to 1) of sticky note annotation
+        annotation.Opacity = 0.5;
+        // Edit the sticky note annotation
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}

@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@AddMeasurementAnnotationAsync">Add Measurement Annotation</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Measurement_Annotation.pdf";
+
+    public async void AddMeasurementAnnotationAsync(MouseEventArgs args)
+    {
+        PdfAnnotation annotation = new PdfAnnotation();
+        // Set the annotation type of measurement annotation like radius, distance, perimeter, area, volume
+        annotation.Type = AnnotationType.Radius;
+        // Set the PageNumber starts from 0. So, if set 0 it represents the page 1.
+        annotation.PageNumber = 0;
+
+        // Bound of the radius annotation
+        annotation.Bound = new Bound();
+        annotation.Bound.X = 200;
+        annotation.Bound.Y = 150;
+        annotation.Bound.Width = 100;
+        annotation.Bound.Height = 100;
+        // Add radius measurement annotation
+        await Viewer.AddAnnotationAsync(annotation);
+    }
+}

@@ -1,0 +1,41 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@EditCommentandReplyCommentAsync">Edit Comment & ReplyComment</SfButton>
+
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/Data/Comment_and_Reply_Comment.pdf";
+
+    public async void EditCommentandReplyCommentAsync(MouseEventArgs args)
+    {
+        // Get annotation collection
+        List<PdfAnnotation> annotationCollection = await Viewer.GetAnnotationsAsync();
+        // Select the annotation want to edit
+        PdfAnnotation annotation = annotationCollection[0];
+        // Edit the Comment of Annotation
+        annotation.Note = "Updated Comment";
+        // Edit the Comment Status of Annotation
+        annotation.Review.State = "Cancelled";
+        // Edit the Comment Author of Annotation
+        annotation.Author = "Author";
+        // Edit the Comment ModifiedDate of Annotation
+        annotation.ModifiedDate = "2/1/2024 11:00:00 AM";
+        // Edit the Reply Comment of Annotation
+        annotation.Comments[0].Note = "Updated Reply Comment1";
+        // Edit the Reply Comment Status of Annotation
+        annotation.Comments[0].State = "Accepted";
+        // Edit the Reply Comment Author of Annotation
+        annotation.Comments[0].Author = "Author1";
+        // Edit the Reply Comment ModifiedDate of Annotation
+        annotation.Comments[0].ModifiedDate = "2/1/2024 12:00:00 PM";
+        // Delete or Remove Second Reply Comment
+        annotation.Comments.RemoveAt(1);
+        // Edit the Line Annotation Comments and Reply Comments
+        await Viewer.EditAnnotationAsync(annotation);
+    }
+}
