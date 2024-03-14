@@ -1,5 +1,5 @@
 # Add text markup annotation programmatically
-This example shows how to add text markup annotation programmatically in the SfPdfViewer. Here, we have add the highligh annotation in the third page of the PDF document.
+This example shows how to add text markup annotation programmatically in the SfPdfViewer. Here, we have add the highlight annotation in the third page of the PDF document.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/text-markup-annotation#add-text-markup-annotation-programmatically
 

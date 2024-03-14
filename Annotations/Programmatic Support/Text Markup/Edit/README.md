@@ -1,5 +1,5 @@
 # Edit text markup annotation programmatically
-This example shows how to edit text markup annotation programmatically in the SfPdfViewer. Here, we have edit the highligh annotation in the  PDF document.
+This example shows how to edit text markup annotation programmatically in the SfPdfViewer. Here, we have edit the highlight annotation in the  PDF document.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/text-markup-annotation#edit-text-markup-annotation-programmatically
 
