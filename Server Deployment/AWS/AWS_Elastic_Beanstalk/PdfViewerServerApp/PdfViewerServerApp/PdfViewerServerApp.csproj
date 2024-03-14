@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Linux" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\data\PDF_Succinctly.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
