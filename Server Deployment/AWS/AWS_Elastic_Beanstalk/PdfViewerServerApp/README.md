@@ -1,7 +1,7 @@
 # How To Deploy PDF Viewer Server App in AWS Elastic Beanstalk Linux
 This section contains samples of handling how To Deploy PDF Viewer Server App in AWS Elastic Beanstalk Linux.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/Amazon-Web-Services-(AWS)/AWS-Elastic-Beanstalk
+Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/deployment/aws-beanstalk-deployment
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
