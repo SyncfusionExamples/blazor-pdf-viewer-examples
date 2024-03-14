@@ -1,0 +1,6 @@
+﻿@page "/"
+<SfPdfViewerServer DocumentPath="@DocumentPath" Height="500px" Width="1060px"></SfPdfViewerServer>
+
+@code {
+    private string DocumentPath { get; set; } = "wwwroot/data/PDF_Succinctly.pdf";
+}
