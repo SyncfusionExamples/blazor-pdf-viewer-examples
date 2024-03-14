@@ -1,0 +1,45 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Syncfusion.Blazor.SfPdfViewer
+<SfPdfViewer2 Height="100%"
+              Width="100%"
+              @ref="@pdfViewer"
+              DocumentPath="@DocumentPath">
+    <PdfViewerEvents CommandExecuted="@CommandExecute"></PdfViewerEvents>
+    <PdfViewerCommandManager Commands="@command" ></PdfViewerCommandManager>                
+</SfPdfViewer2>
+@code {
+   // Reference to the Pdf viewer 
+   SfPdfViewer2 pdfViewer;
+   public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+    /// <summary> 
+    /// Defines the list of custom commands 
+    /// </summary> 
+    public List<KeyboardCommand> command = new List<KeyboardCommand>() 
+    { 
+        new KeyboardCommand() 
+        { 
+            ActionName = "FitToWidth", 
+            Gesture = new KeyGesture() { Key = PdfKeys.W, Modifiers = PdfModifierKeys.Shift } 
+        }, 
+        new KeyboardCommand() 
+        { 
+            ActionName = "FitToPage", 
+            Gesture = new KeyGesture() { Key = PdfKeys.P, Modifiers = PdfModifierKeys.Alt } 
+     } 
+    }; 
+    /// <summary> 
+    /// Custom command execution. 
+    /// </summary> 
+    public void CommandExecute(CommandExecutedEventArgs args) 
+    { 
+        if(args.Modifiers == PdfModifierKeys.Shift && args.Key == PdfKeys.W) 
+        { 
+            pdfViewer.FitToWidthAsync();
+        } 
+        else if (args.Modifiers == PdfModifierKeys.Alt && args.Key == PdfKeys.P) 
+        { 
+            pdfViewer.FitToPageAsync();
+        }  
+    } 
+} 
