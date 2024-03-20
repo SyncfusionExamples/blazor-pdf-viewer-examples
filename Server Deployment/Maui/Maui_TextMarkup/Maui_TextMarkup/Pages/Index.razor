@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton OnClick="Highlight">Highlight</SfButton>
+<SfButton OnClick="Underline">Underline</SfButton>
+<SfButton OnClick="Strikethrough">Strikethrough</SfButton>
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              @ref="viewer"
+              Width="100%"
+              Height="100%">
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 viewer;
+
+    public async void Highlight(MouseEventArgs args)
+    {
+        await viewer.SetAnnotationModeAsync(AnnotationType.Highlight);
+    }
+    public async void Underline(MouseEventArgs args)
+    {
+        await viewer.SetAnnotationModeAsync(AnnotationType.Underline);
+    }
+    public async void Strikethrough(MouseEventArgs args)
+    {
+        await viewer.SetAnnotationModeAsync(AnnotationType.Strikethrough);
+    }
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+}

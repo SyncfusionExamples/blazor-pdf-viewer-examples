@@ -1,0 +1,30 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@AddShapeAnnotationAsync">Add Shape Annotation</SfButton>
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    public async void AddShapeAnnotationAsync(MouseEventArgs args)
+    {
+        PdfAnnotation annotation = new PdfAnnotation();
+        // Set the Shape annotation type like Rectangle, Line, Arrow, Circle, Polygon.
+        annotation.Type = AnnotationType.Rectangle;
+        // Set the page number starts from 0. So, if set 0 it represents the page 1.
+        annotation.PageNumber = 0;
+
+        // Bound of the rectangle annotation
+        annotation.Bound = new Bound();
+        annotation.Bound.X = 200;
+        annotation.Bound.Y = 150;
+        annotation.Bound.Width = 300;
+        annotation.Bound.Height = 100;
+        // Add rectangle annotation
+        await Viewer.AddAnnotationAsync(annotation);
+    }
+}
