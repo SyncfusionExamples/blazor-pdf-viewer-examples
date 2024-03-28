@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton OnClick="AddSignature">AddSignature</SfButton>
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              @ref="viewer"
+              Width="100%"
+              Height="100%">
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 viewer;
+
+    public async void AddSignature(MouseEventArgs args)
+    {
+        await viewer.SetAnnotationModeAsync(AnnotationType.HandWrittenSignature);
+    }
+    
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+}
+

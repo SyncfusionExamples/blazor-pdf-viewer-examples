@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfButton OnClick="@AddInkAnnotationAsync">Add Ink Annotation</SfButton>
+<SfPdfViewer2 Width="100%" Height="100%" DocumentPath="@DocumentPath" @ref="@Viewer" />
+
+@code {
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    public async void AddInkAnnotationAsync(MouseEventArgs args)
+    {
+        PdfAnnotation annotation = new PdfAnnotation();
+        // Set the annotation type of Ink
+        annotation.Type = AnnotationType.Ink;
+        // Set the PageNumber starts from 0. So, if set 0 it repersent the page 1.
+        annotation.PageNumber = 0;
+
+        // Bound of the Ink annotation
+        annotation.Bound = new Bound();
+        annotation.Bound.X = 200;
+        annotation.Bound.Y = 150;
+        annotation.Bound.Width = 150;
+        annotation.Bound.Height = 100;
+        // Ink annotation path data;
+        annotation.Data = "[{\"command\":\"M\",\"x\":10,\"y\":10},{\"command\":\"C\",\"x\":10,\"y\":40,\"x1\":10,\"y1\":25,\"x2\":25,\"y2\":25},{\"command\":\"C\",\"x\":40,\"y\":25,\"x1\":25,\"y1\":25,\"x2\":25,\"y2\":40},{\"command\":\"C\",\"x\":25,\"y\":55,\"x1\":25,\"y1\":40,\"x2\":40,\"y2\":40}]";
+        await Viewer.AddAnnotationAsync(annotation);
+    }
+}
