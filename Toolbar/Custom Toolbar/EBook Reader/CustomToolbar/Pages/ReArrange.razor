@@ -1,0 +1,36 @@
+﻿@page "/rearrange"
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 Height="100%" Width="100%" DocumentPath="@DocumentPath">
+    <PdfViewerToolbarSettings ToolbarItems="ToolbarItems" MobileToolbarItems="MobileToolbarItems"></PdfViewerToolbarSettings>
+</SfPdfViewer2>
+
+@code {
+
+    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    List<ToolbarItem> ToolbarItems = new List<ToolbarItem>()
+    {
+        // The position of the print and open buttons have been changed.
+        ToolbarItem.PageNavigationTool,
+        ToolbarItem.PrintOption,
+        ToolbarItem.SelectionTool,
+        ToolbarItem.MagnificationTool,
+        ToolbarItem.PanTool,
+        ToolbarItem.UndoRedoTool,
+        ToolbarItem.CommentTool,
+        ToolbarItem.AnnotationEditTool,
+        ToolbarItem.SearchOption,
+        ToolbarItem.DownloadOption,
+        ToolbarItem.OpenOption
+
+    };
+
+    List<MobileToolbarItem> MobileToolbarItems = new List<MobileToolbarItem>()
+    {
+        MobileToolbarItem.UndoRedo,
+        MobileToolbarItem.Open,
+        MobileToolbarItem.Search,
+        MobileToolbarItem.EditAnnotation,
+    };
+}

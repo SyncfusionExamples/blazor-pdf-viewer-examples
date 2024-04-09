@@ -1,0 +1,89 @@
+﻿@page "/example"
+@using Syncfusion.Blazor.SfPdfViewer;
+@using Syncfusion.Blazor.Navigations;
+@using Syncfusion.Blazor.Inputs
+
+
+<SfPdfViewer2 @ref="@Viewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+    <PdfViewerToolbarSettings CustomToolbarItems="@CustomToolbarItems" ToolbarItems="null" MobileToolbarItems="null" />
+    <PdfViewerEvents ToolbarClicked="@ClickAction"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+    SfPdfViewer2 Viewer;
+
+    private List<PdfToolbarItem> CustomToolbarItems = new List<PdfToolbarItem>();
+    protected override void OnInitialized()
+    {
+        AddCustomToolbarItems();
+    }
+
+    private void AddCustomToolbarItems()
+    {
+        CustomToolbarItems.Add(new PdfToolbarItem() { Index = 1, Template = GetTemplate("PreviousPage") });
+        CustomToolbarItems.Add(new PdfToolbarItem() { Index = 2, Template = GetTemplate("NextPage") });
+        CustomToolbarItems.Add(new PdfToolbarItem() { Index = 3, Template = GetTemplate("ZoomIn") });
+        CustomToolbarItems.Add(new PdfToolbarItem() { Index = 4, Template = GetTemplate("ZoomOut") });
+        CustomToolbarItems.Add(new PdfToolbarItem() { Index = 5, Template = GetTemplate("TextSearch") });
+    }
+
+    // Get the renderfragment element for the custom toolbaritems in the primary toolbar
+    private RenderFragment GetTemplate(string templatename)
+    {
+        return __builder =>
+        {
+            if (templatename == "PreviousPage")
+            {
+                <ToolbarItem Text="Previous Page" PrefixIcon="e-icons e-chevron-up" TooltipText="Previous Page" Id="previousPage" Align="ItemAlign.Left" CssClass="e-pv-previous-page-navigation-container">
+                </ToolbarItem>
+            }
+            else if (templatename == "NextPage")
+            {
+                <ToolbarItem Text="Next Page" PrefixIcon="e-icons e-chevron-down" TooltipText="Next Page" id="nextPage" Align="ItemAlign.Left" CssClass="e-pv-next-page-navigation-container">
+                </ToolbarItem>
+            }
+            else if (templatename == "ZoomIn")
+            {
+                <ToolbarItem Text="Zoom In" PrefixIcon="e-icons e-circle-add" Id="zoomin" TooltipText="Zoom In" Align="ItemAlign.Left" CssClass="e-pv-zoom-in-container" TabIndex="0">
+                </ToolbarItem>
+            }
+            else if (templatename == "ZoomOut")
+            {
+                <ToolbarItem Text="Zoom Out" PrefixIcon="e-icons e-circle-remove" Id="zoomout" TooltipText="Zoom Out" Align="ItemAlign.Left" CssClass="e-pv-zoom-out-container" TabIndex="0">
+                </ToolbarItem>
+            }
+            else if (templatename == "TextSearch")
+            {
+                <ToolbarItem Text="Text Search" PrefixIcon="e-pv-text-search-icon e-pv-icon" TooltipText="Text Search" Id="textsearch" Align="ItemAlign.Right" CssClass="e-pv-text-search-container" TabIndex="0">
+                </ToolbarItem>
+            }
+        };
+    }
+    // Click for the custom toolbaritems in the primary toolbar
+    private async void ClickAction(ClickEventArgs Item)
+    {
+        if (Item.Item.Id == "previousPage")
+        {
+            await Viewer.GoToPreviousPageAsync();
+        }
+        else if (Item.Item.Id == "nextPage")
+        {
+            await Viewer.GoToNextPageAsync();
+        }
+
+        else if (Item.Item.Id == "zoomin")
+        {
+            await Viewer.ZoomInAsync();
+        }
+        else if (Item.Item.Id == "zoomout")
+        {
+            await Viewer.ZoomOutAsync();
+        }
+    }
+
+}
+
+<style>
+
+</style>
