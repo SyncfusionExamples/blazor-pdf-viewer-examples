@@ -1,0 +1,27 @@
+﻿@page "/counter"
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 Height="100%" Width="100%" DocumentPath="@DocumentPath">
+    <PdfViewerToolbarSettings ToolbarItems="ToolbarItems" MobileToolbarItems="MobileToolbarItems"></PdfViewerToolbarSettings>
+</SfPdfViewer2>
+
+@code {
+
+    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    List<ToolbarItem> ToolbarItems = new List<ToolbarItem>()
+    {
+        ToolbarItem.OpenOption,
+        ToolbarItem.PageNavigationTool,
+        ToolbarItem.AnnotationEditTool,
+        ToolbarItem.SearchOption,
+        ToolbarItem.DownloadOption,
+    };
+
+    List<MobileToolbarItem> MobileToolbarItems = new List<MobileToolbarItem>()
+    {
+        MobileToolbarItem.Open,
+        MobileToolbarItem.UndoRedo,
+        MobileToolbarItem.EditAnnotation,
+    };
+}
