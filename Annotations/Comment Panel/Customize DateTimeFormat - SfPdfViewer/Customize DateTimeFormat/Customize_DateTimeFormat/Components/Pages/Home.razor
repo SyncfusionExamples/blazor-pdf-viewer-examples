@@ -1,0 +1,48 @@
+﻿@page "/"
+@using Syncfusion.Blazor.InPlaceEditor;
+@using Syncfusion.Blazor.Inputs;
+@using Syncfusion.Blazor.SfPdfViewer;
+
+<div>
+    <label for="dateTimeFormatDropdown">Select DateTime Format:</label>
+    <select id="dateTimeFormatDropdown" @onchange="ChangeDateFormat">
+        <option value="MMM dd, hh:mm tt">MMM dd, hh:mm tt</option>
+        <option value="MM/dd/yyyy">MM/dd/yyyy</option>
+        <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+        <option value="yyyy-MM-dd">yyyy-MM-dd</option>
+        <option value="ddd, MMM dd, yyyy">ddd, MMM dd, yyyy</option>
+        <option value="MMMM dd, yyyy">MMMM dd, yyyy</option>
+        <option value="yyyy-MM-dd HH:mm:ss">yyyy-MM-dd HH:mm:ss</option>
+        <option value="HH:mm:ss">HH:mm:ss</option>
+        <option value="hh:mm:ss tt">hh:mm:ss tt</option>
+        <option value="dd/MM/yyyy HH:mm:ss">dd/MM/yyyy HH:mm:ss</option>
+        <option value="MMMM dd, yyyy HH:mm:ss">MMMM dd, yyyy HH:mm:ss</option>
+        <option value="dddd, MMMM dd, yyyy HH:mm:ss">dddd, MMMM dd, yyyy HH:mm:ss</option>
+        <option value="MM/dd/yyyy HH:mm:ss tt">MM/dd/yyyy HH:mm:ss tt</option>
+        <option value="MMMM dd, yyyy HH:mm:ss.fff">MMMM dd, yyyy HH:mm:ss.fff</option>
+        <option value="MMMM dd, yyyy HH:mm:ss.f">MMMM dd, yyyy HH:mm:ss.f</option>
+        <option value="HH:mm:ss K">HH:mm:ss K</option>
+        <option value="K">K</option>
+        <option value="MMM dd, hh:mm tt fffff">MMM dd, hh:mm tt fffff</option>
+        <option value="MMM dd, hh:mm tt fffffff">MMM dd, hh:mm tt fffffff</option>
+    </select>
+</div>
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" Height="800px" Width="100%" EnableAnnotationToolbar="true" CommentPanelVisible="true" ZoomMode="ZoomMode.FitToPage">
+    <PdfViewerCommentPanelSettings DateTimeFormat=@dateFormat></PdfViewerCommentPanelSettings>
+</SfPdfViewer2>
+
+@code { 
+    private string dateFormat = "MMM dd, hh:mm tt";
+    private string selectedDateFormat = "MMM dd, hh:mm tt";
+
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+   
+
+    private void ChangeDateFormat(ChangeEventArgs e)
+    {
+        selectedDateFormat = e.Value.ToString();
+        dateFormat = selectedDateFormat;
+
+    }
+}

@@ -1,0 +1,31 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer;
+
+<div>
+    <label>Check To choose Multiline Type: </label>
+    <input type="checkbox" id="check" value="18" @onchange="ChangeLineType" checked="checked">
+</div>
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" Height="800px" Width="100%" EnableAnnotationToolbar="true" CommentPanelVisible="true" ZoomMode="ZoomMode.FitToPage">
+    <PdfViewerCommentPanelSettings Multiline=multiline></PdfViewerCommentPanelSettings>
+</SfPdfViewer2>
+
+@code {
+    
+    private bool multiline = true;
+
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+   
+    private void ChangeLineType(ChangeEventArgs e)
+    {
+        string isChecked = e.Value.ToString();
+        if(isChecked.Equals("True"))
+        {
+            multiline = true; 
+        }
+        else
+        {
+            multiline = false;
+        }
+    }
+}
