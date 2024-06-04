@@ -10,8 +10,4 @@
     <PackageReference Include="Syncfusion.Blazor.Themes" Version="25.2.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\repos\dev\ej2-blazor-source\Syncfusion.Blazor\SfPdfViewer\Syncfusion.Blazor.SfPdfViewer.csproj" />
-  </ItemGroup>
-
 </Project>
