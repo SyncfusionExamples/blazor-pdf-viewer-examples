@@ -10,7 +10,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSyncfusionBlazor();
-builder.Services.AddServerSideBlazor().AddHubOptions(o => { o.MaximumReceiveMessageSize = 1024000000000000; });
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
 
 var app = builder.Build();
 
