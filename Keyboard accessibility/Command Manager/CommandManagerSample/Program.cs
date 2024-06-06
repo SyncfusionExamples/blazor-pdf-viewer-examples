@@ -8,7 +8,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor().AddHubOptions(o => { o.MaximumReceiveMessageSize = 102400000; });
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
 // Add Syncfusion Blazor service to the container.
 builder.Services.AddSyncfusionBlazor();
 var app = builder.Build();

@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddServerSideBlazor().AddHubOptions(o => { o.MaximumReceiveMessageSize = 102400000; });
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
 builder.Services.AddSyncfusionBlazor();
 var app = builder.Build();
 

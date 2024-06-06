@@ -6,8 +6,9 @@ using Syncfusion.Blazor;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
-        .AddInteractiveServerComponents()
-        .AddHubOptions(o => { o.MaximumReceiveMessageSize = 102400000; });
+        .AddInteractiveServerComponents();
+
+builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
 
 builder.Services.AddMemoryCache();
 //Add Syncfusion Blazor service to the container.
