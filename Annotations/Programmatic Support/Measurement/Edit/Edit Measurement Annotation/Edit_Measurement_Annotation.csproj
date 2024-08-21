@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="25.1.35" />
+		<PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
 		<PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
 	</ItemGroup>
 </Project>

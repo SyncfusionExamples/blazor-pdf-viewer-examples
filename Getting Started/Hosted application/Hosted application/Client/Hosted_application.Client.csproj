@@ -8,10 +8,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewer" Version="20.2.0.48" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.2.0.46" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewer" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-	    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="20.2.0.46" />
+	    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="*" />
   </ItemGroup>
 
   <ItemGroup>

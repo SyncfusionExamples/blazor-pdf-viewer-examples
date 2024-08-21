@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-	<PackageReference Include="Syncfusion.PdfViewer.AspNet.Core.Windows" Version="20.2.0.43" />
+	<PackageReference Include="Syncfusion.PdfViewer.AspNet.Core.Windows" Version="*" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="25.2.7" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="25.2.7" />
+    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
   </ItemGroup>
 
 </Project>
