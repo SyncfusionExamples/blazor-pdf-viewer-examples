@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="AWSSDK.S3" Version="3.7.305.7" />
-    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="24.1.44" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.1.44" />
+    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
   </ItemGroup>
 
 </Project>

@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="24.1.44" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.1.44" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
   </ItemGroup>
 
 </Project>
