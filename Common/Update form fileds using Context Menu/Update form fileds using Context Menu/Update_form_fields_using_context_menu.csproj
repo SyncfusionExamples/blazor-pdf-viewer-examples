@@ -11,9 +11,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="20.2.0.48" />
-    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="20.2.0.48" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Blazor.Navigations" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.PdfViewerServer.Windows" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
   </ItemGroup>
 
 </Project>
