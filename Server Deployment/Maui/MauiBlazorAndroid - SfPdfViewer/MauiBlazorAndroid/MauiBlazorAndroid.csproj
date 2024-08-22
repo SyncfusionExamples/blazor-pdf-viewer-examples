@@ -61,8 +61,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Syncfusion.Blazor.Themes" Version="22.1.37" />
-		<PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="22.1.37" />
+		<PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
+		<PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
     </ItemGroup>
 
     <ItemGroup>
