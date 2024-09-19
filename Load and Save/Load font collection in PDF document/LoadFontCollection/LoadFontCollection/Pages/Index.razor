@@ -3,21 +3,18 @@
 
 <SfPdfViewer2 @ref="pdfViewerRef" 
               DocumentPath="@DocumentPath"
-              FallbackFontCollection="@fontCollection"
               Height="100%"
               Width="100%">
+    <PdfViewerEvents Created="@Created"></PdfViewerEvents>
 </SfPdfViewer2>
 
 @code {
     SfPdfViewer2 pdfViewerRef;
     private string DocumentPath { get; set; } = "wwwroot/Data/FontCollection.pdf";
-    // Create a new dictionary for fallback fonts
-    Dictionary<string, Stream> fontCollection = new Dictionary<string, Stream>();
 
-    protected override void OnInitialized()
+    public void Created()
     {
         Stream font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/seguiemj.ttf"));
-        // Add the Segoe UI Emoji font to the fallback collection
-        fontCollection.Add("seguiemj", font);
+        pdfViewerRef.FallbackFontCollection.Add("seguiemj", font);
     }
 }
