@@ -1,0 +1,20 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer;
+
+<SfPdfViewer2 @ref="pdfViewerRef" 
+              DocumentPath="@DocumentPath"
+              Height="100%"
+              Width="100%">
+    <PdfViewerEvents Created="@Created"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 pdfViewerRef;
+    private string DocumentPath { get; set; } = "wwwroot/Data/FontCollection.pdf";
+
+    public void Created()
+    {
+        Stream font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/seguiemj.ttf"));
+        pdfViewerRef.FallbackFontCollection.Add("seguiemj", font);
+    }
+}
