@@ -9,8 +9,8 @@
 
 @code{ 
     private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf"; 
-    SfPdfViewer2 Viewer; 
-    MemoryStream stream; 
+    SfPdfViewer2 Viewer = default!;
+    MemoryStream stream = default!;
 
     // List provide the position and element for the custom toolbar items
     public List<PdfToolbarItem> CustomToolbarItems = new List<PdfToolbarItem>() 
@@ -24,45 +24,47 @@
      // Get the renderfragment element for the custom toolbaritems in the primary toolbar
     private static RenderFragment GetTemplate(string name)  
     {  
-        return __builder => 
-            {  
-                if (name == "PreviousPage")
-                { 
-                    <ToolbarItem PrefixIcon="e-icons e-chevron-up" 
-                          		Text="Previous Page" 
-                                TooltipText="Previous Page" 
-                                Id="previousPage" 
-                                Align="ItemAlign.Left"> 
-                    </ToolbarItem> 
-                }  
-                else if(name == "NextPage")
-                { 
-                    <ToolbarItem PrefixIcon="e-icons e-chevron-down" 
-                                Text="Next Page" 
-                                TooltipText="Next Page" 
-                                Id="nextPage" 
-                                Align="ItemAlign.Left"> 
-                    </ToolbarItem> 
-                }  
-                else if(name == "Save")
-                { 
-                    <ToolbarItem PrefixIcon="e-icons e-save" 
-                                Text="Save" 
-                                TooltipText="Save Document" 
-                                Id="save" 
-                                Align="ItemAlign.Right"> 
-                    </ToolbarItem>
-                }  
-                else if(name == "Download")
-                { 
-                    <ToolbarItem PrefixIcon="e-icons e-download" 
-                                Text="Download"
-                                TooltipText="Download" 
-                                Id="download" 
-                                Align="ItemAlign.Right"> 
-                    </ToolbarItem> 
-                }  
-            };            
+        if (name == "PreviousPage")
+        {
+            return @<ToolbarItem PrefixIcon="e-icons e-chevron-up"
+                                 Text="Previous Page"
+                                 TooltipText="Previous Page"
+                                 Id="previousPage"
+                                 Align="ItemAlign.Left">
+            </ToolbarItem>;
+        }
+
+        if (name == "NextPage")
+        {
+            return @<ToolbarItem PrefixIcon="e-icons e-chevron-down"
+                                 Text="Next Page"
+                                 TooltipText="Next Page"
+                                 Id="nextPage"
+                                 Align="ItemAlign.Left">
+            </ToolbarItem>;
+        }
+
+        if (name == "Save")
+        {
+            return @<ToolbarItem PrefixIcon="e-icons e-save"
+                                 Text="Save"
+                                 TooltipText="Save Document"
+                                 Id="save"
+                                 Align="ItemAlign.Right">
+            </ToolbarItem>;
+        }
+
+        if (name == "Download")
+        {
+            return @<ToolbarItem PrefixIcon="e-icons e-download"
+                                 Text="Download"
+                                 TooltipText="Download"
+                                 Id="download"
+                                 Align="ItemAlign.Right">
+            </ToolbarItem>;
+        }
+
+        return _ => { };         
     }  
 
     // Click for the custom toolbaritems in the primary toolbar
