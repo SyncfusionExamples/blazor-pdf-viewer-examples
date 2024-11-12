@@ -1,0 +1,89 @@
+﻿@page "/"
+@using Microsoft.Extensions.Caching.Memory
+@using Syncfusion.Blazor.Popups;
+@using Syncfusion.Blazor.Buttons;
+@using Syncfusion.Blazor.Navigations;
+@using Syncfusion.Blazor.SfPdfViewer;
+@using System.Drawing;
+@using Syncfusion.Pdf.Parsing;
+@using Syncfusion.Pdf;
+
+@inject IJSRuntime jsRuntime
+@inject IMemoryCache MemoryCache
+
+<br />
+<br />
+<button @onclick="loadDocument">Extract Text</button>
+<button @onclick="highlightText">Highlight Text</button>
+
+<SfPdfViewer2 @ref="viewer" Height="100%" DocumentPath="@DocumentPath"
+              Width="100%" IsExtractText="true">
+    <PdfViewerEvents DocumentLoaded="OnDocumentLoaded"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 viewer;
+    private string DocumentPath { get; set; } = "wwwroot/pdf-succinctly.pdf";
+    private Dictionary<int, List<Syncfusion.Drawing.RectangleF>> matchRects = new Dictionary<int, List<Syncfusion.Drawing.RectangleF>>();
+
+    public async void loadDocument()
+    {
+        using (FileStream docStream = new FileStream(Path.GetFullPath("wwwroot/pdf-succinctly.pdf"), FileMode.Open, FileAccess.Read))
+        {
+            // Load the PDF document.
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(docStream);
+
+            // Find the text and store its positions.
+            loadedDocument.FindText("International", out matchRects);
+        }
+    }
+
+    public async void highlightText()
+    {
+        if (matchRects != null && matchRects.Count > 0)
+        {
+            var targetText = matchRects.FirstOrDefault(target => target.Value.Count > 0);
+
+            if (targetText.Key > 0)
+            {
+                PdfAnnotation pdfAnnotation = new PdfAnnotation
+                    {
+                        Type = AnnotationType.Highlight,
+                        PageNumber = targetText.Key
+                    };
+
+                List<Bound> newBounds = new List<Bound>();
+                Bound newBound = new Bound
+                    {
+                        X = ConvertPointToPixel(targetText.Value[0].X),
+                        Y = ConvertPointToPixel(targetText.Value[0].Y),
+                        Width = ConvertPointToPixel(targetText.Value[0].Width),
+                        Height = ConvertPointToPixel(targetText.Value[0].Height)
+                    };
+                newBounds.Add(newBound);
+                pdfAnnotation.Bounds = newBounds;
+
+                await viewer.AddAnnotationAsync(pdfAnnotation);
+            }
+            else
+            {
+                // Handle the case where the text was not found
+                Console.WriteLine("Text not found for highlighting.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No text found to highlight.");
+        }
+    }
+
+    private void OnDocumentLoaded()
+    {
+        // This method can be used to perform actions once the document is loaded, if needed.
+    }
+
+    private float ConvertPointToPixel(double number)
+    {
+        return (float)(number * (float)96 / 72);
+    }
+}
