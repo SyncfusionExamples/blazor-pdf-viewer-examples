@@ -7,7 +7,7 @@
     <SfButton @onclick="OnClick">Open PDF Viewer</SfButton>
     <SfDialog @ref="@Dialog" Target="#target" Width="1060px" Visible="false" IsModal="true" Header= "@Header" ShowCloseIcon="true">
         <SfPdfViewer2 @ref="Viewer">
-            <PdfViewerEvents Created="created"></PdfViewerEvents>
+            <PdfViewerEvents Created="Created"></PdfViewerEvents>
         </SfPdfViewer2>
     </SfDialog>
 </div>
@@ -21,7 +21,7 @@
         await this.Dialog.ShowAsync();
     }
 
-    private async void created()
+    private async void Created()
     {
         await Viewer.LoadAsync(DocumentPath, null);
     }
