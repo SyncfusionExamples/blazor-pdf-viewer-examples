@@ -6,8 +6,9 @@
 <div id="target" style="width:800px;height:500px">
     <SfButton @onclick="OnClick">Open PDF Viewer</SfButton>
     <SfDialog @ref="@Dialog" Target="#target" Width="1060px" Visible="false" IsModal="true" Header= "@Header" ShowCloseIcon="true">
-        <DialogEvents OnOpen="OnOpen"></DialogEvents>
-        <SfPdfViewer2 @ref="Viewer" />
+        <SfPdfViewer2 @ref="Viewer">
+            <PdfViewerEvents Created="created"></PdfViewerEvents>
+        </SfPdfViewer2>
     </SfDialog>
 </div>
 
@@ -15,14 +16,14 @@
     public SfPdfViewer2 Viewer { get; set; }
     SfDialog Dialog;
 
-    public void OnClick(MouseEventArgs args)
+    public async void OnClick(MouseEventArgs args)
     {
-        this.Dialog.ShowAsync();
+        await this.Dialog.ShowAsync();
     }
 
-    public void OnOpen(BeforeOpenEventArgs args)
+    private async void created()
     {
-        Viewer.LoadAsync(DocumentPath, null);
+        await Viewer.LoadAsync(DocumentPath, null);
     }
     public string DocumentPath { get; set; } = "wwwroot/data/PDF_Succinctly.pdf";
     public string Header { get; set; } = "PDF Viewer";
