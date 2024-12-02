@@ -1,5 +1,5 @@
 # Resolve "Maximum Receive Message Size" error in the SfPdfViewer
-This sample shows how to resolve ""Maximum Receive Message size"" error in the Syncfusion Blazor SfPdfViewer while loading a larger PDF document. The Syncfusion’s Blazor SfPdfViewer component allows to increase the connection buffer size by adding the below service in program.cs file if the size of the SfPdfViewer is too large.
+This sample shows how to resolve ""Maximum Receive Message size"" error in the Syncfusion&reg; Blazor SfPdfViewer while loading a larger PDF document. The Syncfusion’s Blazor SfPdfViewer component allows to increase the connection buffer size by adding the below service in program.cs file if the size of the SfPdfViewer is too large.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/comments#comment-panel
 
