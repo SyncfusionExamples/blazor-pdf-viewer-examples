@@ -1,5 +1,5 @@
 # Print when SfPdfViewer in a dialog component
-This sample shows how to print a PDF document when the SfPdfViewer is inside a Syncfusion Dialog component.
+This sample shows how to print a PDF document when the SfPdfViewer is inside a Syncfusion&reg; Dialog component.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/print
 

@@ -1,5 +1,5 @@
 # Render the SfPdfViewer on a Splitter component
-This example shows how to render the SfPdfViewer component on a Syncfusion Splitter component. In this sample, SfPdfViewer is hosted inside the content template of the splitter pane.
+This example shows how to render the SfPdfViewer component on a Syncfusion&reg; Splitter component. In this sample, SfPdfViewer is hosted inside the content template of the splitter pane.
 
 Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/create-pdfviewer-in-a-splitter-component
 
