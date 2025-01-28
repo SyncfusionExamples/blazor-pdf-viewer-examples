@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveZoomOption", "RemoveZoomOption\RemoveZoomOption.csproj", "{2EF6954E-AE1E-4685-851F-8DE3CD61A797}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EF6954E-AE1E-4685-851F-8DE3CD61A797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF6954E-AE1E-4685-851F-8DE3CD61A797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF6954E-AE1E-4685-851F-8DE3CD61A797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF6954E-AE1E-4685-851F-8DE3CD61A797}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59C17A7C-A21F-4E2B-8576-9020DD32706D}
+	EndGlobalSection
+EndGlobal
