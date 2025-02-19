@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Syncfusion.Blazor;
+@using Syncfusion.Blazor.SfPdfViewer;
+
+<SfPdfViewer2 @ref="pdfViewer" Height="100%" Width="100%" DocumentPath="@DocumentPath" FontFamilies="@FontFamilies">
+    <PdfViewerEvents Created="@Created"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2? pdfViewer;
+
+    // Use the FontFamilies property to add custom font families to the annotation toolbar dropdown
+    internal string[] FontFamilies { get; set; } = { "Helvetica", "Courier", "Symbol", "Times New Roman", "Arial Black", "Courier New", "Arial" };
+
+    private string DocumentPath { get; set; } = "wwwroot/PDF/Arial Black.pdf";
+
+    public void Created()
+    {
+        // Use FallbackFontCollection to save the custom font
+        // Maps the font family name to its corresponding TTF file as a memory stream
+        pdfViewer.FallbackFontCollection.Add("Arial", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Fonts/ARIAL.ttf")));
+        pdfViewer.FallbackFontCollection.Add("Arial Black", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Fonts/ARIBLK.ttf")));
+        pdfViewer.FallbackFontCollection.Add("Courier New", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Fonts/COUR.ttf")));
+    }
+}
