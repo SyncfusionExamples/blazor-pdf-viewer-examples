@@ -1,0 +1,31 @@
+﻿@page "/"
+@inject HttpClient Http
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+
+<SfButton @onclick="clicked">Load Document</SfButton>
+<SfPdfViewer2 DocumentPath="@DocumentPath"
+              Height="100%"
+              Width="100%"
+              @ref="Viewer">
+    <PdfViewerEvents DocumentLoaded="@DocumentLoaded"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 Viewer;
+    private string DocumentPath { get; set; } = "";
+
+    public async void clicked()
+    {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/pdf-succinctly.pdf");
+        string base64String = Convert.ToBase64String(byteArray);
+        await Viewer.LoadAsync("data:application/pdf;base64," + base64String, null);
+       
+    }
+    public async void DocumentLoaded()
+    {
+        await Viewer.SearchTextAsync("book", false);
+    }
+
+}
