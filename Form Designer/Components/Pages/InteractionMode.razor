@@ -1,0 +1,46 @@
+﻿@page "/interactionmode"
+
+<!-- Button group to enable or disable Designer Mode -->
+<div class="button-group">
+    <SfButton OnClick="EnableDesignerMode">Enable Designer Mode</SfButton>
+    <SfButton OnClick="DisableDesignerMode">Disable Designer Mode</SfButton>
+</div>
+
+<!-- SfPdfViewer component with Designer Mode toggle -->
+<div class="pdf-viewer-container">
+    <SfPdfViewer2 @ref="PdfViewerInstance" 
+                  IsDesignerMode="@IsDesignerMode" 
+                  DocumentPath="wwwroot/data/Form_Designer.pdf"
+                  Height="650px"
+                  Width="100%">
+    </SfPdfViewer2>
+</div>
+
+@code {
+    // Reference to the SfPdfViewer2 instance
+    SfPdfViewer2 PdfViewerInstance { get; set; }
+
+    // Boolean variable to track Designer Mode status
+    private bool IsDesignerMode { get; set; }
+
+    // Method to enable Designer Mode
+    private void EnableDesignerMode()
+    {
+        IsDesignerMode = true;
+    }
+
+    // Method to disable Designer Mode
+    private void DisableDesignerMode()
+    {
+        IsDesignerMode = false;
+    }
+}
+
+<!-- Styling for button alignment -->
+<style>
+    .button-group {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 15px;
+    }
+</style>

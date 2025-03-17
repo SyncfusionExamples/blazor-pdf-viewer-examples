@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form_Designer", "Form_Designer.csproj", "{3773F142-3EB9-AEB0-6F92-BEFE0DEAC635}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3773F142-3EB9-AEB0-6F92-BEFE0DEAC635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3773F142-3EB9-AEB0-6F92-BEFE0DEAC635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3773F142-3EB9-AEB0-6F92-BEFE0DEAC635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3773F142-3EB9-AEB0-6F92-BEFE0DEAC635}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E3A068B-83A9-436B-9575-B6CABAF29E96}
+	EndGlobalSection
+EndGlobal
