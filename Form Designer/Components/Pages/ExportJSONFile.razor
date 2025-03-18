@@ -1,0 +1,35 @@
+@page "/jsonfileformat"
+
+<!-- Button group for exporting form field data -->
+<div class="button-group">
+    <SfButton OnClick="ExportFormFieldData">Export JSON Data</SfButton>
+</div>
+
+<!-- PDF Viewer container where the form fields will be displayed -->
+<div class="Pdf-viewer-container">
+    <SfPdfViewer2 @ref="PdfViewerInstance" DocumentPath="wwwroot/data/Form_Filling_Document_With_Data.pdf"
+                  Height="650px"
+                  Width="100%">
+    </SfPdfViewer2>
+</div>
+
+@code {
+    // Reference to the SfPdfViewer2 instance
+    SfPdfViewer2 PdfViewerInstance { get; set; }
+
+    // Exports form field data from the PDF viewer into a JSON file
+    private async void ExportFormFieldData()
+    {
+        // Exports form fields and saves them as a JSON file
+        await PdfViewerInstance.ExportFormFieldsAsync(""); 
+    }
+}
+
+<!-- Styling for button alignment and spacing -->
+<style>
+    .button-group {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 15px;
+    }
+</style>

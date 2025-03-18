@@ -1,0 +1,29 @@
+﻿@page "/customannotationtoolbar"
+
+<!-- Container for the PDF Viewer -->
+<div class="Pdf-viewer-container">
+    <!-- SfPdfViewer2 component with Annotation Toolbar enabled -->
+    <SfPdfViewer2 @ref="PdfViewerInstance" EnableFormDesigner="true" 
+                  DocumentPath="wwwroot/data/Form_Designer.pdf"
+                  Height="650px"
+                  Width="100%">
+                  
+                  <!-- Configuring the Annotation Toolbar items -->
+                  <PdfViewerToolbarSettings AnnotationToolbarItems="AnnotationToolbarItems"></PdfViewerToolbarSettings>
+    </SfPdfViewer2>
+</div>
+
+@code {
+    // Reference to the SfPdfViewer2 instance
+    SfPdfViewer2 PdfViewerInstance { get; set; }
+
+    // Define a list of annotation toolbar items to be displayed and usable
+    List<AnnotationToolbarItem> AnnotationToolbarItems { get; set; } = new List<AnnotationToolbarItem>() 
+    {
+        AnnotationToolbarItem.UnderlineTool,        // Underline annotation tool
+        AnnotationToolbarItem.StampAnnotationTool,  // Stamp annotation tool
+        AnnotationToolbarItem.FreeTextAnnotationTool, // Free text annotation tool
+        AnnotationToolbarItem.FontSizeAnnotationTool, // Font size adjustment tool
+        AnnotationToolbarItem.CloseTool             // Close toolbar button
+    };
+}
