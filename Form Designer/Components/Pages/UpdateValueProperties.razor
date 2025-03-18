@@ -1,0 +1,30 @@
+﻿@page "/update-value"
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+    <PdfViewerEvents DocumentLoaded="@UpdateFormField"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2 viewer;
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+
+    private async Task UpdateFormField()
+    {
+        // Retrieve the list of added form fields
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        foreach (FormFieldInfo field in formFields)
+        {
+            if (field is DropDownField dropDown)
+            {
+                dropDown.Items = new List<ListItem> {
+                        new ListItem { Name = "option 1", Value = "Option 1" },
+                        new ListItem { Name = "option 2", Value = "Option 2" },
+                        new ListItem { Name = "option 3", Value = "Option 3" }
+                    };
+                // Update form fields in the viewer with new properties
+                await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { dropDown });
+            }
+        }
+    }
+}

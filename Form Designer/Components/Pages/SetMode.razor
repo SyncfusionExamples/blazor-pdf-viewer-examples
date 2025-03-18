@@ -1,0 +1,32 @@
+﻿@page "/set-clear-mode"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Buttons to set and clear the form field drawing mode -->
+<SfButton @onclick="SetFormDrawingMode">Set Form Field Type</SfButton>
+<SfButton @onclick="ClearFormDrawingMode">Clear Form Field Type</SfButton>
+
+<!-- PDF Viewer component -->
+<SfPdfViewer2 @ref="@viewer" Height="800px" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+
+    // Path to the PDF document to be loaded in the viewer
+    private string DocumentPath = "wwwroot/data/formDesigner_Empty.pdf";
+
+    // Method to enable form field drawing mode with a specific field type
+    async Task SetFormDrawingMode()
+    {
+        // Sets the form field drawing mode to DropDown, allowing users to add dropdown fields
+        await viewer.SetFormDrawingModeAsync(FormFieldType.DropDown);
+    }
+
+    // Method to disable form field drawing mode
+    async Task ClearFormDrawingMode()
+    {
+        // Clears the form field drawing mode, preventing further form field additions
+        await viewer.SetFormDrawingModeAsync();
+    }
+}
