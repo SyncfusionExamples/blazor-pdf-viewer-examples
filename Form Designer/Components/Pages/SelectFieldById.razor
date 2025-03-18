@@ -1,0 +1,27 @@
+﻿@page "/select-id"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Button to select a form field by its ID -->
+<SfButton @onclick="SelectFormFieldByID">Select Form Field By ID</SfButton>
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+
+    // Path to the PDF document that will be loaded in the viewer
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+
+    // Method to select a form field by ID (filters only TextBox fields)
+    private async Task SelectFormFieldByID()
+    {
+        // Retrieve all form fields currently present in the PDF
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        // Select the form field asynchronously using its ID
+        await viewer.SelectFormFieldAsync(formFields[0]);
+  
+    }
+}

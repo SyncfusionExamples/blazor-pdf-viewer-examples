@@ -1,0 +1,23 @@
+﻿@page "/delete-selected"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Button to delete the selected form fields -->
+<SfButton onclick="@DeleteSelectedFormField">Delete Selected Form Field</SfButton>
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="800px" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+    
+    // Path to the PDF document
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+    
+    private async Task DeleteSelectedFormField() 
+    {
+        // Delete selected form field from the PDF Viewer.
+        await viewer.DeleteFormFieldsAsync(false);
+    }
+}

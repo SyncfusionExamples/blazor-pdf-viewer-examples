@@ -1,0 +1,28 @@
+﻿@page "/select-field"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Button to trigger form field selection -->
+<SfButton @onclick="SelectFormField">Select Form Field</SfButton>
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+
+    // Path to the PDF document that will be loaded in the viewer
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+
+    // Method to select the first available form field in the document
+    private async Task SelectFormField()
+    {
+        // Retrieve all form fields present in the PDF
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        // Select the first form field from the list
+        FormFieldInfo formField = formFields[3];
+        await viewer.SelectFormFieldAsync(formField);
+
+    }
+}

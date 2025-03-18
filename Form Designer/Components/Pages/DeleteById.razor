@@ -1,0 +1,24 @@
+﻿@page "/delete-Id"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Delete form fields by ID -->
+<SfButton @onclick="DeleteFormFields">Delete Form Field By ID</SfButton>
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="800px" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+
+    // Path to the PDF document that will be loaded into the viewer
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+
+    // Method to delete form fields based on their ID
+    private async Task DeleteFormFields()
+    {
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        await viewer.DeleteFormFieldsAsync(new List<string> { formFields[0].Id }); // Delete form fields by ID
+    }
+}

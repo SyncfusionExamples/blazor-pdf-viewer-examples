@@ -1,0 +1,34 @@
+﻿@page "/setting"
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+    <!-- Form field settings with specified thickness -->
+    <FormFieldSettings Thickness="@thickness"></FormFieldSettings>
+    <!-- Event triggered when the document is loaded -->
+    <PdfViewerEvents DocumentLoaded="@AddFormFields"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+
+    // Default thickness value for form fields
+    private double thickness { get; set; } = 4;
+
+    // Path to the PDF document to be loaded in the viewer
+    private string DocumentPath = "wwwroot/data/formDesigner_Empty.pdf";
+
+    // Method triggered when the document is loaded
+    private async Task AddFormFields()
+    {
+        // Define a new ListBox form field with specified name and position
+        ListBoxField listBox = new ListBoxField 
+        { 
+            Name = "ListBox Field", 
+            Bounds = new Bound { X = 278, Y = 593, Width = 198, Height = 66 } 
+        };
+
+        // Add the form field asynchronously to the PDF Viewer
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { listBox });
+    }
+}

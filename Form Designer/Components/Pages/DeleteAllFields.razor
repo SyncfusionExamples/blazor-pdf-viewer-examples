@@ -1,0 +1,23 @@
+﻿@page "/delete-all"
+@using Syncfusion.Blazor.Buttons
+
+<!-- Button to delete all form fields -->
+<SfButton onclick="@DeleteAllFormFields">Delete All Form Fields</SfButton>
+
+<!-- PDF Viewer component with reference binding and document loading -->
+<SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+</SfPdfViewer2>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2 viewer;
+    
+    // Path to the PDF document
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+    
+    private async Task DeleteAllFormFields() 
+    {
+        // Deletes all form fields from the PDF Viewer.
+        await viewer.DeleteFormFieldsAsync(true);
+    }
+}
