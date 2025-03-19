@@ -1,0 +1,209 @@
+﻿@page "/events"
+
+@* Export Form fields as JSON stream *@
+<SfButton OnClick="ExportFields">Export Form Fields</SfButton>
+@* Import Form fields as JSON stream *@
+<SfButton OnClick="ImportFields">Import Form Fields</SfButton>
+<!-- PDF Viewer component with reference binding and Form Designer Events -->
+<SfPdfViewer2 @ref="@viewer" Height="800px" Width="100%" DocumentPath="@DocumentPath" EnableFormFieldsValidation="true" IsDesignerModeChanged="IsDesignerModeChanged">
+    <PdfViewerEvents 
+        FormFieldAdding="@OnFormFieldAdding" FormFieldAdded="@OnFormFieldAdded" FormFieldDeleted="@OnFormFieldDeleted" FormFieldClick="@OnFormFieldClicked"
+        FormFieldDoubleClick="@OnFormFieldDoubleClicked" FormFieldSelected="@OnFormFieldSelected" FormFieldUnselected="@OnFormFieldUnSelected" FormFieldResized="@OnFormFieldResized"
+        ValidateFormFields="@OnFormFieldValidated" FormFieldFocusIn="@OnFormFieldFocusIn" FormFieldFocusOut="@OnFormFieldFocusOut" FormFieldMouseEnter="@OnFormFieldMouseEnter"
+        FormFieldMouseLeave="@OnFormFieldMouseLeave" FormFieldPropertyChanged="@OnFormFieldPropertyChanged" FormFieldsExporting="OnFormFieldsExporting" FormFieldsImporting="OnFormFieldsImporting" 
+        FormFieldsExported="OnFormFieldsExported" FormFieldsImported="OnFormFieldsImported" FormFieldsExportFailed="OnFormFieldsExportFailed" FormFieldsImportFailed="OnFormFieldsImportFailed">
+    </PdfViewerEvents>
+</SfPdfViewer2>
+
+<div>Triggered event:@eventName</div>
+
+@code {
+    // Reference to the PDF Viewer instance
+    private SfPdfViewer2? viewer;
+    private string eventName = "";
+
+    // Path to the PDF document
+    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+    Stream JSONStream = new MemoryStream();
+
+    void OnFormFieldAdding(FormFieldAddEventArgs args)
+    {
+        // Access details about the adding form field
+        eventName = "FormFieldAdding";
+        Console.WriteLine($"Form Field being added: {args.Field.Name}");
+        // args.Cancel = true; // Prevents the form field from being added
+        // Additional processing logic
+    }
+
+    void OnFormFieldAdded(FormFieldAddedEventArgs args)
+    {
+        // Access details about the added form field
+        eventName = "FormFieldAdded";
+        Console.WriteLine($"Form Field added: {args.Field.Name}");
+        // Additional processing logic
+    }
+    void OnFormFieldDeleted(FormFieldDeletedEventArgs args)
+    {
+        // Access details about the deleted form field
+        eventName = "FormFieldDeleted";
+        Console.WriteLine($"Form field deleted: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldClicked(FormFieldClickArgs args)
+    {
+        // Access details about the clicked form field
+        eventName = "FormFieldClicked";
+        Console.WriteLine($"Form Field clicked: {args.FormField.Name}");
+        // Additional processing logic
+    }
+
+    void OnFormFieldDoubleClicked(FormFieldDoubleClickEventArgs args)
+    {
+        // Access details about the double clicked form field
+        eventName = "FormFieldDoubleClicked";
+        Console.WriteLine($"Form field double clicked: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldSelected(FormFieldSelectedEventArgs args)
+    {
+        // Access details about the selected form field
+        eventName = "FormFieldSelected";
+        Console.WriteLine($"Form field selected: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldUnSelected(FormFieldUnselectedEventArgs args)
+    {
+        // Access details about the unselected form field
+        eventName = "FormFieldUnSelected";
+        Console.WriteLine($"Form field unselected: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldResized(FormFieldResizedEventArgs args)
+    {
+        // Access details about the resized form field
+        eventName = "FormFieldResized";
+        Console.WriteLine($"Form field resized: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+    void OnFormFieldValidated(ValidateFormFieldsArgs args)
+    {
+        // Access details about the validated form field
+        eventName = "ValidateFormFields";
+        Console.WriteLine($"Form field Validated: {args.Fields[0].Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldFocusIn(FormFieldFocusInEventArgs args)
+    {
+        // Access details about the focused in form field
+        eventName = "FormFieldFocusIn";
+        Console.WriteLine($"Form field focused in: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldFocusOut(FormFieldFocusOutEventArgs args)
+    {
+        // Access details about the focused out form field
+        eventName = "FormFieldFocusOut";
+        Console.WriteLine($"Form field focused out: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldMouseEnter(FormFieldMouseEnterEventArgs args)
+    {
+        // Access details about the mouse entered form field
+        eventName = "FormFieldMouseEnter";
+        Console.WriteLine($"Form field Mouse entered: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldMouseLeave(FormFieldMouseLeaveEventArgs args)
+    {
+        // Access details about the mouse leaved form field
+        eventName = "FormFieldMouseLeave";
+        Console.WriteLine($"Form field Mouse leaved: {args.Field.Name}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldPropertyChanged(FormFieldPropertyChangedEventArgs args)
+    {
+        // Access details about the property changed form field
+        eventName = "FormFieldPropertyChanged";
+        Console.WriteLine($"Form field property changed: {args.NewValue}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void IsDesignerModeChanged(bool args)
+    {
+        // Check the state of Designer mode
+        eventName = "IsDesignerModeChanged";
+        Console.WriteLine($"Designer mode is: {args}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    private async void ExportFields()
+    {
+        // Export form fields as JSON Stream
+        if (viewer != null)
+        {
+            JSONStream = await viewer.ExportFormFieldsAsync(FormFieldDataFormat.Json);
+        }
+    }
+    private async void ImportFields()
+    {
+        // Import form fields as JSON Stream
+        if (JSONStream != null && viewer != null)
+        {
+            // Import JSON data into the viewer
+            await viewer.ImportFormFieldsAsync(JSONStream, FormFieldDataFormat.Json);
+        }
+    }
+
+    void OnFormFieldsExporting(FormFieldsExportEventArgs args)
+    {
+        eventName = "FormFieldsExporting";
+        Console.WriteLine($"Form fields are being exported");
+        // args.Cancel = true; // Cancels the export process
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldsImporting(FormFieldsImportEventArgs args)
+    {
+        eventName = "FormFieldsImporting";
+        Console.WriteLine($"Form fields are being imported");
+        // args.Cancel = true; //cancels the import process
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldsExported(FormFieldsExportedEventArgs args)
+    {
+        eventName = "FormFieldsExported";
+        Console.WriteLine($"Form fields are exported Successfully");
+        // Implement additional logic, such as logging or UI updates
+    }
+   
+    void OnFormFieldsImported(FormFieldsImportedEventArgs args)
+    {
+        eventName = "FormFieldsImported";
+        Console.WriteLine($"Form fields are imported Successfully");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldsExportFailed(FormFieldsExportFailedEventArgs args)
+    {
+        eventName = "FormFieldsExportFailed";
+        Console.WriteLine($"Form field export is failed: {args.ErrorDetails}");
+        // Implement additional logic, such as logging or UI updates
+    }
+
+    void OnFormFieldsImportFailed(FormFieldsImportFailedEventArgs args)
+    {
+        eventName = "FormFieldsImportFailed";
+        Console.WriteLine($"Form field Import is failed: {args.ErrorDetails}");
+        // Implement additional logic, such as logging or UI updates
+    }
+}
