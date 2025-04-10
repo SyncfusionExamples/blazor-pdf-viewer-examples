@@ -1,0 +1,95 @@
+﻿@* Your App render mode define here *@
+@rendermode InteractiveAuto
+
+@page "/"
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+<br />
+<br />
+<div id="target" style="width:800px;height:500px">
+    <SfButton @onclick="OnClick">Open PDF Viewer</SfButton>
+    <SfDialog @ref="SampleDialog"
+              Target="#target"
+              Width="100%"
+              Height="100%"
+              Visible="false"
+              IsModal="true"
+              Header="@Header"
+              ShowCloseIcon="true">
+        <DialogTemplates>
+            <Content>
+                @if (isDialogOpended)
+                {
+                    <div>
+                        <SfPdfViewer2 @ref="SampleDialog2Viewer" Width="100%" Height="100%">
+                             @* <PdfViewerToolbarSettings ToolbarItems="ToolbarItems"></PdfViewerToolbarSettings>  *@
+                            <PdfViewerEvents Created="OnOpen"></PdfViewerEvents>
+                        </SfPdfViewer2>
+                    </div>
+                }
+            </Content>
+        </DialogTemplates>
+        <DialogEvents Opened="OnOpen" Closed="OnClose"></DialogEvents>
+    </SfDialog>
+</div>
+
+@code {
+    private SfDialog SampleDialog;
+    private SfPdfViewer2 SampleDialog2Viewer;
+    private string Header = "PDF Viewer";
+    private bool isDialogOpended { get; set; } = false;
+    private string DocumentPath { get; set; } = "wwwroot/PDF_Succinctly_Landscape 2.pdf";
+    SfDialog? DocumentoDialog;
+    public bool Documentoflag = true;
+    List<Syncfusion.Blazor.SfPdfViewer.ToolbarItem> ToolbarItemsSPF;
+    private async Task OnClick()
+    {
+        if (Documentoflag)
+        {
+            ToolbarItemsSPF = new List<Syncfusion.Blazor.SfPdfViewer.ToolbarItem>()
+            {
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.PageNavigationTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.SelectionTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.MagnificationTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.PanTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.CommentTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.AnnotationEditTool,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.SearchOption,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.DownloadOption,
+                Syncfusion.Blazor.SfPdfViewer.ToolbarItem.PrintOption
+            };
+            await SampleDialog.ShowAsync();
+            Documentoflag = false;
+        }
+        isDialogOpended = true;
+    }
+
+    private async void OnOpen()
+    {
+        Documentoflag = false;
+        isDialogOpended = true;
+        await SampleDialog2Viewer.LoadAsync(DocumentPath, password: null);
+    }
+
+    private async void OnClose()
+    {
+        Documentoflag = true;
+        isDialogOpended = false;
+        await SampleDialog2Viewer!.UnloadAsync();
+    }
+
+    List<ToolbarItem> ToolbarItems = new List<ToolbarItem>()
+    {
+        ToolbarItem.OpenOption,
+        ToolbarItem.PageNavigationTool,
+        ToolbarItem.SelectionTool,
+        ToolbarItem.MagnificationTool,
+        ToolbarItem.PanTool,
+        ToolbarItem.UndoRedoTool,
+        ToolbarItem.CommentTool,
+        ToolbarItem.AnnotationEditTool,
+        ToolbarItem.SearchOption,
+        ToolbarItem.DownloadOption,
+        ToolbarItem.PrintOption,
+    };
+}
