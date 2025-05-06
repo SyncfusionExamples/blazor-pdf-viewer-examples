@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<button @onclick="UpdateFormField">Update FormField</button>
+<SfPdfViewer2 @ref="pdfViewer2"
+            DocumentPath="@documentPath"
+            Height="100%"
+            Width="100%">
+</SfPdfViewer2>
+
+@code{
+    public SfPdfViewer2? pdfViewer2 { get; set; }
+    public string? documentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/form-filling-document.pdf";
+
+    public async void UpdateFormField(){
+        var formfieldCollection = await pdfViewer2!.RetrieveFormFieldsAsync();
+        for(var i=0; i<formfieldCollection.Count;i++){
+            if (formfieldCollection[i].Type == FormFieldType.Textbox)
+            {
+                formfieldCollection[i].Value = "Syncfusion";
+                await pdfViewer2!.UpdateFormFieldsAsync(formfieldCollection[i]);
+            }
+        }
+    }
+}
