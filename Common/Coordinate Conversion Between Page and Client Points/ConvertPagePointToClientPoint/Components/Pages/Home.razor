@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<div style="display: flex; height: 100vh; width: 100vw;">
+    <div style="width: 40%; height: 100%;">
+    </div>
+    <div style="width: 60%; height: 100%;">
+<SfPdfViewer2 @ref="SfPdfViewer2"
+                      DocumentPath="wwwroot/Invoice.pdf"
+              Height="100%"
+              Width="100%">
+              <PdfViewerEvents OnPageClick="OnPageClick"></PdfViewerEvents>
+</SfPdfViewer2>
+</div>
+</div>
+
+@inject IJSRuntime JS
+
+@code {
+    private SfPdfViewer2 SfPdfViewer2;
+
+    private async void OnPageClick(PageClickEventArgs args)
+    {
+        var pagePoint = new { x = args.PageX, y = args.PageY };
+        await JS.InvokeVoidAsync("convertPagePointToClientPoint", pagePoint);
+    }
+}
