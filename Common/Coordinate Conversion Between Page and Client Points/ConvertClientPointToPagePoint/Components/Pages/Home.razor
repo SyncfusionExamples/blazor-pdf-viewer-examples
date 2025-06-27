@@ -1,0 +1,63 @@
+﻿@page "/"
+
+<div style="display: flex; height: 100vh; width: 100vw;">
+    <div style="width: 40%; height: 100%;">
+    </div>
+    <div @onmousedown=HandleMouseDown style="width: 60%; height: 100%;">
+        <SfPdfViewer2 @ref="SfPdfViewer2"
+                      DocumentPath="wwwroot/Invoice.pdf"
+                      Height="100%"
+                      Width="100%">
+        </SfPdfViewer2>
+    </div>
+</div>
+
+@inject IJSRuntime JS
+
+@code {
+    private SfPdfViewer2 SfPdfViewer2;
+    private int currentClientX;
+    private int currentClientY;
+
+    private async void HandleMouseDown(MouseEventArgs e)
+    {
+        currentClientX = (int)e.ClientX;
+        currentClientY = (int)e.ClientY;
+        var clientPoint = new { x = currentClientX, y = currentClientY };
+        var pagePoint = await JS.InvokeAsync<Point>("convertClientPointToPagePoint", clientPoint);
+        addAnnotation(pagePoint);
+    }
+    private async void addAnnotation(Point pagePoint)
+    {
+        var annotationCollection = await SfPdfViewer2.GetAnnotationsAsync();
+        if (annotationCollection.Count > 0)
+        {
+            if (annotationCollection[0].Id == "rectangle_Annotation")
+            {
+                await SfPdfViewer2.DeleteAnnotationAsync(annotationCollection[0]);
+            }
+        }
+        await SfPdfViewer2.AddAnnotationsAsync(new List
+        <PdfAnnotation>
+            {
+            new PdfAnnotation()
+            {
+                Type = AnnotationType.Rectangle,
+                Id = "rectangle_Annotation",
+                Bound = new Bound()
+                {
+                    X = pagePoint.x,
+                    Y = pagePoint.y,
+                    Width = 150,
+                    Height = 75
+                },
+                PageNumber = 0
+            }
+            });
+    }
+    public class Point
+    {
+        public double x { get; set; }
+        public double y { get; set; }
+    }
+}
