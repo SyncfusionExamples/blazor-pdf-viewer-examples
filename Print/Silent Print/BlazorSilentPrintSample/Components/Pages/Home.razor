@@ -1,0 +1,38 @@
+﻿@page "/"
+@* @using PdfiumViewer *@
+@using Syncfusion.Pdf.Parsing;
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+@inject IJSRuntime JsRuntime;
+@using System.Drawing
+@using System.Drawing.Printing
+@using System.Net.Http
+@inject HttpClient Http
+
+
+<SfButton @onclick="Print">Print</SfButton>
+<SfPdfViewer2 @ref="PDFViewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
+    <PdfViewerEvents DownloadEnd="DownloadEnd">
+    </PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    public string docBase64 = "";
+    public string DocumentPath => @"wwwroot\Data\pdf-Succinctly.pdf";
+    public SfPdfViewer2 PDFViewer { get; set; }
+
+    public async void DownloadEnd(DownloadEndEventArgs args)
+    {
+        string base64String = args.DownloadDocument;
+        byte[] bytes = Convert.FromBase64String(base64String.Split(",")[1]);
+        StreamContent streamContent = new StreamContent(new MemoryStream(bytes));
+        HttpResponseMessage httpResponseMessage = await Http.PostAsync("/api/print", streamContent);
+        string message = await httpResponseMessage.Content.ReadAsStringAsync();
+    }
+
+
+    public async void Print(MouseEventArgs args)
+    {
+        await PDFViewer.DownloadAsync();
+    }
+}
