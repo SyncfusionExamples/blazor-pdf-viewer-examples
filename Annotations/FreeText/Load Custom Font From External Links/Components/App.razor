@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["Load Custom Font From External Links.styles.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet @rendermode="InteractiveServer" />
+    <link href="_content/Syncfusion.Blazor.Themes/bootstrap5.css" rel="stylesheet" />
+    <script src="_content/Syncfusion.Blazor.SfPdfViewer/scripts/syncfusion-blazor-sfpdfviewer.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allura">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sacramento">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inspiration">
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer" />
+    <script src="_framework/blazor.web.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            var fontFamily = ["Allura, Tangerine, Sacramento, Inspiration"];
+            for (var fontIndex=0; fontIndex<fontFamily.length; fontIndex++)
+            {
+                document.fonts.load(`16px ${fontFamily[fontIndex]}`).then(() => {
+                    console.log(`Font "${fontFamily[fontIndex]}" loaded successfully.`);
+                }).catch(err => {
+                    console.error(`Failed to load font "${font}":`, err);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

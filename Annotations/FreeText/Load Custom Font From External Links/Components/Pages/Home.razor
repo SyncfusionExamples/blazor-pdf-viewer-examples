@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<SfPdfViewer2 @ref="Viewer" DocumentPath="https://cdn.syncfusion.com/content/pdf/annotations.pdf"
+              Height="100%"
+              Width="100%" FontFamilies="@customFonts">
+    <PdfViewerEvents Created="@Created"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2? Viewer;
+    public string[] customFonts =
+    {
+        "Allura",
+        "Tangerine",
+        "Sacramento",
+        "Inspiration"
+    };
+    public void Created()
+    {
+        Stream allura = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Allura-Regular.ttf"));
+        Viewer!.FallbackFontCollection.Add("allura", allura);
+        Stream Tangerine = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Tangerine-Regular.ttf"));
+        Viewer!.FallbackFontCollection.Add("tangerine", Tangerine);
+        Stream Sacramento = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Sacramento-Regular.ttf"));
+        Viewer!.FallbackFontCollection.Add("sacramento", Sacramento);
+        Stream Inspiration = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Inspiration-Regular.ttf"));
+        Viewer!.FallbackFontCollection.Add("inspiration", Inspiration);
+    }
+}
