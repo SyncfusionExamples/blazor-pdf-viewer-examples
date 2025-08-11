@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0f049a5d-6449-4860-bb67-9425fa617b85</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="28.1.36" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="28.1.36" />
+  </ItemGroup>
+
+</Project>

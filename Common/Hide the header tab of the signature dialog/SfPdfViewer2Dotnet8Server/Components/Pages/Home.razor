@@ -1,0 +1,10 @@
+﻿@page "/"
+
+<SfPdfViewer2 @ref="@pdfviewer" DocumentPath="@documentPath" Height="100%" Width="95%">
+
+</SfPdfViewer2>
+
+@code{
+    public SfPdfViewer2? pdfviewer { get; set; }
+    public string? documentPath { get; set; } = "wwwroot/data/HTTP_Succinctly.pdf";
+}
