@@ -1,7 +1,7 @@
 # Print large page documents in SfPdfViewer component in Blazor
 This guide demonstrates how to implement a custom printing solution for large PDF documents in the Syncfusion<sup style="font-size:70%">&reg;</sup> Blazor SfPdfViewer component.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/print-large-page-document
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/print-large-page-document
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

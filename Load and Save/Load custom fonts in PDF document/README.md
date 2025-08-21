@@ -1,7 +1,7 @@
 # How to Load Custom Fonts in a Blazor Application
 Pdfium is employed to render the text within documents as images. Initially, Pdfium supports a limited set of fonts by default. To extend this capability, you can utilize CustomFonts to customize the font selection according to your specific requirements.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/load-custom-font-pdfium
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/load-custom-font-pdfium
 
 
 ## Project pre-requisites

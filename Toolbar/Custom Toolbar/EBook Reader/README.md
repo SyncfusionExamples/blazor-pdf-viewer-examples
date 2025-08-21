@@ -1,7 +1,7 @@
 # Custom toolbar with save option
 This example shows how to a create custom toolbar in the PdfViewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

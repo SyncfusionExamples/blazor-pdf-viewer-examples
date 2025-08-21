@@ -2,7 +2,7 @@
 
 This section contains samples of handling how To Deploy PDF Viewer in Blazor android MAUI in PDF Viewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/server-deployment/How To Deploy PDF Viewer in Blazor android MAUI
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/server-deployment/How To Deploy PDF Viewer in Blazor android MAUI
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

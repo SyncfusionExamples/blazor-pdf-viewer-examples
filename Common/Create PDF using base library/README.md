@@ -1,7 +1,7 @@
 # Create new PDF file in created event and load the same document in SfPdfViewer
 Sample to create a new PDF document in component's created event and load the same document in the SfPdfViewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/create-pdf-document-in-the-created-event-of-pdf-viewer
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/create-pdf-document-in-the-created-event-of-pdf-viewer
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # Customized templated stamp appearance
 The customized templated stamp appearance feature focuses solely on enhancing the visual representation of personalized stamps through tailored templates
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/stamp-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/stamp-annotation
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

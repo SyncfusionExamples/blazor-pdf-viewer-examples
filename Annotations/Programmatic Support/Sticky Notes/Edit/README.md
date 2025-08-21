@@ -1,7 +1,7 @@
 # Edit sticky note annotation programmatically
 This example shows how to edit sticky note annotation programmatically in the SfPdfViewer. Here, we have edit sticky note annotation in PDF document.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/sticky-notes-annotation#edit-sticky-note-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/sticky-notes-annotation#edit-sticky-note-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # Check whether the loaded PDF document is edited or not
 This example shows if the PDF document that is loaded in the SfPdfViewer is edited or not. The status is shown in the console window on a button click.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/check-whether-the-loaded-pdf-document-is-edited-or-not
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/check-whether-the-loaded-pdf-document-is-edited-or-not
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

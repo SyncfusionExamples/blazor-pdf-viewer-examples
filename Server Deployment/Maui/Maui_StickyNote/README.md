@@ -2,7 +2,7 @@
 
 This section contains samples of handling how To Add Sticky Notes Annotation programmatically.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/sticky-notes-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/sticky-notes-annotation
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

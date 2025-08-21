@@ -1,7 +1,7 @@
 # Update form field using context menu in Blazor SfPdfViewer Component
 You can update the form field's at runtime using the FormFieldClick event and UpdateFormFieldsAsync() method of SfPdfViewer. The following code example explains how to open Context menu when you click on the form field and how to update the menu item content as form field's value. In this example, the Syncfusion’s ContextMenu component is used to update form field.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/update-form-field-using-context-menu
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/update-form-field-using-context-menu
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

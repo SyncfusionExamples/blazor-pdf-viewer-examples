@@ -3,7 +3,7 @@ This section provides a comprehensive collection of sample implementations showc
 
 Each sample highlights different aspects of the Form Designer, ensuring a better understanding of how to integrate and utilize this feature effectively in your Blazor application.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/form-designer/overview
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/form-designer/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

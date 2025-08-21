@@ -1,7 +1,7 @@
 # Customize DateTime Format in Comment Panel
 The Pdfviewer provides the support to customize the date and time format displayed in the comment panel using the PdfViewerCommentPanelSettings
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/comments#comment-panel
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/comments#comment-panel
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

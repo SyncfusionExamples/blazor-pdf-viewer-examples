@@ -1,7 +1,7 @@
 # Render the SfPdfViewer on a Splitter component
 This example shows how to render the SfPdfViewer component on a Syncfusion&reg; Splitter component. In this sample, SfPdfViewer is hosted inside the content template of the splitter pane.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/create-pdfviewer-in-a-splitter-component
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/create-pdfviewer-in-a-splitter-component
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
