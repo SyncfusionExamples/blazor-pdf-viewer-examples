@@ -1,7 +1,7 @@
 # Load a PDF document from web service
 This example explains to load a PDF document from a local web service. Here, the web service sample should be executed first, then the client-side sample must be executed by refering the local web service url.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

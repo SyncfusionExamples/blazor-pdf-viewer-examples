@@ -1,7 +1,7 @@
 # Load and Save
 This section contains samples of handling load and save a PDF document in the PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Sample links
 * <a href="Load a PDF document using created event">Load a PDF document using created event</a>

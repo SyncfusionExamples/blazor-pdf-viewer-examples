@@ -1,7 +1,7 @@
 # Show or hide the annotation toolbar on loading
 Sample to show or hide the annotation toolbar on loading a PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
