@@ -1,7 +1,7 @@
 # Annotations
 This section contains samples of handling annotations in the PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/text-markup-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/annotation/text-markup-annotation
 
 ## Sample links
 * <a href="Ajax Authorization token">Add an Authorization token to AJAX requests in the PDF Viewer</a>

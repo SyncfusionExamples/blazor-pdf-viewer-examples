@@ -1,7 +1,7 @@
 # Edit shape annotation programmatically
 This example shows how to edit shape annotation programmatically in the SfPdfViewer. Here, we have edit shape annotation in the PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/shape-annotation#edit-shape-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/shape-annotation#edit-shape-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

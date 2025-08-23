@@ -1,7 +1,7 @@
 # Edit ink annotation programmatically
 This example shows how to edit ink annotation programmatically in the SfPdfViewer. Here, we have edit ink annotation in the first page of the PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/ink-annotation#edit-ink-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/ink-annotation#edit-ink-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

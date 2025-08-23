@@ -1,7 +1,7 @@
 # Render the SfPdfViewer on a button click
 This example shows how to render a SfPdfViewer on a button click.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/show-or-hide-pdfviewer-dynamically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/show-or-hide-pdfviewer-dynamically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

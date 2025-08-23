@@ -1,7 +1,7 @@
 # Delete annotation programmatically
 This example shows how to delete annotation programmatically in the SfPdfViewer. Here, we have delete the annotation programmatically in the  PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/text-markup-annotation#delete-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/text-markup-annotation#delete-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

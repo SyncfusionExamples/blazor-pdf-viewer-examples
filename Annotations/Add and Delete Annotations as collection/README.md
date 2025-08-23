@@ -1,7 +1,7 @@
 # Add and Delete annotation collections in Blazor PDF Viewer
 The Pdfviewer provides the support to add and delete multiple annotations at once
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/shape-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/shape-annotation
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

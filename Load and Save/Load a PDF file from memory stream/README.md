@@ -1,7 +1,7 @@
 # Load a PDF document from memory stream
 This example explains how to load a PDF document from a memory stream using the DocumentPath and LoadAsync APIs.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/overview
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

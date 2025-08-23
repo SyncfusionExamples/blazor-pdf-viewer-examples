@@ -1,7 +1,7 @@
 # Form Filling
 This section contains samples of how to export and import the Form fields in Blazor MAUI PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/import-export-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/import-export-annotation
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -2,7 +2,7 @@
 
 This section contains samples of handling how To Add Signature Annotation programmatically.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/hand-written-signature
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/hand-written-signature
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

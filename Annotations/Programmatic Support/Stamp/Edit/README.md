@@ -1,7 +1,7 @@
 # Edit stamp annotation programmatically
 This example shows how to edit stamp annotation programmatically in the SfPdfViewer. Here, we have edit stamp annotation in the PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/stamp-annotation#edit-stamp-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/stamp-annotation#edit-stamp-annotation-programmatically
 
 
 ## Project pre-requisites

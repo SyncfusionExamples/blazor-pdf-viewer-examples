@@ -1,7 +1,7 @@
 # Add sticky note annotation programmatically
 This example shows how to add sticky note annotation programmatically in the SfPdfViewer. Here, we have add sticky note annotation in the first page of the PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/sticky-notes-annotation#add-sticky-note-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/sticky-notes-annotation#add-sticky-note-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # Load a PDF document using created event
 This example shows how to load a PDF document using the created event.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/overview
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

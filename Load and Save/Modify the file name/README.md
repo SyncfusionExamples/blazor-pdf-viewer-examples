@@ -1,7 +1,7 @@
 # Modify the file name while downloading a PDF document from the SfPdfViewer
 This example shows how to modify a file name for the downloadable file when the user click the download button in the toolbar. 
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/comments#comment-panel
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/comments#comment-panel
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

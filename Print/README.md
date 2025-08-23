@@ -1,7 +1,7 @@
 # Print
 This section contains samples of handling printing in the PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/print
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/print
 
 ## Sample links
 * <a href="PDF Viewer in a Dialog">Print when PDF Viewer in a dialog component</a>

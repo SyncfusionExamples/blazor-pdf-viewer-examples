@@ -1,7 +1,7 @@
 # Toolbar
 This section contains samples of handling toolbars in the PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/toolbar-customization
 
 ## Sample links
 * <a href="Annotation Toolbar/Show or hide on loading">Show or hide the annotation toolbar on loading</a>

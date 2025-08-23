@@ -1,7 +1,7 @@
 # How to customize the Primary Toolbar with default options
 You can customize the appearance of the toolbar icons in the primary toolbar customization with the icons style.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

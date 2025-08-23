@@ -1,7 +1,7 @@
 # Customizing the custom toolbar with icons in SfPdfViewer
 This example shows how to create a custom toolbar with custom icons. You can customize the appearance of the toolbar icons by disabling the default toolbar and creating custom toolbar items with templates. 
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

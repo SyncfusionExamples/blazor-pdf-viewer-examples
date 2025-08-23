@@ -4,7 +4,7 @@ Sample to customize the highlight annotation in a PDF document. The below option
 * Color
 * Opacity
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/annotation/text-markup-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/text-markup-annotation
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

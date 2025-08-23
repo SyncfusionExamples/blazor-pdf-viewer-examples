@@ -1,7 +1,7 @@
 # Processing Large Files Without Increasing Maximum Message Size
 The SfPdfViewer component now supports a new feature that allows for the processing of large files without the need to increase the maximum message size of a single incoming hub message (MaximumReceiveMessageSize 32KB). This is achieved through the use of chunk messaging.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/processing-large-files-without-increasing-maximum-message-size
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/processing-large-files-without-increasing-maximum-message-size
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

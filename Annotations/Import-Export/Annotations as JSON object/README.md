@@ -3,7 +3,7 @@ Sample to export and import annotations in a PDF document. Here, the annotations
 
 >**Note:** Existing annotations need to be deleted if importing to the same PDF document.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer2/blazor/how-to/import-annotations-as-objects
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/import-annotations-as-objects
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
