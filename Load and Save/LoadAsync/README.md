@@ -1,7 +1,7 @@
 # Load a PDF document using the LoadAsync() method
 There are two ways to load a PDF document in the SfPdfViewer by specifying the document path or LoadAsync APIs. In this sample, PDF document is loaded from a base64 string using the LoadAsync() method.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/comments#comment-panel
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/comments#comment-panel
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # How to customize the Primary Toolbar with default options
 You can Modify the Primary Toolbar in the PDF Viewer by Assign the `ToolbarItems` as null and Create PdfToolbarItem list which Contains RenderFragment and Index for the Toolbar Items. Assign the list to the property `CustomToolbarItems`.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

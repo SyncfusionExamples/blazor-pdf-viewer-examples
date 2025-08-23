@@ -1,7 +1,7 @@
 # Edit text markup annotation programmatically
 This example shows how to edit text markup annotation programmatically in the SfPdfViewer. Here, we have edit the highlight annotation in the  PDF document.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/text-markup-annotation#edit-text-markup-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/text-markup-annotation#edit-text-markup-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

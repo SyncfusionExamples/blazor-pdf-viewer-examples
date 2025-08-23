@@ -1,7 +1,7 @@
 # Retrieve the comment status of a PDF document
 This sample desribes how to retrieve the comment status of a PDF document.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/check-status-of-annotations-or-comments
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/check-status-of-annotations-or-comments
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

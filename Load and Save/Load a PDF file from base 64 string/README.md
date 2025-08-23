@@ -1,7 +1,7 @@
 # Load a PDF document from base64 string
 This sample explains how to view the PDF document from base64 string.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

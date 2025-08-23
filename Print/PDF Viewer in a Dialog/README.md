@@ -1,7 +1,7 @@
 # Print when SfPdfViewer in a dialog component
 This sample shows how to print a PDF document when the SfPdfViewer is inside a Syncfusion&reg; Dialog component.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/print
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/print
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -2,7 +2,7 @@
 
 Sample to open the different file types like PDF, Image, Excel, etc. 
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # Prevent the PDF from scrolling and remove the vertical scrollbar
 To prevent a PDF from scrolling and remove the vertical scroll bar in the Syncfusion&reg; Blazor SfPdfViewer component, use CSS to set the `overflow` property of the component container to `hidden`. 
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/prevent-scrolling
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/prevent-scrolling
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

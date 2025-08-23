@@ -1,7 +1,7 @@
 # Thumbnail
 This section contains samples of handling thumbnail panel in PDF Viewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/overview
 
 ## Sample links
 * <a href="Show Thumbnail Panel">Show thumbnail panel on loading a PDF document</a>

@@ -1,7 +1,7 @@
 # Remove arrow annotation heads in the SfPdfViewer
 Sample to remove arrow annotation heads on loading a PDF document in the SfPdfViewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/interaction#disable-interaction-with-annotations
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/interaction#disable-interaction-with-annotations
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

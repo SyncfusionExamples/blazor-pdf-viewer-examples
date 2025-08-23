@@ -1,7 +1,7 @@
 #  Coordinate Conversion Between Page and Client Points in SfPdfViewer.
 Sample to `convertPagePointToClientPoint` that is to convert document page coordinates to browser viewport coordinates and `convertClientPointToPagePoint` to convert viewport coordinates to document page coordinates
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/coordinate-conversion-between-page-and-client-points
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/coordinate-conversion-between-page-and-client-points
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

@@ -1,7 +1,7 @@
 # Customizing the toolbar in SfPdfViewer
 This example shows how to create your own toolbar in the SfPdfViewer. Here, we have disabled the defaut toolbar and created a new toolbar with required tools using the SfToolbar component.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

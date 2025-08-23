@@ -1,7 +1,7 @@
 # How to customize the Primary Toolbar with default options
 You can include both `ToolbarItems` and `CustomToolbarItems` within the PDF Viewer. The given example demonstrate how to add customized items between the default toolbar items by specifying the correct index value for adding them to the toolbar
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

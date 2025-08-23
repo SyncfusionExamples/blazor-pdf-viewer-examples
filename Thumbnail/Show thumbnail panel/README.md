@@ -1,7 +1,7 @@
 # Show thumbnail panel on loading a PDF document
 This example shows how to open the thumbnail panel on loading a PDF document.By default, the thumbnail panel will be in hidden state.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/getting-started/features
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/overview
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

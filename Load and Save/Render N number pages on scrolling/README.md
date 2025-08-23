@@ -1,7 +1,7 @@
 # Render N number pages on scrolling
 The OverscanCount feature in a PDF Viewer allows users to preload/render specified number of pages before and after the visible view port when opening a PDF document, thereby enhance the scrolling experience.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/render-n-pages-scrolling
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/render-n-pages-scrolling
 
 
 ## Project pre-requisites

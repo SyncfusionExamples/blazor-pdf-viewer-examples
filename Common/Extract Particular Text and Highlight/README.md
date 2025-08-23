@@ -1,7 +1,7 @@
 # Extract a particular text using the find text and by using add annotation hightlight that particular text
 This example shows how to extract a particular text using the find text and by using add annotation hightlight that particular text.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/how-to/extract-particular-text-and-highlight
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/extract-particular-text-and-highlight
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

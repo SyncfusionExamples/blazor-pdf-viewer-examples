@@ -1,7 +1,7 @@
 # Lock annotations in a PDF document
 Sample to lock all the annotations in a PDF document. Here, the annotations that exists in the PDF document as well as the newly added annotations from the UI can be locked on a button click.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/interaction#disable-interaction-with-annotations
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/interaction#disable-interaction-with-annotations
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

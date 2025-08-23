@@ -1,7 +1,7 @@
 # Annotations
 This section contains samples of handling annotations in the PDF Viewer.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer/annotation/text-markup-annotation
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/annotation/text-markup-annotation
 
 ## Sample links
 * <a href="FAQs/Lock annotations">Lock annotations in a PDF document</a>

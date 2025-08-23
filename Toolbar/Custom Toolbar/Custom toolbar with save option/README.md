@@ -3,7 +3,7 @@ This example shows how to a create custom toolbar with ""Save"" option. It is no
 
 Here, we have disabled the default toolbar using the EnableNavigationToolbar, EnableAnnotationToolbar, and EnableToolbar properties of the SfPdfViewer and have created a custom toolbar.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/toolbar-customization
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/toolbar-customization
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.

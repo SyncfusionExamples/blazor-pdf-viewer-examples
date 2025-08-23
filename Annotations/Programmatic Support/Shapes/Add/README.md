@@ -1,7 +1,7 @@
 # Add shape annotation programmatically
 This example shows how to add shape annotation programmatically in the SfPdfViewer. Here, we have add shape annotation in the first page of the PDF document.
 
-Documentation: https://blazor.syncfusion.com/documentation/pdfviewer-2/annotation/shape-annotation#add-shape-annotation-programmatically
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/annotation/shape-annotation#add-shape-annotation-programmatically
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
