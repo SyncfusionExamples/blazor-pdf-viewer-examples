@@ -1,7 +1,7 @@
 # Create SfPdfViewer in a popup window in Blazor SfPdfViewer Component
 For quick view, you might need to display the PDF file in a dialog window. The following code snippet explains how to use the SfPdfViewer component inside a dialog window. In this example, the Syncfusion’s dialog component is used for Blazor. 
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/create-pdfviewer-in-a-popup-window
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor/how-to/create-sfpdfviewer-in-a-popup-window
 
 ## Project pre-requisites
 To run this application, you need Visual Studio 2019 or later versions.
