@@ -1,0 +1,10 @@
+﻿@page "/"
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" @ref="@Viewer" Height="100%" Width="100%">
+        <PdfViewerFreeTextSettings AutoFit="true"></PdfViewerFreeTextSettings>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2? Viewer;
+    public string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+}

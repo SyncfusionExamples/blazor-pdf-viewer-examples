@@ -1,0 +1,19 @@
+﻿@page "/"
+
+<SfPdfViewer2 @ref="pdfViewer" Height="100%" Width="100%" DocumentPath="@DocumentPath" FontFamilies="@FontFamilies">
+    <PdfViewerEvents Created="@Created"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2? pdfViewer;
+    
+    internal string[] FontFamilies { get; set; } = { "Helvetica", "Courier", "Symbol", "Times New Roman", "Allura", "Playwrite CA", "Ojuju" };
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/form-designer.pdf";
+
+    public void Created()
+    {
+        pdfViewer!.FallbackFontCollection.Add("Allura", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Allura-Regular.ttf")));
+        pdfViewer!.FallbackFontCollection.Add("Playwrite CA", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/PlaywriteCA-Regular.ttf")));
+        pdfViewer!.FallbackFontCollection.Add("Ojuju", new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Ojuju-Regular.ttf")));
+    }
+}

@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<SfPdfViewer2 @ref="Viewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+	<PdfViewerEvents Created="@Created"></PdfViewerEvents>
+	<PdfViewerSignatureDialogSettings SignatureFonts="signatureFonts" />
+</SfPdfViewer2>
+
+@code {
+	SfPdfViewer2? Viewer;
+	private string DocumentPath { get; set; } = "wwwroot/Data/With_Four_Signature_Fields.pdf";
+
+	public void Created()
+	{
+		Stream font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Allura-Regular.ttf"));
+		Viewer!.FallbackFontCollection.Add("allura", font);
+		font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Tangerine-Regular.ttf"));
+		Viewer!.FallbackFontCollection.Add("tangerine", font);
+		font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Sacramento-Regular.ttf"));
+		Viewer!.FallbackFontCollection.Add("sacramento", font);
+		font = new MemoryStream(System.IO.File.ReadAllBytes("wwwroot/Data/Inspiration-Regular.ttf"));
+		Viewer!.FallbackFontCollection.Add("inspiration", font);
+	}
+	string[] signatureFonts =
+	{
+		"Allura",
+		"Tangerine",
+		"Sacramento",
+		"Inspiration"
+	};
+}
