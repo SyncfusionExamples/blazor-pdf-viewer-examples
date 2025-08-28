@@ -1,7 +1,7 @@
 # Getting started
 This section explains how to create simple client-side, server-side and hosted applications in the PDF Viewer.
 
-Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer-classic/blazor/getting-started/server-side-application
+Documentation: https://help.syncfusion.com/document-processing/pdf/pdf-viewer/blazor-classic/getting-started/server-side-application
 
 ## Sample links
 * <a href="Client-side application">Create a simple PDF Viewer in a Blazor client-side application</a>
