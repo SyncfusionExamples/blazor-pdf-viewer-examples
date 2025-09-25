@@ -1,0 +1,40 @@
+﻿@page "/";
+
+<SfPdfViewer2 @ref="SfPdfViewer2" Height="640px" Width="100%" DocumentPath="@DocumentPath">
+<PdfViewerToolbarSettings ToolbarItems="ToolbarItems" MobileToolbarItems="MobileToolbarItems"></PdfViewerToolbarSettings>
+</SfPdfViewer2>
+@code {    
+SfPdfViewer2? SfPdfViewer2;    
+bool redactionToolbar;
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+    public List<ToolbarItem>? ToolbarItems { get; set; }
+    public List<MobileToolbarItem>? MobileToolbarItems { get; set; }
+protected override void OnInitialized()
+    {
+        ToolbarItems = new List<ToolbarItem>(){
+        ToolbarItem.OpenOption,
+        ToolbarItem.PageNavigationTool,
+        ToolbarItem.MagnificationTool,
+        ToolbarItem.SelectionTool,
+        ToolbarItem.PanTool,
+        ToolbarItem.UndoRedoTool,
+        ToolbarItem.CommentTool,
+        ToolbarItem.SubmitForm,
+        ToolbarItem.SearchOption,
+        ToolbarItem.AnnotationEditTool,
+        ToolbarItem.Redaction,
+        ToolbarItem.FormDesigner,
+        ToolbarItem.PrintOption,
+        ToolbarItem.DownloadOption
+        };
+        MobileToolbarItems = new List<MobileToolbarItem>()
+        {
+            MobileToolbarItem.Open,
+            MobileToolbarItem.UndoRedo,
+            MobileToolbarItem.EditAnnotation,
+            MobileToolbarItem.Redaction,
+            MobileToolbarItem.FormDesigner,
+            MobileToolbarItem.Search
+        };
+    }
+}
