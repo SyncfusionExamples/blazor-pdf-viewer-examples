@@ -1,0 +1,16 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons;
+
+<SfButton OnClick="@passwordDocument">Load the password protected document</SfButton>
+<SfButton OnClick="@permissionDocument">Load the permission protected document</SfButton>
+<SfPdfViewer2 @ref="pdfviewer" Height="100%" Width="100%"></SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 pdfviewer;
+    private async void passwordDocument() {
+        await pdfviewer.LoadAsync("wwwroot/pdf-succinctly-password-protected.pdf", "password");
+    }
+    private async void permissionDocument() {
+        await pdfviewer.LoadAsync("wwwroot/permission-restricted.pdf", "password");
+    }
+}
