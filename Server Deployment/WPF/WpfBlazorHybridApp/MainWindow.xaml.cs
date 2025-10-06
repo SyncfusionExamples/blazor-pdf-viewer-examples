@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using Syncfusion.Blazor;
 
-namespace WpfBlazorHybridApp;
+namespace WPFBlazorHybridApp;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBlazorHybridApp", "WpfBlazorHybridApp.csproj", "{E9C00DD1-CE6A-E6CB-F1A2-800B189AD5F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFBlazorHybridApp", "WPFBlazorHybridApp.csproj", "{E9C00DD1-CE6A-E6CB-F1A2-800B189AD5F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +19,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AE279F44-B481-4787-897D-625F4A64AF9F}
+		SolutionGuid = {8199E5BF-B4F3-4C46-AE9C-C724E3F9DD63}
 	EndGlobalSection
 EndGlobal

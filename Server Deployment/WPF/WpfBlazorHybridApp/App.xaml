@@ -1,7 +1,7 @@
-﻿<Application x:Class="WpfBlazorHybridApp.App"
+﻿<Application x:Class="WPFBlazorHybridApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfBlazorHybridApp"
+             xmlns:local="clr-namespace:WPFBlazorHybridApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

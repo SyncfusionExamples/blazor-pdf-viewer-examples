@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace WpfBlazorHybridApp;
+namespace WPFBlazorHybridApp;
 
 /// <summary>
 /// Interaction logic for App.xaml
