@@ -9,11 +9,11 @@ public partial class Form1 : Form
     public Form1()
     {
         InitializeComponent();
-        var services = new ServiceCollection();
+        ServiceCollection services = new ServiceCollection();
         services.AddWindowsFormsBlazorWebView();
         services.AddMemoryCache();
         services.AddSyncfusionBlazor();
-        var blazorWebView = new BlazorWebView()
+        BlazorWebView blazorWebView = new BlazorWebView()
         {
             HostPage = "wwwroot\\index.html",
             Services = services.BuildServiceProvider(),
