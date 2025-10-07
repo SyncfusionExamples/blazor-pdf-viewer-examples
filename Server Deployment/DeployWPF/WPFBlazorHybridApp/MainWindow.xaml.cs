@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        var serviceCollection = new ServiceCollection();
+        ServiceCollection serviceCollection = new ServiceCollection();
         serviceCollection.AddWpfBlazorWebView();
         serviceCollection.AddMemoryCache();
         serviceCollection.AddSyncfusionBlazor();
