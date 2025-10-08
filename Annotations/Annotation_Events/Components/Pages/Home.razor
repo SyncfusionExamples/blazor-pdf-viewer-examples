@@ -1,0 +1,97 @@
+﻿@page "/"
+
+<SfPdfViewer2 DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" Height="100%" Width="100%">
+    <PdfViewerEvents AnnotationAdded="@AnnotationAdded" AnnotationMouseover="@AnnotationMouseover" AnnotationMoved="@AnnotationMoved" AnnotationPropertiesChanged="@AnnotationPropertiesChanged" AnnotationRemoved="@AnnotationRemoved" AnnotationResized="@AnnotationResized" AnnotationSelected="@AnnotationSelected" AnnotationUnselected="@AnnotationUnselected" OnAnnotationDoubleClick="@OnAnnotationDoubleClick" AddSignature="@AddSignature" MoveSignature="@MoveSignature" RemoveSignature="@RemoveSignature" ResizeSignature="@ResizeSignature" SignaturePropertiesChange="@SignaturePropertiesChange" SignatureSelected="@SignatureSelected" SignatureUnselected="@SignatureUnselected" ImportFailed="@ImportFailed" ImportStarted="@ImportStarted" ImportSucceed="@ImportSucceed" ExportFailed="@ExportFailed" ExportStarted="@ExportStarted" ExportSucceed="@ExportSucceed"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code{ 
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succintly.pdf"; 
+    public async Task AddSignature(AddSignatureEventArgs args) 
+    {
+        Console.WriteLine($"Added Signature ID: {args.Id}");
+    }
+    public async Task AnnotationAdded(AnnotationAddEventArgs args) 
+    {
+        Console.WriteLine($"Added Annotation ID: {args.AnnotationId}");
+    }
+    public async Task AnnotationMouseover(AnnotationMouseoverEventArgs args) 
+    {
+        Console.WriteLine($"Annotation Mouseover X: {args.X} and y: {args.X}");
+    }
+    public async Task AnnotationMoved(AnnotationMoveEventArgs args) 
+    {
+        Console.WriteLine($"Annotation Current Position: {args.CurrentPosition}");
+    }
+    public async Task AnnotationPropertiesChanged(AnnotationPropertiesChangeEventArgs args) 
+    {
+        Console.WriteLine($"Is Annotation Color Changed: {args.IsColorChanged}");
+    }
+    public async Task AnnotationRemoved(AnnotationRemoveEventArgs args) 
+    {
+        Console.WriteLine($"Removed Annotation ID: {args.AnnotationId}");
+    }
+    public async Task AnnotationResized(AnnotationResizeEventArgs args) 
+    {
+        Console.WriteLine($"Resized Annotation ID: {args.AnnotationId}");
+    }
+    public async Task AnnotationSelected(AnnotationSelectEventArgs args) 
+    {
+        Console.WriteLine($"Selected Annotation ID: {args.AnnotationId}");
+    }
+    public async Task AnnotationUnselected(AnnotationUnselectEventArgs args) 
+    {
+        Console.WriteLine($"UnSelected Annotation ID: {args.AnnotationId}");
+    }
+    public async Task OnAnnotationDoubleClick(AnnotationDoubleClickEventArgs args) 
+    {
+        Console.WriteLine($"Double Clicked Annotation ID: {args.AnnotationId}");
+    }
+    public async Task MoveSignature(MoveSignatureEventArgs args) 
+    {
+        Console.WriteLine($"Moved Signture ID: {args.Id}");
+    }
+    public async Task RemoveSignature(RemoveSignatureEventArgs args) 
+    {
+        Console.WriteLine($"Removed Signature ID: {args.Id}");
+    }
+    public async Task ResizeSignature(ResizeSignatureEventArgs args) 
+    {
+        Console.WriteLine($"Resized Signature ID: {args.Id}");
+    }
+    public async Task SignaturePropertiesChange(SignaturePropertiesChangeEventArgs args) 
+    {
+        Console.WriteLine($"Is Stroke Color Changed: {args.IsStrokeColorChanged}");
+    }
+    public async Task SignatureSelected(SignatureSelectEventArgs args) 
+    {
+        Console.WriteLine($"Selected Signture ID: {args.Id}");
+    }
+    public async Task SignatureUnselected(SignatureSelectEventArgs args) 
+    {
+        Console.WriteLine($"UnSelected Signature ID: {args.Id}");
+    }
+    public async Task ExportFailed(ExportFailureEventArgs args) 
+    {
+        Console.WriteLine($"Error details: {args.ErrorDetails}");
+    }
+    public async Task ExportStarted(ExportStartEventArgs args) 
+    {
+        Console.WriteLine("Export Action Started");
+    }
+    public async Task ExportSucceed(ExportSuccessEventArgs args) 
+    {
+        Console.WriteLine($"Exported File name : {args.FileName }");
+    }		
+    public async Task ImportFailed(ImportFailureEventArgs args) 
+    {
+        Console.WriteLine($"Error details: {args.ErrorDetails}");
+    }
+    public async Task ImportStarted(ImportStartEventArgs args) 
+    {
+        Console.WriteLine("Import Annotation Started");
+    }
+    public async Task ImportSucceed(ImportSuccessEventArgs args) 
+    {
+        Console.WriteLine("Annotation Imported Successfully");
+    }	 
+}
