@@ -1,0 +1,97 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using Syncfusion.Blazor.Buttons
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <h3>Blazor PDF Viewer</h3>
+    <div style="display: flex; gap: 10px;">
+        <SfButton OnClick="AddRedactionAnnotation">Add Redaction Annotation</SfButton>
+        <SfButton OnClick="EditRedaction">Edit Redaction</SfButton>
+        <SfButton OnClick="DeleteRedaction">Delete Redaction</SfButton>
+        <SfButton OnClick="RedactPages">Redact Pages</SfButton>
+        <SfButton OnClick="ApplyRedaction">Apply Redaction</SfButton>
+    </div>
+</div>
+
+<SfPdfViewer2 @ref="SfPdfViewer2" DocumentPath="@DocumentPath" Height="800px" Width="100%"> 
+</SfPdfViewer2>
+
+@code {
+    private string DocumentPath { get; set; } = "wwwroot/data/Redaction.pdf";
+    private SfPdfViewer2? SfPdfViewer2;
+
+    private async void AddRedactionAnnotation()
+    {
+        PdfAnnotation annotation = new PdfAnnotation()
+            {
+                Id = "redaction_Annotation",
+                FontSize = 20,
+                Bound = new Bound()
+                {
+                    X = 200,
+                    Y = 80,
+                    Width = 150,
+                    Height = 75
+                },
+                PageNumber = 0,
+
+                AnnotationProperties = new RedactionProperties()
+                {
+                    MarkerFillColor = "#FF00FF",
+                    MarkerOpacity = 0.5,
+                    MarkerBorderColor = "#233A77",
+                    OverlayText = "Personal details",
+                    IsRepeat = false
+                },
+
+                FontColor = "#0000FF",
+                FontFamily = "Courier",
+                FillColor = "#EEEEEE",
+
+                Type = AnnotationType.Redaction
+            };
+
+        await SfPdfViewer2!.AddAnnotationAsync(annotation);
+    }
+
+    private async void EditRedaction()
+    {
+        List<PdfAnnotation> annotations = await SfPdfViewer2!.GetAnnotationsAsync();
+        PdfAnnotation annotation = annotations[0];
+
+        if(annotation.AnnotationProperties is RedactionProperties redaction)
+        {
+            redaction.OverlayText = "Updated Text";
+            redaction.MarkerFillColor = "#9bc7b8";
+            redaction.MarkerBorderColor = "#888f8c";
+            redaction.IsRepeat = true;
+            redaction.MarkerOpacity = 0.1;
+        }
+
+        annotation.FontSize = 15;
+        annotation.FontColor = "Yellow";
+        annotation.TextAlignment = TextAlignment.Left;
+
+        await SfPdfViewer2.EditAnnotationAsync(annotation);
+    }
+
+    private async void DeleteRedaction()
+    {
+        List<PdfAnnotation> annotations = await SfPdfViewer2!.GetAnnotationsAsync();
+        PdfAnnotation annotation = annotations[0];
+
+        await SfPdfViewer2.DeleteAnnotationAsync(annotation);
+    }
+
+    private async void RedactPages()
+    {
+        List<int> pagesToRedact = new() { 0, 2 };
+        await SfPdfViewer2!.AddPageRedactionsAsync(pagesToRedact);
+    }
+
+    private async void ApplyRedaction()
+    {
+        await SfPdfViewer2!.RedactAsync();
+    }
+
+}
