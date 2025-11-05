@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
+    
+<!-- For PDF creation, parsing, and interactive features -->
+  <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="*" />
+
+  <!-- For Blazor UI components like Grid, Inputs, Buttons, ProgressBar, Notifications, Navigations -->
+  <PackageReference Include="Syncfusion.Blazor.Grid" Version="*" />
+  <PackageReference Include="Syncfusion.Blazor.Inputs" Version="*" />
+  <PackageReference Include="Syncfusion.Blazor.Buttons" Version="*" />
+  <PackageReference Include="Syncfusion.Blazor.ProgressBar" Version="*" />
+  <PackageReference Include="Syncfusion.Blazor.Notifications" Version="*" />
+  <PackageReference Include="Syncfusion.Blazor.Navigations" Version="*" />
+
+  </ItemGroup>
+</Project>
