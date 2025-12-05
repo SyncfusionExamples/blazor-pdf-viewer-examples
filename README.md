@@ -39,8 +39,8 @@ The Blazor PDF Viewer component allows to view, print, and annotate the PDF file
 
 ## Support and feedback
 
-* For any other queries, reach our [Syncfusion&reg; support team](https://www.syncfusion.com/support/directtrac/incidents/newincident?utm_source=github&utm_medium=listing&utm_campaign=github-xlsio-examples) or post the queries through the [community forums](https://www.syncfusion.com/forums?utm_source=github&utm_medium=listing&utm_campaign=github-xlsio-examples).
-* Request new feature through [Syncfusion&reg; feedback portal](https://www.syncfusion.com/feedback?utm_source=github&utm_medium=listing&utm_campaign=github-xlsio-examples).
+* For any other queries, reach our [Syncfusion&reg; support team](https://www.syncfusion.com/support/directtrac/incidents/newincident?utm_source=github&utm_medium=listing&utm_campaign=github-xlsio-examples) or post the queries through the [community forums](https://www.syncfusion.com/forums/pdf-viewer-sdk).
+* Request new feature through [Syncfusion&reg; feedback portal](https://www.syncfusion.com/feedback/pdf-viewer-sdk).
 
 ## License
 
