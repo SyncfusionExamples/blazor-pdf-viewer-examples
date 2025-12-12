@@ -1,0 +1,22 @@
+﻿@page "/"
+
+<SfPdfViewer2 @ref="Viewer" DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" Height="100%" Width="100%" PageOrganizerVisibility="isDialogVisible" PageOrganizerVisibilityChanged="visibleChanged">
+    <PdfViewerEvents PageOrganizerSaveRequested="SavePages" PageOrganizerZoomChanged="ZoomChange"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2? Viewer;
+    bool isDialogVisible;
+    private void visibleChanged(bool isVisible) {
+        Console.WriteLine("Organize Dialog Visibility : " + isVisible.ToString());
+        isDialogVisible = isVisible;
+    }
+    private async Task SavePages(PageOrganizerSaveEventArgs args) {
+        args.Cancel = true;
+        await Viewer?.LoadAsync(args.DownloadDocument, null);
+        isDialogVisible = false;
+    }
+    private void ZoomChange(PageOrganizerZoomChangedEventArgs args) {
+        Console.WriteLine("Current Zoom : " + args.CurrentZoom);
+    }
+}
