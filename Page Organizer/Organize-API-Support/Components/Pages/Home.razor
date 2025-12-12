@@ -1,0 +1,56 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+
+<SfButton OnClick="RotateMethod">Rotate</SfButton>
+<SfButton OnClick="RotateMethodAngle">Rotate Angale</SfButton>
+<SfButton OnClick="MoveMethod">Move</SfButton>
+<SfButton OnClick="InsertBlankMethod">Insert</SfButton>
+<SfButton OnClick="DeleteMethod">Delete</SfButton>
+<SfButton OnClick="DuplicateMethod">Duplicate</SfButton>
+<SfButton OnClick="ExtractMethod">Extract</SfButton>
+<SfButton OnClick="ExtractMethodStream">Extract Stream</SfButton>
+<SfButton OnClick="ImportMethod">Import</SfButton>
+<SfButton OnClick="ImportMethodStream">Import Stream</SfButton>
+<br/><br/>
+<SfPdfViewer2 @ref="Viewer" DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" Height="100%" Width="100%">
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2? Viewer;
+    private byte[] selectedFileBytes;
+    Stream docStream;
+    private async Task RotateMethod() {
+        await Viewer?.RotatePagesAsync([1,2], RotationDirection.Clockwise);
+    }
+    private async Task RotateMethodAngle() {
+        await Viewer?.RotatePagesToAngleAsync([1,2], PageRotation.RotateAngle180);
+    }
+    private async Task MoveMethod() {
+        await Viewer?.MovePagesAsync([1,2], 10);
+    }
+    private async Task InsertBlankMethod() {
+        await Viewer?.InsertBlankPagesAsync(2, 3);
+    }
+    private async Task DeleteMethod() {
+        await Viewer?.DeletePagesAsync([1,2]);
+    }
+    private async Task DuplicateMethod() {
+        await Viewer?.DuplicatePagesAsync([1,2]);
+    }
+    private async Task ExtractMethod() {
+        await Viewer?.ExtractPagesAsync([1,2]);
+    }
+    private async Task ExtractMethodStream() {
+        docStream = await Viewer?.ExtractPagesAsStreamAsync([1,2]);
+        await Viewer?.LoadAsync(docStream, null);
+    }
+    private async Task ImportMethod() {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/gis-succinctly.pdf");
+        await Viewer?.InsertPagesAsync(2, byteArray, null);
+    }
+    private async Task ImportMethodStream() {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/gis-succinctly.pdf");
+        MemoryStream stream = new MemoryStream(byteArray);
+        await Viewer?.InsertPagesAsync(2, stream, null);
+    }
+}
