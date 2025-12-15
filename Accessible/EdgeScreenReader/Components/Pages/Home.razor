@@ -1,0 +1,38 @@
+@page "/"
+@inject IJSRuntime JSRuntime
+<SfPdfViewer2 @ref="PdfViewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+    <PdfViewerEvents DocumentLoaded="OnDocumentLoaded" DocumentUnloaded="OnDocumentUnloaded"
+                     OnTextSelectionEnd="HandleTextSelectionEnd" />
+</SfPdfViewer2>
+
+@code
+{
+    // Reference to the PDF Viewer component
+    private SfPdfViewer2? PdfViewer;
+
+    // Path to the PDF document to be loaded in the viewer
+    private string DocumentPath = "https://cdn.syncfusion.com/content/pdf/programmatical-annotations.pdf";
+
+    // Triggered when the document is unloaded from the viewer
+    private async Task OnDocumentUnloaded()
+    {
+        // Calls a JavaScript function to cancel any ongoing reading process
+        await JSRuntime.InvokeVoidAsync("cancelReading");
+    }
+
+    // Triggered when the document is loaded in the viewer
+    private async Task OnDocumentLoaded()
+    {
+        // Calls a JavaScript function to initialize PDF accessibility features
+        await JSRuntime.InvokeVoidAsync("initPdfAccessibility");
+    }
+
+    // Triggered when text selection ends in the PDF Viewer
+    private async Task HandleTextSelectionEnd(TextSelectionEndEventArgs args)
+    {
+        if (!string.IsNullOrEmpty(args.TextContent))
+        {
+            await JSRuntime.InvokeVoidAsync("readAloudText", args.TextContent);
+        }
+    }
+}

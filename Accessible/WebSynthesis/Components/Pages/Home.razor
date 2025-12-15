@@ -1,0 +1,160 @@
+@page "/"
+@using Syncfusion.Blazor.Buttons
+@inject IJSRuntime JSRuntime
+
+<SfButton Disabled="@IsPrevious" OnClick="@(async () => await PreviousLine())">Previous</SfButton>
+<SfButton Disabled="@IsNext" OnClick="@(async () => await NextLine())">Next</SfButton>
+<SfButton OnClick="Mute">Mute</SfButton>
+
+<SfPdfViewer2 @ref="PdfViewer" DocumentPath="@DocumentPath" Height="100%" Width="100%">
+    <PdfViewerEvents DocumentUnloaded="OnDocumentUnloaded" DocumentLoaded="OnDocumentLoaded"
+                     ZoomChanged="UpdateElement" PageChanged="OnPageChanged" OnTextSelectionEnd="OnTextSelectionEnd" />
+</SfPdfViewer2>
+
+
+@code {
+    private DotNetObjectReference<Home>? objRef;
+    private SfPdfViewer2? PdfViewer;
+    private string DocumentPath = "https://cdn.syncfusion.com/content/pdf/programmatical-annotations.pdf";
+    private bool muteVoice;
+    private int currentLineIndex = 0;
+    private bool IsPrevious = true;
+    private bool IsNext = true;
+    private bool ReadNextPage;
+    private bool ReadPreviousPage;
+    private int CurrentPage = 1;
+
+    protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
+  
+    // Called when PDF document is loaded
+    private async Task OnDocumentLoaded()
+    {
+        IsNext = false;
+    }
+
+    // Register .NET object for JS interop after first render
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("registerDotNetObject", objRef);
+        }
+    }
+
+    // Called when PDF document is unloaded
+    private async Task OnDocumentUnloaded()
+    {
+        await JSRuntime.InvokeVoidAsync("cancelReading");
+        CurrentPage = 1;
+        currentLineIndex = 0;
+        IsPrevious = true;
+    }
+
+    // Handles page change events
+    private async Task OnPageChanged()
+    {
+        if (ReadNextPage)
+        {
+            currentLineIndex = 0;
+            await NextLine();
+            ReadNextPage = false;
+        }
+        else if (ReadPreviousPage)
+        {
+            await PreviousLine(true);
+            ReadPreviousPage = false;
+        }
+    }
+
+    // Updates highlight box based on zoom and current line
+    private async Task UpdateElement()
+    {
+        double? ZoomValue = PdfViewer?.ZoomValue / 100.0;
+        await JSRuntime.InvokeVoidAsync("updateHighlightBox", PdfViewer?.CurrentPageNumber - 1, currentLineIndex - 1, ZoomValue);
+    }
+
+    // Toggles mute/unmute for reading aloud
+    private async Task Mute()
+    {
+        await JSRuntime.InvokeVoidAsync("readAloudMute", muteVoice);
+        muteVoice = !muteVoice;
+    }
+
+    // Reads the previous line or navigates to the previous page
+    private async Task PreviousLine(bool isPreviousPage = false)
+    {
+        if (PdfViewer != null && currentLineIndex > 0 || isPreviousPage)
+        {
+            if (CurrentPage != PdfViewer!.CurrentPageNumber && !ReadPreviousPage)
+            {
+                await PdfViewer.GoToPageAsync(CurrentPage);
+            }
+            else
+            {
+                CurrentPage = PdfViewer.CurrentPageNumber;
+            }
+            currentLineIndex--;
+            await JSRuntime.InvokeVoidAsync("readLineFromPage", CurrentPage - 1, currentLineIndex - 1, isPreviousPage, muteVoice);
+            if (isPreviousPage)
+                currentLineIndex = await JSRuntime.InvokeAsync<int>("updateLineIndex", CurrentPage - 1);
+            IsPrevious = currentLineIndex < 1 && isPreviousPage;
+            IsNext = false;
+        }
+    }
+    // Reads the next line in the PDF
+    private async Task NextLine()
+    {
+        if (CurrentPage != PdfViewer!.CurrentPageNumber && !ReadNextPage)
+        {
+            await PdfViewer.GoToPageAsync(CurrentPage);
+        }
+        else
+        {
+            CurrentPage = PdfViewer.CurrentPageNumber;
+        }
+        currentLineIndex++;
+        await JSRuntime.InvokeVoidAsync("readLineFromPage", CurrentPage - 1, currentLineIndex - 1, false, muteVoice);
+        IsPrevious = currentLineIndex < 1;
+        IsNext = false;
+    }
+
+    // Reads selected text aloud
+    private async Task OnTextSelectionEnd(TextSelectionEndEventArgs args)
+    {
+        double? ZoomValue = PdfViewer?.ZoomValue / 100.0;
+        await JSRuntime.InvokeVoidAsync("readSelectedText", args, ZoomValue, muteVoice);
+    }
+
+    // Navigates to the next page
+    [JSInvokable]
+    public async Task GoNextPage()
+    {
+        if (PdfViewer!.CurrentPageNumber == PdfViewer.PageCount)
+        {
+            await PdfViewer.GoToFirstPageAsync();
+        }
+        else
+        {
+            await PdfViewer.GoToNextPageAsync();
+        }
+        ReadNextPage = true;
+    }
+    // Navigates to the previous page
+    [JSInvokable]
+    public async Task GoPreviousPage()
+    {
+        if (PdfViewer!.CurrentPageNumber == 1)
+        {
+            await PdfViewer.GoToLastPageAsync();
+        }
+        else
+        {
+            await PdfViewer!.GoToPreviousPageAsync();
+        }
+        ReadPreviousPage = true;
+    }
+  
+}
