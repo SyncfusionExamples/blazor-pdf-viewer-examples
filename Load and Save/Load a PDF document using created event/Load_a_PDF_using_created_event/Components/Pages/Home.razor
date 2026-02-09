@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" Width="560" Height="315">
+    <PdfViewerEvents Created="created" DocumentEdited="@DocumentEdited"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code 
+{
+    public string DocumentPath { get; set; }
+
+    //Triggers when the PDFViewer component is created.
+    public void created()
+    {
+        string Link =   "http://infolab.stanford.edu/pub/papers/google.pdf";
+        System.Net.WebClient webClient = new System.Net.WebClient();
+        //Returns the byte array containing the downloaded PDF file.
+        byte[] byteArray = webClient.DownloadData(Link);
+        //Converting the byte array to Base64 string and sets the document path.
+        DocumentPath = "data:application/pdf;base64," + Convert.ToBase64String(byteArray);
+    } 
+
+    //Triggers when the document getting edited 
+    public async Task DocumentEdited(DocumentEditedEventArgs args)
+    {
+        //EditingAction provides information about the document edited
+        Console.WriteLine(args.EditingAction);
+    }
+}
+
