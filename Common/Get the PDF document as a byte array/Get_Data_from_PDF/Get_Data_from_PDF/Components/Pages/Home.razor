@@ -1,0 +1,30 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton @onclick="retrieve">Retrieve Document</SfButton>
+<SfButton @onclick="load">ReloadRetrievedDocument</SfButton>
+<SfPdfViewer2 @ref="@viewer" DocumentPath="@DocumentPath" Height="540px" Width="100%">
+</SfPdfViewer2>
+
+@code
+{
+    SfPdfViewer2 viewer;
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    byte[] save;
+
+    public async void retrieve()
+    {
+        //Gets the loaded PDF document
+        save = await viewer.GetDocumentAsync();
+    }
+
+    public void load()
+    {
+        //Converts the byte array into base64 string.
+        string base64String = Convert.ToBase64String(save);
+        //Loads the PDF document from the specified base64 string.
+        viewer.LoadAsync("data:application/pdf;base64," + base64String, null);
+    }
+}

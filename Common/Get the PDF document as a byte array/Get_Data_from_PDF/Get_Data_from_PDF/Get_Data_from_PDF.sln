@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Move-Scroll-Programmatically", "Move-Scroll-Programmatically.csproj", "{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Get_Data_from_PDF", "Get_Data_from_PDF.csproj", "{33938DAC-DB78-EF65-1716-3F2F373DA1B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33938DAC-DB78-EF65-1716-3F2F373DA1B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33938DAC-DB78-EF65-1716-3F2F373DA1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33938DAC-DB78-EF65-1716-3F2F373DA1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33938DAC-DB78-EF65-1716-3F2F373DA1B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A0A75B59-C9CC-4059-A9F1-0C5708B8A573}
+		SolutionGuid = {90472EE5-53DE-4EDC-91EE-B8980A78A873}
 	EndGlobalSection
 EndGlobal

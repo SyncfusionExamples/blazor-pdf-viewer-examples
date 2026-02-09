@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Move-Scroll-Programmatically", "Move-Scroll-Programmatically.csproj", "{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prevent_PDF_from_scrolling", "Prevent_PDF_from_scrolling.csproj", "{4024CA9B-4BA1-61F4-5C30-B4FC393E1716}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACD0785E-C0C9-84C0-D0B0-DE2A4234397D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4024CA9B-4BA1-61F4-5C30-B4FC393E1716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4024CA9B-4BA1-61F4-5C30-B4FC393E1716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4024CA9B-4BA1-61F4-5C30-B4FC393E1716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4024CA9B-4BA1-61F4-5C30-B4FC393E1716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A0A75B59-C9CC-4059-A9F1-0C5708B8A573}
+		SolutionGuid = {386EC418-3AF7-4B3F-B82A-C569546C87D9}
 	EndGlobalSection
 EndGlobal
