@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteannotationCollection", "DeleteannotationCollection.csproj", "{52509E1E-482C-93EF-4718-B8B4F58D39BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52509E1E-482C-93EF-4718-B8B4F58D39BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52509E1E-482C-93EF-4718-B8B4F58D39BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52509E1E-482C-93EF-4718-B8B4F58D39BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52509E1E-482C-93EF-4718-B8B4F58D39BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24AF94FB-D8B8-4D91-801E-0F90D670166B}
+	EndGlobalSection
+EndGlobal
