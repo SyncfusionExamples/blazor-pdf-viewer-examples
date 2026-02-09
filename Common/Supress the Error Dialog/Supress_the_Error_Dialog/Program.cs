@@ -1,4 +1,4 @@
-using Move_Scroll_Programmatically.Components;
+using Supress_the_Error_Dialog.Components;
 using Syncfusion.Blazor;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -8,7 +8,6 @@ builder.Services.AddSignalR(o => { o.MaximumReceiveMessageSize = 102400000; });
 builder.Services.AddMemoryCache();
 //Add Syncfusion Blazor service to the container.
 builder.Services.AddSyncfusionBlazor();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
