@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Documentation\\S\\Annotations_as_JSON_stream\\Annotations_as_JSON_stream.csproj": {}
+  },
+  "projects": {
+    "D:\\Documentation\\S\\Annotations_as_JSON_stream\\Annotations_as_JSON_stream.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Documentation\\S\\Annotations_as_JSON_stream\\Annotations_as_JSON_stream.csproj",
+        "projectName": "Annotations_as_JSON_stream",
+        "projectPath": "D:\\Documentation\\S\\Annotations_as_JSON_stream\\Annotations_as_JSON_stream.csproj",
+        "packagesPath": "C:\\Users\\TamilselvanDurairaj\\.nuget\\packages\\",
+        "outputPath": "D:\\Documentation\\S\\Annotations_as_JSON_stream\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\TamilselvanDurairaj\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.syncfusioninternal.com/repository/blazor-development/": {},
+          "https://nexus.syncfusioninternal.com/repository/nuget-hosted/": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Syncfusion.Blazor.SfPdfViewer": {
+              "target": "Package",
+              "version": "[*, )"
+            },
+            "Syncfusion.Blazor.Themes": {
+              "target": "Package",
+              "version": "[*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
