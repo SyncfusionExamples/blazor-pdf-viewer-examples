@@ -1,0 +1,42 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Pdf;
+@using Syncfusion.Pdf.Interactive;
+@using System.IO;
+@using Syncfusion.Drawing;
+
+<SfPdfViewer2 DocumentPath="@DocumentPath" Height="100%" Width="100%">
+    <PdfViewerEvents Created="created"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    public SfPdfViewer2 PdfViewer { get; set; }
+
+    //Sets the PDF document path for initial loading.
+    public string DocumentPath { get; set; }
+
+    //This event triggers when the PDFViewer is created.
+    private void created()
+    {
+        var document = new PdfDocument();
+        byte[] bytes;
+        //Add a new page to the PDF document.
+        PdfPage page = document.Pages.Add();
+        //Create a textbox field and add the properties.
+        PdfTextBoxField textBoxField = new PdfTextBoxField(page, "FirstName");
+        textBoxField.Bounds = new RectangleF(0, 0, 100, 20);
+        textBoxField.ToolTip = "First Name";
+        //Add the form field to the document.
+        document.Form.Fields.Add(textBoxField);
+        var stream = new MemoryStream();
+        //Save the document.
+        document.Save(stream);
+        bytes = stream.ToArray();
+        string base64string = Convert.ToBase64String(bytes);
+        //Sets the document path as base64 string.
+        DocumentPath = "data:application/pdf;base64," + base64string;
+        //close the document
+        document.Close(true);
+    }
+}
