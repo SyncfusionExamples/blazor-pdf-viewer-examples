@@ -1,0 +1,10 @@
+﻿@page "/"
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 @ref="PdfViewer" DocumentPath="@DocumentPath" EnableErrorDialog="false" Height="500px" Width="1060px">
+</SfPdfViewer2>
+
+@code {
+    SfPdfViewer2 PdfViewer;
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+}

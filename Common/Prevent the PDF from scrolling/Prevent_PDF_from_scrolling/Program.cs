@@ -1,4 +1,4 @@
-using Move_Scroll_Programmatically.Components;
+using Prevent_PDF_from_scrolling.Components;
 using Syncfusion.Blazor;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
