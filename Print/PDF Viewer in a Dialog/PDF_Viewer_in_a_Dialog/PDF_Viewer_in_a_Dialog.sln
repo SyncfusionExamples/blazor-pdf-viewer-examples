@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDF_Viewer_in_a_Dialog", "PDF_Viewer_in_a_Dialog.csproj", "{5E0B2C37-E14B-726F-6FF0-E47E89D17930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E0B2C37-E14B-726F-6FF0-E47E89D17930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0B2C37-E14B-726F-6FF0-E47E89D17930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0B2C37-E14B-726F-6FF0-E47E89D17930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0B2C37-E14B-726F-6FF0-E47E89D17930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C385EF50-DE22-4099-9902-52E4AE5EB5B0}
+	EndGlobalSection
+EndGlobal
