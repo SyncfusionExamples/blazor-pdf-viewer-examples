@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customize_highlight_annotation_appearance", "Customize_highlight_annotation_appearance.csproj", "{7702EE2B-19F4-E806-34C8-2A7267387351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7702EE2B-19F4-E806-34C8-2A7267387351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7702EE2B-19F4-E806-34C8-2A7267387351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7702EE2B-19F4-E806-34C8-2A7267387351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7702EE2B-19F4-E806-34C8-2A7267387351}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F17BC233-6CA8-4D76-ACD7-B4980E5032C4}
+	EndGlobalSection
+EndGlobal

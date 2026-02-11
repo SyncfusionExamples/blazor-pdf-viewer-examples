@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+<!--Render simple PDF Viewer with customized highlight options-->
+<SfPdfViewer2 @ref="PDFViewer" DocumentPath="@DocumentPath">
+    <PdfViewerHighlightSettings Color="@highlightColor" Opacity="@opacity"></PdfViewerHighlightSettings>
+</SfPdfViewer2>
+
+@code{
+    SfPdfViewer2 PDFViewer;
+
+    //Sets the PDF document path for initial loading.
+    private string DocumentPath { get; set; } = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
+
+    //Defines the color for text markup annotations like highlight.
+    private string highlightColor = "Green";
+
+    //Defines the opacity for text markup annotations like highlight or underline or strikethrough. By default it is 1.
+    private double opacity = 0.5;
+
+}
