@@ -1,19 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.7.0" />
     <PackageReference Include="Syncfusion.Blazor.SfPdfViewer" Version="*" />
     <PackageReference Include="Syncfusion.Blazor.Themes" Version="*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Data\" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.7.0" />
   </ItemGroup>
 
 </Project>
