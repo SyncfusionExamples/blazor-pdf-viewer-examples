@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WebAppWASMNet10/WebAppWASMNet10.Client/WebAppWASMNet10.Client.csproj" />
+  <Project Path="WebAppWASMNet10/WebAppWASMNet10/WebAppWASMNet10.csproj" />
+</Solution>
