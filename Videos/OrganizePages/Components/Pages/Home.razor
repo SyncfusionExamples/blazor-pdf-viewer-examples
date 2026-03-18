@@ -1,0 +1,62 @@
+﻿@page "/"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+
+@rendermode InteractiveServer
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+    <h3>Blazor PDF Viewer</h3>
+    <div style="display: flex; gap: 10px;">
+        <SfButton OnClick="RotatePages">Rotate Pages</SfButton>
+        <SfButton OnClick="RearrangePages">Rearrange Pages</SfButton>
+        <SfButton OnClick="InsertPages">Insert Pages</SfButton>
+        <SfButton OnClick="DeletePages">Delete Pages</SfButton>
+        <SfButton OnClick="DuplicatePages">Duplicate Pages</SfButton>
+        <SfButton OnClick="ExportPages">Export Pages</SfButton>
+        <SfButton OnClick="ImportDocument">Import Document</SfButton>
+    </div>
+</div>
+
+<SfPdfViewer2 @ref="SfPdfViewer2" DocumentPath="@DocumentPath" Height="700px" Width="100%">
+</SfPdfViewer2>
+
+@code {
+    private string DocumentPath { get; set; } = "wwwroot/data/pdf-succinctly.pdf";
+    private SfPdfViewer2? SfPdfViewer2;
+
+    private async void RotatePages()
+    {
+        await SfPdfViewer2!.RotatePagesToAngleAsync([1, 2], PageRotation.RotateAngle270);
+    }
+
+    private async void RearrangePages()
+    {
+        await SfPdfViewer2!.MovePagesAsync([1, 2], 5);
+    }
+
+    private async void InsertPages()
+    {
+        await SfPdfViewer2!.InsertBlankPagesAsync(2, 3);
+    }
+
+    private async void DeletePages()
+    {
+        await SfPdfViewer2!.DeletePagesAsync([1, 2]);
+    }
+
+    private async void DuplicatePages()
+    {
+        await SfPdfViewer2!.DuplicatePagesAsync([1, 2]);
+    }
+
+    private async void ExportPages()
+    {
+        await SfPdfViewer2!.ExtractPagesAsync([1, 2]);
+    }
+
+    private async void ImportDocument()
+    {
+        byte[] byteArray = System.IO.File.ReadAllBytes("wwwroot/data/Redaction.pdf");
+        await SfPdfViewer2!.InsertPagesAsync(2, byteArray, null);
+    }
+}
