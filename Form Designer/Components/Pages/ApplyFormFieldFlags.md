@@ -11,14 +11,14 @@
     private SfPdfViewer2? viewer;
 
     // Path to the PDF document to be loaded in the viewer
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     // Method triggered when the document is loaded
     private async Task OnDocumentLoaded()
     {
         if (viewer == null) return;
 
-        var formFields = new List<FormFieldInfo>
+        List<FormFieldInfo> formFields = new List<FormFieldInfo>
         {
             // Read-only Textbox that is not required
             new TextBoxField

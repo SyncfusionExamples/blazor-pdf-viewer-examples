@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnEditCheckbox()
     {
@@ -17,7 +17,7 @@
 
         List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         
-        var cb = fields?.FirstOrDefault(f => f.Name == "Subscribe");
+        FormFieldInfo? cb = fields?.FirstOrDefault(f => f.Name == "Subscribe");
         
         if (cb != null)
         {

@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnEditButton()
     {
@@ -17,7 +17,7 @@
 
         List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         
-        var field = fields?.FirstOrDefault(f => f.Name == "SubmitButton");
+        FormFieldInfo? field = fields?.FirstOrDefault(f => f.Name == "SubmitButton");
         
         if (field != null)
         {

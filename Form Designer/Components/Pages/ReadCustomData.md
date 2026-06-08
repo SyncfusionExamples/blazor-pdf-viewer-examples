@@ -7,17 +7,17 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnDocumentLoaded()
     {
         if (viewer == null) return;
 
         // Get all form fields
-        var fields = await viewer.GetFormFieldsAsync();
+        List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
 
         // Access custom data from each field
-        foreach (var field in fields)
+        foreach (FormFieldInfo field in fields)
         {
             Console.WriteLine($"Field: {field.Name}");
             if (field.CustomData != null)

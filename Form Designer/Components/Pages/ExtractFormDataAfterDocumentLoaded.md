@@ -7,15 +7,15 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task OnDocumentLoaded()
     {
         if (viewer == null) return;
 
         // Access form data right after the PDF loads
-        var formFields = await viewer.GetFormFieldsAsync();
-        var emailField = formFields.FirstOrDefault(field => field is TextBoxField && field.Name == "email") as TextBoxField;
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        TextBoxField? emailField = formFields.FirstOrDefault(field => field is TextBoxField && field.Name == "email") as TextBoxField;
         string email = emailField?.Value ?? string.Empty;
         
         Console.WriteLine($"Email: {email}");

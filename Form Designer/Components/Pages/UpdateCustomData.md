@@ -10,21 +10,21 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task UpdateFirstFieldCustomData()
     {
         if (viewer == null) return;
 
         // Get all form fields
-        var fields = await viewer.GetFormFieldsAsync();
+        List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         if (fields.Count == 0) return;
 
         // Get the first field
-        var targetField = fields[0];
+        FormFieldInfo targetField = fields[0];
 
         // Update custom data
-        var updatedCustomData = new Dictionary<string, object>
+        Dictionary<string, object> updatedCustomData = new Dictionary<string, object>
         {
             { "group", "profile" },
             { "flags", new[] { "pii", "masked" } },

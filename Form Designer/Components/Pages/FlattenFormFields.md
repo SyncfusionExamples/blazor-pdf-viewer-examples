@@ -14,7 +14,7 @@
 
 @code {
     private SfPdfViewer2? Viewer;
-    public string DocumentPath { get; set; } = "wwwroot/data/form-filling-document.pdf";
+    public string DocumentPath { get; set; } = "wwwroot/data/Form_Filling_Document.pdf";
 
     private async Task FlattenDownload()
     {

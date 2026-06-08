@@ -3,7 +3,7 @@
 @using Syncfusion.Blazor.Buttons
 
 <SfPdfViewer2 @ref="Viewer"
-              DocumentPath="wwwroot/data/PDF_Succinctly.pdf"
+              DocumentPath="wwwroot/data/Form_Filling_Document.pdf"
               Height="650px"
               Width="100%"
               EnableFormFieldsValidation="true">
@@ -32,7 +32,7 @@
     private void OnValidateFormFields(ValidateFormFieldsArgs args)
     {
         Dictionary<string, object> unfilledFields = args.UnfilledFields;
-        foreach (var field in unfilledFields)
+        foreach (KeyValuePair<string, object> field in unfilledFields)
         {
             Console.WriteLine($"Field Name: {field.Key}, Default Value: {field.Value}");
             // Further processing of unfilled fields

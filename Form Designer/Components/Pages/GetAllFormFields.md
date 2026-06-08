@@ -9,12 +9,12 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task GetAllFormFields()
     {
         if (viewer == null) return;
-        var formFields = await viewer.GetFormFieldsAsync();
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
         Console.WriteLine($"Total form fields: {formFields.Count}");
     }
 }

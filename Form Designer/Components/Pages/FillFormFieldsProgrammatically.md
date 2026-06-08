@@ -2,7 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 
 <SfPdfViewer2 @ref="pdfViewer"
-              DocumentPath="https://cdn.syncfusion.com/content/pdf/form-filling-document.pdf"
+              DocumentPath="wwwroot/data/Form_Filling_Document.pdf"
               Height="600px">
 </SfPdfViewer2>
 
@@ -23,7 +23,7 @@
             return;
 
         // Find textbox safely
-        var textField = formFields
+        TextBoxField? textField = formFields
             .OfType<TextBoxField>()
             .FirstOrDefault(f => f.Name == "name") 
             ?? formFields.OfType<TextBoxField>().FirstOrDefault();

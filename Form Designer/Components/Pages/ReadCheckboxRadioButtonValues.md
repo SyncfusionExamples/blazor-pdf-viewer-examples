@@ -9,14 +9,14 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task ReadCheckboxValues()
     {
         if (viewer == null) return;
-        var formFields = await viewer.GetFormFieldsAsync();
-        var radioButtons = formFields.OfType<RadioButtonField>().Where(field => field.Name == "gender").ToList();
-        var checkedField = radioButtons.FirstOrDefault(field => field.IsSelected);
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        List<RadioButtonField> radioButtons = formFields.OfType<RadioButtonField>().Where(field => field.Name == "gender").ToList();
+        RadioButtonField? checkedField = radioButtons.FirstOrDefault(field => field.IsSelected);
         string fieldName = checkedField?.Name ?? string.Empty;
         Console.WriteLine($"Selected radio button: {fieldName}");
     }

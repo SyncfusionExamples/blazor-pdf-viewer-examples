@@ -9,13 +9,13 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task ReadSignatureData()
     {
         if (viewer == null) return;
-        var formFields = await viewer.GetFormFieldsAsync();
-        var signatureField = formFields.FirstOrDefault(field => field is SignatureField && field.Name == "signature") as SignatureField;
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        SignatureField? signatureField = formFields.FirstOrDefault(field => field is SignatureField && field.Name == "signature") as SignatureField;
         string signatureData = signatureField?.Value ?? string.Empty;
         Console.WriteLine($"Signature data: {signatureData}");
     }

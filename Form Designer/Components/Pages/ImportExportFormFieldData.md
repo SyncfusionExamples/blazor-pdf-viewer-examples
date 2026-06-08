@@ -5,7 +5,7 @@
 <SfButton @onclick="ExportFormFieldData">Export Data</SfButton>
 <SfButton @onclick="ImportFormFieldData">Import Data</SfButton>
 
-<SfPdfViewer2 @ref="PdfViewerInstance" DocumentPath="wwwroot/data/FormFillingDocument.pdf"
+<SfPdfViewer2 @ref="PdfViewerInstance" DocumentPath="wwwroot/data/Form_Filling_Document.pdf"
               Height="650px"
               Width="100%">
 </SfPdfViewer2>
@@ -15,7 +15,7 @@
     SfPdfViewer2 PdfViewerInstance { get; set; }
 
     // Stream to store exported form field data in FDF format
-    Stream FDFStream = new MemoryStream();
+    MemoryStream FDFStream = new MemoryStream();
 
     // List to store form field information
     List<FormFieldInfo> FormFields = new List<FormFieldInfo>();

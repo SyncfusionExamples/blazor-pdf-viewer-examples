@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+    private string DocumentPath = "wwwroot/data/FormDesigner_Document.pdf";
 
     private async Task UpdateFormField()
     {
@@ -18,7 +18,7 @@
         List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
         
         // Find only the specific dropdown by name
-        var dropDown = formFields?.FirstOrDefault(f => f.Name == "CountryDropdown" && f is DropDownField) as DropDownField;
+        DropDownField? dropDown = formFields?.FirstOrDefault(f => f.Name == "CountryDropdown" && f is DropDownField) as DropDownField;
         if (dropDown != null)
         {
             dropDown.Items = new List<ListItem> {

@@ -10,14 +10,14 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnAddFormFields()
     {
         if (viewer == null) return;
 
         // Create form fields with initial bounds
-        var formFields = new List<FormFieldInfo>
+        List<FormFieldInfo> formFields = new List<FormFieldInfo>
         {
             new TextBoxField
             {
@@ -48,7 +48,7 @@
         List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         
         // Find the "First Name" field
-        var field = fields?.FirstOrDefault(f => f.Name == "FirstName");
+        FormFieldInfo? field = fields?.FirstOrDefault(f => f.Name == "FirstName");
         
         if (field != null)
         {

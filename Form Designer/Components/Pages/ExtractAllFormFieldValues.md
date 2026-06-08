@@ -9,14 +9,14 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task ExtractAllFieldValues()
     {
         if (viewer == null) return;
-        var formFields = await viewer.GetFormFieldsAsync();
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
 
-        foreach (var field in formFields)
+        foreach (FormFieldInfo field in formFields)
         {
             if (field is CheckBoxField checkBoxField)
             {
@@ -32,7 +32,7 @@
             }
             else if (field is DropDownField dropDownField)
             {
-                var selectedItem = dropDownField.Items.ElementAtOrDefault(dropDownField.SelectedIndex);
+                ListItem? selectedItem = dropDownField.Items.ElementAtOrDefault(dropDownField.SelectedIndex);
                 Console.WriteLine($"{field.Name}: {selectedItem?.Value}");
             }
             else

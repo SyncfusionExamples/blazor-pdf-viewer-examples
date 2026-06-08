@@ -9,13 +9,13 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task ReadTextFields()
     {
         if (viewer == null) return;
-        var formFields = await viewer.GetFormFieldsAsync();
-        var nameField = formFields.FirstOrDefault(field => field is TextBoxField && field.Name == "name") as TextBoxField;
+        List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+        TextBoxField? nameField = formFields.FirstOrDefault(field => field is TextBoxField && field.Name == "name") as TextBoxField;
         string nameValue = nameField?.Value ?? string.Empty;
         Console.WriteLine($"Name field value: {nameValue}");
     }

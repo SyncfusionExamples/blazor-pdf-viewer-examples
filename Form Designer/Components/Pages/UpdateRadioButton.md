@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnEditRadio()
     {
@@ -17,7 +17,7 @@
 
         List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         
-        var genderRadios = fields?.Where(f => f.Name == "Gender").ToList();
+        List<FormFieldInfo>? genderRadios = fields?.Where(f => f.Name == "Gender").ToList();
         
         if (genderRadios?.Count > 1)
         {

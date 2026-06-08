@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/formDesigner_Document.pdf";
+    private string DocumentPath = "wwwroot/data/FormDesigner_Document.pdf";
 
     private async Task UpdateFormField()
     {
@@ -18,7 +18,7 @@
         List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
         
         // Find and update ListBoxField
-        var listBox = formFields?.FirstOrDefault(f => f.Name == "InterestListBox" && f is ListBoxField) as ListBoxField;
+        ListBoxField? listBox = formFields?.FirstOrDefault(f => f.Name == "InterestListBox" && f is ListBoxField) as ListBoxField;
         if (listBox != null)
         {
             listBox.Items = new List<ListItem> {

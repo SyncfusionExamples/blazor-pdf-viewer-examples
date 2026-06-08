@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
     private async Task ReadDropdownValues()
     {
@@ -17,8 +17,8 @@
 
         try
         {
-            var formFields = await viewer.GetFormFieldsAsync();
-            var dropdownField = formFields?.FirstOrDefault(field => field is DropDownField && field.Name == "state") as DropDownField;
+            List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();
+            DropDownField? dropdownField = formFields?.FirstOrDefault(field => field is DropDownField && field.Name == "state") as DropDownField;
 
             if (dropdownField != null && dropdownField.Items != null && dropdownField.Items.Count > 0)
             {

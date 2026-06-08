@@ -9,7 +9,7 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnEditSignature()
     {
@@ -17,7 +17,7 @@
 
         List<FormFieldInfo> fields = await viewer.GetFormFieldsAsync();
         
-        var sig = fields?.FirstOrDefault(f => f.Name == "Sign");
+        FormFieldInfo? sig = fields?.FirstOrDefault(f => f.Name == "Sign");
         
         if (sig != null)
         {

@@ -7,14 +7,14 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task OnDocumentLoaded()
     {
         if (viewer == null) return;
 
         // Create grouped form fields with the same name
-        var formFields = new List<FormFieldInfo>
+        List<FormFieldInfo> formFields = new List<FormFieldInfo>
         {
             // Textbox group: same name => mirrored value
             new TextBoxField

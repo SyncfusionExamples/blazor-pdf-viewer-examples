@@ -8,14 +8,14 @@
 
 @code {
     private SfPdfViewer2? viewer;
-    private string DocumentPath = "wwwroot/data/form-designer.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Designer.pdf";
 
     private async Task AddFormFieldsWithCustomData()
     {
         if (viewer == null) return;
 
         // Define custom metadata
-        var customMetadata = new Dictionary<string, object>
+        Dictionary<string, object> customMetadata = new Dictionary<string, object>
         {
             { "businessId", "C-1024" },
             { "tags", new[] { "profile", "kiosk" } },
@@ -23,7 +23,7 @@
         };
 
         // Create a TextBox field with custom data
-        var textField = new TextBoxField
+        TextBoxField textField = new TextBoxField
         {
             Name = "Email",
             CustomData = customMetadata,

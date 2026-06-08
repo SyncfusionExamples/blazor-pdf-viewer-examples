@@ -7,7 +7,7 @@
 
 @code {
     private SfPdfViewer2 viewer;
-    private string DocumentPath = "wwwroot/data/form-filling-document.pdf";
+    private string DocumentPath = "wwwroot/data/Form_Filling_Document.pdf";
 
     private async Task AddCheckBoxField()
     {
