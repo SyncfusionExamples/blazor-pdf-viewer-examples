@@ -1,0 +1,11 @@
+@page "/DisablePrint"
+@using Syncfusion.Blazor.SfPdfViewer
+
+<SfPdfViewer2 Height="100%"
+              Width="100%"
+              DocumentPath="@DocumentPath"
+              EnablePrint="false" />
+
+@code{
+    public string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+}
