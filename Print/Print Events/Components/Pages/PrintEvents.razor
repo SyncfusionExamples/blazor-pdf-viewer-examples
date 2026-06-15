@@ -1,0 +1,16 @@
+﻿@page "/PrintEvents"
+@using Syncfusion.Blazor.SfPdfViewer 
+<SfPdfViewer2 DocumentPath="@DocumentPath" Height="100%" Width="100%"> 
+    <PdfViewerEvents PrintStart="@PrintStart" PrintEnd="@PrintEnd"></PdfViewerEvents>
+</SfPdfViewer2>
+@code{ 
+    private string DocumentPath { get; set; } = "wwwroot/Data/PDF_Succinctly.pdf";
+    public async Task PrintStart(PrintStartEventArgs args) 
+    {
+        Console.WriteLine($"Printed File Name: {args.FileName}");
+    }	 
+    public async Task PrintEnd(PrintEndEventArgs args) 
+    {
+        Console.WriteLine($"Printed File Name: {args.FileName}");
+    }	 
+}

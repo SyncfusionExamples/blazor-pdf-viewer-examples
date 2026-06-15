@@ -1,0 +1,21 @@
+@page "/"
+@using Syncfusion.Blazor.SfPdfViewer
+@using Syncfusion.Blazor.Buttons
+
+<SfButton OnClick="OnClick">Print</SfButton>
+<SfPdfViewer2 Width="100%"
+              Height="100%"
+              DocumentPath="@DocumentPath"
+              EnablePrintRotation="true" 
+              PrintMode="PrintMode.NewWindow"
+              @ref="@Viewer" />
+
+@code{
+    SfPdfViewer2 Viewer;
+    public string DocumentPath { get; set; } = "wwwroot/data/PDF_Succinctly.pdf";
+
+    public async void OnClick(MouseEventArgs args)
+    {
+        await Viewer.PrintAsync();
+    }
+}
