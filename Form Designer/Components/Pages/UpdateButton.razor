@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="OnAddButton">Add Button</SfButton>
 <SfButton @onclick="OnEditButton">Edit Button</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -31,5 +32,18 @@
 
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { field });
         }
+    }
+    private async Task OnAddButton()
+    {
+        // Create a button field with properties
+        ButtonField buttonField = new ButtonField()
+        {
+            Name = "SubmitButton",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 150, Height = 40 },
+            TooltipText = "Click to submit the form"
+        };
+
+        // Add the button field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { buttonField });
     }
 }

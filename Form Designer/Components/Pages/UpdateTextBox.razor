@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="OnAddTextbox">Add Textbox</SfButton>
 <SfButton @onclick="OnEditTextbox">Apply Textbox Changes</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -32,5 +33,19 @@
 
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { field });
         }
+    }
+    private async Task OnAddTextbox()
+    {
+        if (viewer == null) return;
+
+        // Create a text box field with properties
+        TextBoxField textBoxField = new TextBoxField()
+        {
+            Name = "FirstName",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 200, Height = 30 }
+        };
+
+        // Add the text box field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { textBoxField });
     }
 }

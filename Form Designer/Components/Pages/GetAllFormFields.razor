@@ -5,13 +5,13 @@
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
 </SfPdfViewer2>
 
-<SfButton @onclick="GetAllFormFields">Get Form Fields</SfButton>
+<SfButton @onclick="GetFormFields">Get Form Fields</SfButton>
 
 @code {
     private SfPdfViewer2? viewer;
     private string DocumentPath = "wwwroot/data/Form_Filling_Document_With_Data.pdf";
 
-    private async Task GetAllFormFields()
+    private async Task GetFormFields()
     {
         if (viewer == null) return;
         List<FormFieldInfo> formFields = await viewer.GetFormFieldsAsync();

@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="AddDropDown">Add DropDown</SfButton>
 <SfButton @onclick="UpdateFormField">Edit DropDown</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -34,5 +35,23 @@
             
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { dropDown });
         }
+    }
+    private async Task AddDropDown()
+    {
+        if (viewer == null) return;
+
+        // Create a dropdown field with properties
+        DropDownField dropDownField = new DropDownField()
+        {
+            Name = "CountryDropdown",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 150, Height = 24 },
+            Items = new List<ListItem> {
+                new ListItem { Name = "option 1", Value = "Option 1" },
+                new ListItem { Name = "option 2", Value = "Option 2" }
+            }
+        };
+
+        // Add the dropdown field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { dropDownField });
     }
 }
