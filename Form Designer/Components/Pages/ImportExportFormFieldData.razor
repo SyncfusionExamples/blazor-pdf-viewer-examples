@@ -28,7 +28,7 @@
         if (FormFields != null && FormFields.Count > 0)
         {
             // Export form fields as FDF data
-            FDFStream = await PdfViewerInstance.ExportFormFieldsAsync(FormFieldDataFormat.Fdf); 
+            FDFStream = await PdfViewerInstance.ExportFormFieldsAsync(FormFieldDataFormat.Fdf) as MemoryStream; 
         }
     }
 

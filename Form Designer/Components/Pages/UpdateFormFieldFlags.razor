@@ -23,7 +23,7 @@
         {
             new TextBoxField
             {
-                Name = "Email",
+                Name = "User Email",
                 Bounds = new Bound { X = 146, Y = 260, Width = 220, Height = 24 }
             }
         };
@@ -32,7 +32,7 @@
 
         // 2) Retrieve and update constraint flags
         List<FormFieldInfo> allFields = await viewer.GetFormFieldsAsync();
-        FormFieldInfo? field = allFields.FirstOrDefault(f => f.Name == "Email");
+        FormFieldInfo? field = allFields.FirstOrDefault(f => f.Name == "User Email");
         
         if (field is TextBoxField emailField)
         {

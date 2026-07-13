@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="OnAddCheckbox">Add CheckBox</SfButton>
 <SfButton @onclick="OnEditCheckbox">Edit CheckBox</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -29,5 +30,18 @@
 
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { cb });
         }
+    }
+
+    private async Task OnAddCheckbox()
+    {
+        // Create a checkbox field with properties
+        CheckBoxField checkboxField = new CheckBoxField()
+        {
+            Name = "Subscribe",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 20, Height = 20 },
+        };
+
+        // Add the checkbox field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { checkboxField });
     }
 }

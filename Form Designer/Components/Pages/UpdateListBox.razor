@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="AddListBox">Add ListBox</SfButton>
 <SfButton @onclick="UpdateFormField">Edit ListBox</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -34,5 +35,23 @@
             
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { listBox });
         }
+    }
+    private async Task AddListBox()
+    {
+        if (viewer == null) return;
+
+        // Create a ListBox field with properties
+        ListBoxField listBoxField = new ListBoxField()
+        {
+            Name = "InterestListBox",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 150, Height = 60 },
+            Items = new List<ListItem> {
+                new ListItem { Name = "item 1", Value = "Item 1" },
+                new ListItem { Name = "item 2", Value = "Item 2" }
+            }
+        };
+
+        // Add the ListBox field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { listBoxField });
     }
 }

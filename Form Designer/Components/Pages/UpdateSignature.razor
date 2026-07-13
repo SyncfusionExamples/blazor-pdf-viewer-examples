@@ -2,6 +2,7 @@
 @using Syncfusion.Blazor.SfPdfViewer
 @using Syncfusion.Blazor.Buttons
 
+<SfButton @onclick="OnAddSignature">Add Signature</SfButton>
 <SfButton @onclick="OnEditSignature">Edit Signature</SfButton>
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
@@ -29,5 +30,19 @@
 
             await viewer.UpdateFormFieldsAsync(new List<FormFieldInfo> { sig });
         }
+    }
+    private async Task OnAddSignature()
+    {
+        if (viewer == null) return;
+
+        // Create a signature field with properties
+        SignatureField signatureField = new SignatureField()
+        {
+            Name = "Sign",
+            Bounds = new Bound() { X = 100, Y = 190, Width = 200, Height = 50 }
+        };
+
+        // Add the signature field to the PDF document
+        await viewer.AddFormFieldsAsync(new List<FormFieldInfo> { signatureField });
     }
 }

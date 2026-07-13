@@ -2,14 +2,14 @@
 @using Syncfusion.Blazor.SfPdfViewer
 
 <SfPdfViewer2 @ref="@viewer" Height="100%" Width="100%" DocumentPath="@DocumentPath">
-    <PdfViewerEvents DocumentLoaded="@AddTextBox"></PdfViewerEvents>
+    <PdfViewerEvents DocumentLoaded="@AddTextBoxOnLoad"></PdfViewerEvents>
 </SfPdfViewer2>
 
 @code {
     private SfPdfViewer2 viewer;
     private string DocumentPath = "wwwroot/data/Form_Filling_Document.pdf";
 
-    private async Task AddTextBox()
+    private async Task AddTextBoxOnLoad()
     {
         // Create a text box field with properties
         TextBoxField textBoxField = new TextBoxField()
