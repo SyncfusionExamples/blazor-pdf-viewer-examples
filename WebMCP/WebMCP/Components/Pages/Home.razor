@@ -1,35 +1,57 @@
 ﻿@page "/"
 @using Syncfusion.Blazor.Buttons
-@using Syncfusion.Blazor.SfPdfViewer
+@inject NavigationManager NavManager
 
-<SfButton OnClick="GetTools">Get registered tools</SfButton>
-
-<SfPdfViewer2 @ref="Viewer" DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" Height="600px" Width="100%" EnableWebMcp="true">
-    <PdfViewerWebMcpSettings Name="PdfViewer">
-        <PdfViewerWebMcpTools>
-            <PdfViewerWebMcpTool Command="PdfViewerWebMcpToolCommand.GetBookmarks" Enabled="true" />
-            <PdfViewerWebMcpTool Command="PdfViewerWebMcpToolCommand.DeletePages" Enabled="false" />
-        </PdfViewerWebMcpTools>
-    </PdfViewerWebMcpSettings>
-    <PdfViewerEvents OnWebMcpExecute="OnWebMcpExecute"></PdfViewerEvents>
-</SfPdfViewer2>
-
-@code {
-    private SfPdfViewer2 Viewer { get; set; }
-
-    private async Task GetTools()
-    {
-        //get registered WebMCP tools
-        IReadOnlyList<IPdfViewerWebMcpTool> tools = await Viewer.GetWebMcpToolsAsync(null);
-        string names = string.Join(", ", tools.Select(t => t.Name));
+<style>
+    .webmcp-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        margin: 16px 0 32px 0;
     }
-    private void OnWebMcpExecute(PdfViewerWebMcpExecuteEventArgs args)
-    {
-        // Example business rule - block annotation
-        if (args.Command == PdfViewerWebMcpToolCommand.AddAnnotation)
-        {
-            args.Cancel = true;
-            args.CancellationResponse = "[USER_CANCELLED] Adding annotations is not allowed";
+
+    .webmcp-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 16px;
+        background: #fafafa;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+        .webmcp-card h3 {
+            margin: 0;
         }
-    }
-}
+
+        .webmcp-card p {
+            margin: 0;
+            color: #555;
+            flex: 1;
+        }
+</style>
+
+<section class="webmcp-index">
+    <h2>WebMCP Samples</h2>
+    <p>Jump to a focused sample of each WebMCP feature:</p>
+
+    <div class="webmcp-card-grid">
+        <article class="webmcp-card">
+            <h3>Get Supported Tools</h3>
+            <p>Inspect every tool the viewer has registered with WebMCP.</p>
+            <SfButton OnClick="@(() => NavManager.NavigateTo("get-tools"))" CssClass="e-primary">Open sample</SfButton>
+        </article>
+
+        <article class="webmcp-card">
+            <h3>OnWebMcpExecute</h3>
+            <p>Hook into tool invocations to enforce custom business rules.</p>
+            <SfButton OnClick="@(() => NavManager.NavigateTo("webmcp-execute"))" CssClass="e-primary">Open sample</SfButton>
+        </article>
+
+        <article class="webmcp-card">
+            <h3>Enable / Disable Tools</h3>
+            <p>Choose which tools the MCP client is allowed to call.</p>
+            <SfButton OnClick="@(() => NavManager.NavigateTo("manage-tools"))" CssClass="e-primary">Open sample</SfButton>
+        </article>
+    </div>
+</section>
