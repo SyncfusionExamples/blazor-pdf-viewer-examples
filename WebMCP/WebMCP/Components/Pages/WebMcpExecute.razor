@@ -1,0 +1,63 @@
+﻿@page "/webmcp-execute"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+@inject NavigationManager NavManager
+
+<style>
+    .rules {
+        background: #fff7e6;
+        border: 1px solid #ffd591;
+        border-radius: 6px;
+        padding: 12px;
+    }
+
+    .last-event {
+        margin-top: 12px;
+        font-family: monospace;
+    }
+</style>
+
+<h2>OnWebMcpExecute Hook</h2>
+<p>
+    The <code>OnWebMcpExecute</code> event fires before the viewer runs a WebMCP tool.
+    Use it to cancel the call or rewrite the response.
+</p>
+
+<div class="rules">
+    <strong>Active rule:</strong>
+    <ul>
+        <li>Block <code>AddAnnotation</code> with a custom cancellation message.</li>
+    </ul>
+</div>
+
+@if (!string.IsNullOrEmpty(LastEvent))
+{
+    <div class="last-event">Last event: @LastEvent</div>
+}
+
+<SfButton OnClick="@(() => NavManager.NavigateTo("/"))" CssClass="e-flat" Disabled="@(Viewer is null)">Back to home</SfButton>
+
+<SfPdfViewer2 @ref="Viewer"
+              DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+              Height="600px" Width="100%"
+              EnableWebMcp="true">
+    <PdfViewerEvents OnWebMcpExecute="OnWebMcpExecute"></PdfViewerEvents>
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2 Viewer { get; set; }
+    private string LastEvent;
+
+    private void OnWebMcpExecute(PdfViewerWebMcpExecuteEventArgs args)
+    {
+        // Example business rule - block annotation
+        if (args.Command == PdfViewerWebMcpToolCommand.AddAnnotation)
+        {
+            args.Cancel = true;
+            args.CancellationResponse = "[USER_CANCELLED] Adding annotations is not allowed";
+        }
+
+        LastEvent = $"{DateTime.Now:HH:mm:ss} - {args.Command}"
+            + (args.Cancel ? " (cancelled)" : "");
+    }
+}

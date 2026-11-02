@@ -1,0 +1,76 @@
+﻿@page "/get-tools"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+@inject NavigationManager NavManager
+
+<style>
+    .tool-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+        .tool-table th, .tool-table td {
+            border: 1px solid #e0e0e0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .tool-table th {
+            background: #f5f5f5;
+        }
+</style>
+
+<h2>Get Supported WebMCP Tools</h2>
+<p>
+    Calls <code>GetWebMcpToolsAsync</code> on the viewer and lists every tool currently
+    registered with WebMCP.
+</p>
+
+<SfButton OnClick="GetToolsAsync" CssClass="e-primary">
+    Get registered tools
+</SfButton>
+<SfButton OnClick="@(() => NavManager.NavigateTo("/"))" CssClass="e-flat">Back to home</SfButton>
+
+@if (Tools is null)
+{
+    <p><em>No lookup performed yet — click the button above.</em></p>
+}
+else if (Tools.Count == 0)
+{
+    <p><em>The viewer has no registered WebMCP tools.</em></p>
+}
+else
+{
+    <table class="tool-table">
+        <thead>
+            <tr><th>#</th><th>Name</th></tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Tools.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Tools[i].Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<SfPdfViewer2 @ref="Viewer"
+              DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+              Height="600px" Width="100%"
+              EnableWebMcp="true">
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2 Viewer { get; set; }
+    private IReadOnlyList<IPdfViewerWebMcpTool> Tools;
+
+    private async Task GetToolsAsync()
+    {
+        // get registered WebMCP tools
+        Tools = await Viewer.GetWebMcpToolsAsync(null);
+    }
+}

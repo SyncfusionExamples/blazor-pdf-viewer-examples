@@ -1,0 +1,109 @@
+﻿@page "/manage-tools"
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.SfPdfViewer
+@inject NavigationManager NavManager
+
+<style>
+    .tool-toggles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 8px 16px;
+        margin: 16px 0;
+    }
+
+    .tool-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .status {
+        margin-top: 12px;
+        color: #2a8a3a;
+    }
+</style>
+
+<h2>Enable / Disable WebMCP Tools</h2>
+<p>
+    Toggle which tools are exposed to the MCP client. Changes are pushed to the
+    viewer via the <code>PdfViewerWebMcpSettings</code> child content.
+</p>
+
+<div class="tool-toggles">
+    @foreach (var entry in ToolStates)
+    {
+        <div>
+            <SfCheckBox Label="@entry.Command.ToString()" @bind-Checked="entry.IsEnabled" TChecked="bool" />
+        </div>
+    }
+</div>
+
+<div class="tool-actions">
+    <SfButton OnClick="Apply" CssClass="e-primary" Disabled="@(Viewer is null)">Apply</SfButton>
+    <SfButton OnClick="Reset" Disabled="@(Viewer is null)">Reset (enable all)</SfButton>
+    <SfButton OnClick="@(() => NavManager.NavigateTo("/"))" CssClass="e-flat">Back to home</SfButton>
+</div>
+
+@if (!string.IsNullOrEmpty(Status))
+{
+    <p class="status">@Status</p>
+}
+
+<SfPdfViewer2 @ref="Viewer"
+              DocumentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+              Height="600px" Width="100%"
+              EnableWebMcp="true">
+    <PdfViewerWebMcpSettings Name="PdfViewer">
+        <PdfViewerWebMcpTools>
+            @foreach (var entry in ToolStates)
+            {
+                <PdfViewerWebMcpTool Command="@entry.Command" Enabled="@entry.IsEnabled" />
+            }
+        </PdfViewerWebMcpTools>
+    </PdfViewerWebMcpSettings>
+</SfPdfViewer2>
+
+@code {
+    private SfPdfViewer2 Viewer { get; set; }
+    private string Status;
+
+    private class ToolToggle
+    {
+        public PdfViewerWebMcpToolCommand Command { get; set; }
+        public bool IsEnabled { get; set; }
+    }
+
+    // SINGLE source of truth - must be a List<ToolToggle>, not a Dictionary.
+    // Adjust the commands to match the exact PdfViewerWebMcpToolCommand members
+    // shipped in your version of Syncfusion.Blazor.SfPdfViewer.
+    private List<ToolToggle> ToolStates = new()
+    {
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.GetBookmarks,     IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.AddFormFields,      IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.DeleteFormFields,   IsEnabled = false },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.DeletePages,      IsEnabled = false },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.RotatePages,      IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.AddAnnotation,    IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.EditAnnotation,   IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.DeleteAnnotations, IsEnabled = false },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.GetAnnotations,   IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.Print,            IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.Download,         IsEnabled = true  },
+        new ToolToggle { Command = PdfViewerWebMcpToolCommand.SearchText,           IsEnabled = true  },
+    };
+
+    private Task Apply()
+    {
+        int enabled = ToolStates.Count(t => t.IsEnabled);
+        int disabled = ToolStates.Count(t => !t.IsEnabled);
+        Status = $"Applied: {enabled} enabled, {disabled} disabled.";
+        return Task.CompletedTask;
+    }
+
+    private void Reset()
+    {
+        foreach (var t in ToolStates)
+            t.IsEnabled = true;
+        Status = "All tools reset to enabled.";
+    }
+}
